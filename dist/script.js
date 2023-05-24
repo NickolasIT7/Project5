@@ -136,3 +136,19 @@ sum = function (a, b) {
 // Оператор typeof возвращает тип значения переменной.
 var varFromServer = '' || 0 || 'not';
 // Значения null и undefined особенные: они равны == только друг другу, но не равны ничему ещё.
+/**
+ * Возвращает x, возведённое в n-ную степень.
+ * В случае, если n не целое или отрицательное, результат NaN
+ *
+ * @param {number} x Возводимое в степень число.
+ * @param {number} n Степень, должна быть натуральным числом.
+ * @return {number} x, возведённое в n-ную степень.
+ */
+function pow(x, n) {
+    if (n < 0)
+        return NaN;
+    if (Math.round(n) != n)
+        return NaN;
+    return Math.pow(x, n);
+}
+pow(2, 2);
