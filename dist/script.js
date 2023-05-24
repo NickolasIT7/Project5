@@ -152,3 +152,11 @@ function pow(x, n) {
     return Math.pow(x, n);
 }
 pow(2, 2);
+//Объекты
+//Создание пустого объекта
+var user = {}; //синтаксис "литерал объекта"
+var user1 = new Object(); //синтаксис "конструктор объекта"
+user.age = 18;
+user['two words'] = 'ok';
+user[18] = 18;
+console.log(user);

@@ -176,3 +176,13 @@ function pow(x: number, n: number) {
 }
 
 pow (2,2)
+
+//Объекты
+//Создание пустого объекта
+let user = {} as any //синтаксис "литерал объекта"
+let user1 = new Object() //синтаксис "конструктор объекта"
+user.age = 18
+user['two words'] = 'ok'
+user[18] = 18
+
+console.log(user)
