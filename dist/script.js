@@ -159,4 +159,31 @@ var user1 = new Object(); //синтаксис "конструктор объе�
 user.age = 18;
 user['two words'] = 'ok';
 user[18] = 18;
-console.log(user);
+user['two words'] = 'not';
+console.log(user['18']);
+var car = {
+    wheels: 4,
+    engine: 'v8',
+    hp: 200,
+    'two words': 'yes'
+};
+var horsePowers = 'hP';
+console.log(car[horsePowers]);
+delete car['two words'];
+car.wheels = 5;
+console.log(car);
+// let user = {
+//   name: "John",
+//   age: 30
+// };
+// let key = prompt("Что вы хотите узнать о пользователе?", "name");
+// // доступ к свойству через переменную
+// alert( user[key] ); // John (если ввели "name")
+function makeUser(name, age) {
+    return {
+        name: name,
+        age: age
+    };
+}
+var user2 = makeUser("John", 30);
+console.log(user2);

@@ -179,10 +179,46 @@ pow (2,2)
 
 //Объекты
 //Создание пустого объекта
-let user = {} as any //синтаксис "литерал объекта"
-let user1 = new Object() //синтаксис "конструктор объекта"
+const user = {} as any //синтаксис "литерал объекта"
+const user1 = new Object() //синтаксис "конструктор объекта"
+
 user.age = 18
 user['two words'] = 'ok'
 user[18] = 18
+user['two words'] = 'not'
+console.log(user['18'])
 
-console.log(user)
+const car = {
+ wheels: 4,
+ engine: 'v8',
+hp : 200,  
+'two words' : 'yes',
+}as any
+let horsePowers = 'hP'
+console.log(car[horsePowers])
+delete car['two words']
+car.wheels = 5
+console.log(car)
+
+// let user = {
+//   name: "John",
+//   age: 30
+// };
+
+// let key = prompt("Что вы хотите узнать о пользователе?", "name");
+
+// // доступ к свойству через переменную
+// alert( user[key] ); // John (если ввели "name")
+
+function makeUser(name:string, age:number) {
+  return {
+    name: name,
+    age, //имя переменной ставновится свойством, а ее значение - значением
+    // ...другие свойства
+  };
+}
+
+let user2 = makeUser("John", 30);
+console.log(user2)
+
+
