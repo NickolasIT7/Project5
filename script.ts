@@ -55,11 +55,11 @@
 //   console.log(local)
 //   console.log(showMessage(local))
 
-  function showMessage(from:string, text:any, devider=':') { // параметры: from, text
-    console.log(from + devider + '' + text);
-  }
-  showMessage('Аня', 'Привет!'); // Аня: Привет! (*)
-  showMessage('Аня', "Как дела?"); // Аня: Как дела? (**)
+function showMessage(from: string, text: any, devider = ':') { // параметры: from, text
+  console.log(from + devider + '' + text);
+}
+showMessage('Аня', 'Привет!'); // Аня: Привет! (*)
+showMessage('Аня', "Как дела?"); // Аня: Как дела? (**)
 
 // Параметр – это переменная, указанная в круглых скобках в объявлении функции.
 // Аргумент – это значение, которое передаётся функции при её вызове.
@@ -106,15 +106,15 @@
 var nothing
 console.log(nothing)
 
-nothing =2
+nothing = 2
 
 const sayHi = function () {
   console.log("Привет")
 }
-alert (sayHi)
+// alert(sayHi)
 
 let sayH = () => alert("Hello!");
-sayH();
+// sayH();
 
 // Функции – это значения. Они могут быть присвоены, скопированы или объявлены в любом месте кода.
 // Если функция объявлена как отдельная инструкция в основном потоке кода, то это “Function Declaration”.
@@ -139,12 +139,12 @@ sayH();
 //   return expression
 // }
 
-let sum
-sum = (a:number, b:number) => a + b
-sum =(a:number, b:number) => {
-let s = a + b
-return s
-}
+// let sum
+// sum = (a: number, b: number) => a + b
+// sum = (a: number, b: number) => {
+//   let s = a + b
+//   return s
+// }
 
 // Всего существует 8 типов данных:
 
@@ -172,10 +172,10 @@ let varFromServer = '' || 0 || 'not'
 function pow(x: number, n: number) {
   if (n < 0) return NaN;
   if (Math.round(n) != n) return NaN;
-  return x**n 
+  return x ** n
 }
 
-pow (2,2)
+pow(2, 2)
 
 //Объекты
 //Создание пустого объекта
@@ -189,11 +189,11 @@ user['two words'] = 'not'
 console.log(user['18'])
 
 const car = {
- wheels: 4,
- engine: 'v8',
-hp : 200,  
-'two words' : 'yes',
-}as any
+  wheels: 4,
+  engine: 'v8',
+  hp: 200,
+  'two words': 'yes',
+} as any
 let horsePowers = 'hP'
 console.log(car[horsePowers])
 delete car['two words']
@@ -210,15 +210,171 @@ console.log(car)
 // // доступ к свойству через переменную
 // alert( user[key] ); // John (если ввели "name")
 
-function makeUser(name:string, age:number) {
-  return {
-    name: name,
-    age, //имя переменной ставновится свойством, а ее значение - значением
-    // ...другие свойства
-  };
+// function makeUser(name:string, age:number) {
+//   return {
+//     name: name,
+//     age, //имя переменной ставновится свойством, а ее значение - значением
+//     // ...другие свойства
+//   };
+// }
+
+// let user2 = makeUser("John", 30);
+// console.log(user2)
+
+function showMessage1() {
+  console.log('Всем привет!');
+}
+showMessage1()
+
+function CurrTimeAndSeconds(hours, minutes, seconds) {
+  let TimeInSeconds = hours * 3600 + minutes * 60 + seconds
+  let AboutSeconds = +(prompt('на сколько увеличить время в секундах') as string)
+  let NewTimeInSeconds = TimeInSeconds + AboutSeconds
+  let hours2 = Math.floor(NewTimeInSeconds / 3600)
+  let minutes2 = Math.floor((NewTimeInSeconds - (hours2 * 3600)) / 60)
+  let seconds2 = Math.floor(NewTimeInSeconds%60)
+  let NewCurrentTime = `${hours2}:${minutes2}:${seconds2}`
+  // return NewCurrentTime;
+  console.log(NewCurrentTime)
 }
 
-let user2 = makeUser("John", 30);
-console.log(user2)
+CurrTimeAndSeconds(12,10,15)
+// console.log(CurrTimeAndSeconds(12,10,15))
+
+// Создать объект, хранящий в себе отдельно числитель и знаменатель дроби, 
+// и следующие функции для работы с этим объ-ектом.
+// 1 Функция сложения 2-х объектов-дробей.
+// 2 Функция вычитания 2-х объектов-дробей.
+// 3 Функция умножения 2-х объектов-дробей.
+// 4 Функция деления 2-х объектов-дробей.
+// 5 Функция сокращения объекта-дроби.
 
 
+
+
+const fraction1 = {
+numerator:2,
+denominator:5,  
+}
+
+const fraction2 = {
+  numerator:2,
+  denominator:8,  
+  }
+
+console.log(`${fraction1.numerator}/${fraction1.denominator} and ${fraction2.numerator}/${fraction2.denominator}`)
+
+function maxDenominator (f:any) {
+  const min = f.numerator < f.denominator ? f.numerator : f.denominator
+  for (let i = min; i>1; i--) {
+  if (f.numerator % i == 0 && f.denominator % i == 0)
+  return i
+  } 
+  return 1
+}
+function fractionReduction (f:any) {
+const denominator = maxDenominator (f)
+f.numerator /= denominator
+f.denominator /= denominator
+return f
+}
+
+function fractionSubstraction (f1:any,f2:any) {
+  const ajusted = fractionAjust (f1,f2)
+ const sub = {
+ numerator:ajusted.f1.numerator - ajusted.f2.numerator,
+ denominator:f1.denominator, 
+ } 
+ return fractionReduction(sub)
+}
+ 
+function fractionAjust (f1:any, f2:any) {
+ const f1D = f1.denominator
+ const f2D = f2.denominator
+ f1.numerator *=f2D
+ f1.denominator *=f2D
+ f2.numerator *=f1D
+ f2.denominator *=f1D
+ return {f1,f2}
+}
+
+function fractionMultiplication (f1:any, f2:any) {
+const mult = {
+  numerator: f1.numerator * f2.numerator,
+  denominator:f1.denominator * f2.denominator,
+ }
+ return fractionReduction(mult)
+}
+
+function fractionDivision (f1: any, f2: any) {
+const div = {
+ numerator: f1.numerator * f2.denominator,
+ donominator: f1.denominator * f2.numerator,
+}
+return fractionReduction(div)
+}
+
+function fractionSum (f1:any, f2:any) {
+const ajusted = fractionAjust (f1, f2)
+const sum = {
+numerator:ajusted.f1.numerator + ajusted.f2.numerator,
+denominator:ajusted.f1.denominator
+}
+return fractionReduction(sum)
+}
+
+const sumResult = fractionSum (fraction1, fraction2)
+const subResult = fractionSubstraction (fraction1, fraction2)
+const multResult = fractionMultiplication (fraction1, fraction2)
+const divResult = fractionDivision (fraction1, fraction2)
+console.log (`sum = ${sumResult.numerator}/ ${sumResult.denominator}`)
+console.log (`sub = ${subResult.numerator}/ ${subResult.denominator}`)
+console.log (`mult = ${multResult.numerator}/ ${multResult.denominator}`)
+console.log (`div = ${divResult.numerator}/ ${divResult.denominator}`)
+
+// Создайте пустой объект user.
+// Добавьте свойство name со значением John.
+// Добавьте свойство surname со значением Smith.
+// Измените значение свойства name на Pete.
+// Удалите свойство name из объекта.
+
+const newUser = {} as any
+newUser.name = 'John'
+newUser.surname = 'Smith'
+newUser.name = 'Pete'
+delete newUser.name
+
+// Напишите функцию isEmpty(obj), которая возвращает true, если у объекта нет свойств, иначе false.
+const obj1 = {a:1}
+const obj2 = {a:1}
+console.log ('obj1 === obj2', obj1 === obj2)
+
+function isEmpty(obj:any) {
+
+}
+
+//Два одинаковых объекта никогда не будут равны
+
+// У нас есть объект, в котором хранятся зарплаты нашей команды:
+
+let salaries = {
+  John: 100,
+  Ann: '160$',
+  Pete: 130
+}
+
+let salariesSum = 0
+for (let key in salaries) {
+salariesSum += parseFloat(salaries[key])
+}
+console.log(salariesSum)
+
+// Создайте функцию multiplyNumeric(obj), которая умножает все числовые свойства объекта obj на 2.
+function multiplyNumeric(obj:any) {
+  for (let key in obj) {
+  if (typeof (obj[key]) == 'number') 
+  obj[key]*=2
+  }
+}
+multiplyNumeric(salaries)
+console.log(salaries)

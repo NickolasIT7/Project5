@@ -98,9 +98,9 @@ nothing = 2;
 var sayHi = function () {
     console.log("Привет");
 };
-alert(sayHi);
+// alert(sayHi)
 var sayH = function () { return alert("Hello!"); };
-sayH();
+// sayH();
 // Функции – это значения. Они могут быть присвоены, скопированы или объявлены в любом месте кода.
 // Если функция объявлена как отдельная инструкция в основном потоке кода, то это “Function Declaration”.
 // Если функция была создана как часть выражения, то это “Function Expression”.
@@ -119,12 +119,12 @@ sayH();
 // let func123 = function (arg1,arg, ...argN) {
 //   return expression
 // }
-var sum;
-sum = function (a, b) { return a + b; };
-sum = function (a, b) {
-    var s = a + b;
-    return s;
-};
+// let sum
+// sum = (a: number, b: number) => a + b
+// sum = (a: number, b: number) => {
+//   let s = a + b
+//   return s
+// }
 // Всего существует 8 типов данных:
 // number для целых и вещественных чисел,
 // bigint для работы с целыми числами произвольной длины,
@@ -179,11 +179,143 @@ console.log(car);
 // let key = prompt("Что вы хотите узнать о пользователе?", "name");
 // // доступ к свойству через переменную
 // alert( user[key] ); // John (если ввели "name")
-function makeUser(name, age) {
-    return {
-        name: name,
-        age: age
-    };
+// function makeUser(name:string, age:number) {
+//   return {
+//     name: name,
+//     age, //имя переменной ставновится свойством, а ее значение - значением
+//     // ...другие свойства
+//   };
+// }
+// let user2 = makeUser("John", 30);
+// console.log(user2)
+function showMessage1() {
+    console.log('Всем привет!');
 }
-var user2 = makeUser("John", 30);
-console.log(user2);
+showMessage1();
+function CurrTimeAndSeconds(hours, minutes, seconds) {
+    var TimeInSeconds = hours * 3600 + minutes * 60 + seconds;
+    var AboutSeconds = +prompt('на сколько увеличить время в секундах');
+    var NewTimeInSeconds = TimeInSeconds + AboutSeconds;
+    var hours2 = Math.floor(NewTimeInSeconds / 3600);
+    var minutes2 = Math.floor((NewTimeInSeconds - (hours2 * 3600)) / 60);
+    var seconds2 = Math.floor(NewTimeInSeconds % 60);
+    var NewCurrentTime = hours2 + ":" + minutes2 + ":" + seconds2;
+    // return NewCurrentTime;
+    console.log(NewCurrentTime);
+}
+CurrTimeAndSeconds(12, 10, 15);
+// console.log(CurrTimeAndSeconds(12,10,15))
+// Создать объект, хранящий в себе отдельно числитель и знаменатель дроби, 
+// и следующие функции для работы с этим объ-ектом.
+// 1 Функция сложения 2-х объектов-дробей.
+// 2 Функция вычитания 2-х объектов-дробей.
+// 3 Функция умножения 2-х объектов-дробей.
+// 4 Функция деления 2-х объектов-дробей.
+// 5 Функция сокращения объекта-дроби.
+var fraction1 = {
+    numerator: 2,
+    denominator: 5
+};
+var fraction2 = {
+    numerator: 2,
+    denominator: 8
+};
+console.log(fraction1.numerator + "/" + fraction1.denominator + " and " + fraction2.numerator + "/" + fraction2.denominator);
+function maxDenominator(f) {
+    var min = f.numerator < f.denominator ? f.numerator : f.denominator;
+    for (var i = min; i > 1; i--) {
+        if (f.numerator % i == 0 && f.denominator % i == 0)
+            return i;
+    }
+    return 1;
+}
+function fractionReduction(f) {
+    var denominator = maxDenominator(f);
+    f.numerator /= denominator;
+    f.denominator /= denominator;
+    return f;
+}
+function fractionSubstraction(f1, f2) {
+    var ajusted = fractionAjust(f1, f2);
+    var sub = {
+        numerator: ajusted.f1.numerator - ajusted.f2.numerator,
+        denominator: f1.denominator
+    };
+    return fractionReduction(sub);
+}
+function fractionAjust(f1, f2) {
+    var f1D = f1.denominator;
+    var f2D = f2.denominator;
+    f1.numerator *= f2D;
+    f1.denominator *= f2D;
+    f2.numerator *= f1D;
+    f2.denominator *= f1D;
+    return { f1: f1, f2: f2 };
+}
+function fractionMultiplication(f1, f2) {
+    var mult = {
+        numerator: f1.numerator * f2.numerator,
+        denominator: f1.denominator * f2.denominator
+    };
+    return fractionReduction(mult);
+}
+function fractionDivision(f1, f2) {
+    var div = {
+        numerator: f1.numerator * f2.denominator,
+        donominator: f1.denominator * f2.numerator
+    };
+    return fractionReduction(div);
+}
+function fractionSum(f1, f2) {
+    var ajusted = fractionAjust(f1, f2);
+    var sum = {
+        numerator: ajusted.f1.numerator + ajusted.f2.numerator,
+        denominator: ajusted.f1.denominator
+    };
+    return fractionReduction(sum);
+}
+var sumResult = fractionSum(fraction1, fraction2);
+var subResult = fractionSubstraction(fraction1, fraction2);
+var multResult = fractionMultiplication(fraction1, fraction2);
+var divResult = fractionDivision(fraction1, fraction2);
+console.log("sum = " + sumResult.numerator + "/ " + sumResult.denominator);
+console.log("sub = " + subResult.numerator + "/ " + subResult.denominator);
+console.log("mult = " + multResult.numerator + "/ " + multResult.denominator);
+console.log("div = " + divResult.numerator + "/ " + divResult.denominator);
+// Создайте пустой объект user.
+// Добавьте свойство name со значением John.
+// Добавьте свойство surname со значением Smith.
+// Измените значение свойства name на Pete.
+// Удалите свойство name из объекта.
+var newUser = {};
+newUser.name = 'John';
+newUser.surname = 'Smith';
+newUser.name = 'Pete';
+delete newUser.name;
+// Напишите функцию isEmpty(obj), которая возвращает true, если у объекта нет свойств, иначе false.
+var obj1 = { a: 1 };
+var obj2 = { a: 1 };
+console.log('obj1 === obj2', obj1 === obj2);
+function isEmpty(obj) {
+}
+//Два одинаковых объекта никогда не будут равны
+// У нас есть объект, в котором хранятся зарплаты нашей команды:
+var salaries = {
+    John: 100,
+    Ann: '160$',
+    Pete: 130
+};
+var salariesSum = 0;
+for (var key in salaries) {
+    salariesSum += parseFloat(salaries[key]);
+}
+console.log(salariesSum);
+// Создайте функцию multiplyNumeric(obj), которая умножает все числовые свойства объекта obj на 2.
+function multiplyNumeric(obj) {
+    for (var key in obj) {
+        if (typeof (obj[key]) == 'number')
+            obj[key] *= 2;
+    }
+}
+multiplyNumeric(salaries);
+console.log(salaries);
