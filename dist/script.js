@@ -12,6 +12,17 @@
 // newNumber += input [i]   
 // }
 // alert (newNumber)
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 // 2pz
 // let num = 1000
 // let i = 0
@@ -319,3 +330,75 @@ function multiplyNumeric(obj) {
 }
 multiplyNumeric(salaries);
 console.log(salaries);
+// object+function
+// let currentTime = {
+// hours:11,
+// minutes:47,
+// seconds:50,    
+// }
+// function currTime(time:any) {
+//   return `${time.hours}:${time.minutes}:${time.seconds}`
+// }
+// function addMinutes(time:any, minutes:number) {
+//   let hours = time.hours
+//   let newMinutes = time.minutes + minutes
+//   if (newMinutes>59) {
+//     hours += Math.floor(newMinutes/60)
+//     newMinutes %= 60 
+//   }
+//   return {
+//     hours:hours,
+//     minutes:newMinutes,
+//     seconds:time.seconds,    
+//   }
+// }
+// console.log(currTime(currentTime))
+// const minutes = +(prompt('Input minutes to add') as string)
+// console.log(currTime(addMinutes(currentTime, minutes)))
+var messageStr = "Привет!";
+var phraseStr = messageStr;
+console.log("messageStr", messageStr);
+console.log('phraseStr', phraseStr);
+phraseStr += 'User!';
+console.log("messageStr", messageStr);
+console.log('phraseStr', phraseStr);
+// Два объекта равны только в том случае, если это один и тот же объект.
+var mainUser = {
+    name: "John",
+    age: 30,
+    work: {
+        salari: 100
+    }
+};
+var clone = {}; // новый пустой объект
+// давайте скопируем все свойства user в него
+//1 способ клонирования объектов.Копирование свойств объекта в цикле
+// for (let key in mainUser) {
+//   if (typeof(mainUser[key])=='object') {
+//     clone[key] = {}
+//     for (let innerKey in mainUser) {
+//      clone [key][innerKey] = mainUser[key][innerKey] 
+//     }
+// } else {
+//   clone[key] = user[key]
+// }
+// }
+// 2 Spred оператор (развертывание)
+clone = __assign(__assign({}, mainUser), { work: __assign({}, mainUser.work) });
+//  3 Object.assign
+// clone = Object.assign ({}, mainUser, {work: {...mainUser.work}})
+//  Для плоских объектов доступны 2 варианта записи
+//  Object.assign(clone,mainUser)
+//  clone = Object.assign({},mainUser)
+//  4 Преобразование в JSON (строка) и назад в объект. Не надо думать о вложенности,
+//  но теряются Symbol и методы
+// clone = JSON.parse(JSON.stringify(mainUser))
+//  5 structedClone().Выдает ошибку, если в объекте присутствует метод
+// clone  = structuredClone(mainUser)
+// теперь clone это полностью независимый объект с тем же содержимым
+clone.name = "Pete"; // изменим в нём данные
+console.log(clone);
+clone.work.salari = 200;
+console.log(mainUser.name); // все ещё John в первоначальном объекте
+console.log(clone.name); //уже Pete
+console.log(clone.work.salari);
