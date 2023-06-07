@@ -23,6 +23,7 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var _a;
 // 2pz
 // let num = 1000
 // let i = 0
@@ -199,22 +200,22 @@ console.log(car);
 // }
 // let user2 = makeUser("John", 30);
 // console.log(user2)
-function showMessage1() {
-    console.log('Всем привет!');
-}
-showMessage1();
-function CurrTimeAndSeconds(hours, minutes, seconds) {
-    var TimeInSeconds = hours * 3600 + minutes * 60 + seconds;
-    var AboutSeconds = +prompt('на сколько увеличить время в секундах');
-    var NewTimeInSeconds = TimeInSeconds + AboutSeconds;
-    var hours2 = Math.floor(NewTimeInSeconds / 3600);
-    var minutes2 = Math.floor((NewTimeInSeconds - (hours2 * 3600)) / 60);
-    var seconds2 = Math.floor(NewTimeInSeconds % 60);
-    var NewCurrentTime = hours2 + ":" + minutes2 + ":" + seconds2;
-    // return NewCurrentTime;
-    console.log(NewCurrentTime);
-}
-CurrTimeAndSeconds(12, 10, 15);
+// function showMessage1() {
+//   console.log('Всем привет!');
+// }
+// showMessage1()
+// function CurrTimeAndSeconds(hours, minutes, seconds) {
+//   let TimeInSeconds = hours * 3600 + minutes * 60 + seconds
+//   let AboutSeconds = +(prompt('на сколько увеличить время в секундах') as string)
+//   let NewTimeInSeconds = TimeInSeconds + AboutSeconds
+//   let hours2 = Math.floor(NewTimeInSeconds / 3600)
+//   let minutes2 = Math.floor((NewTimeInSeconds - (hours2 * 3600)) / 60)
+//   let seconds2 = Math.floor(NewTimeInSeconds%60)
+//   let NewCurrentTime = `${hours2}:${minutes2}:${seconds2}`
+//   // return NewCurrentTime;
+//   console.log(NewCurrentTime)
+// }
+// CurrTimeAndSeconds(12,10,15)
 // console.log(CurrTimeAndSeconds(12,10,15))
 // Создать объект, хранящий в себе отдельно числитель и знаменатель дроби, 
 // и следующие функции для работы с этим объ-ектом.
@@ -402,3 +403,61 @@ clone.work.salari = 200;
 console.log(mainUser.name); // все ещё John в первоначальном объекте
 console.log(clone.name); //уже Pete
 console.log(clone.work.salari);
+var news = [
+    {
+        h1: 'getafe',
+        image: 'getafe1.jpg',
+        text: '23',
+        paragraph: '23',
+        tags: ['la-liga']
+    }
+];
+for (var _i = 0, news_1 = news; _i < news_1.length; _i++) {
+    var el = news_1[_i];
+    el.paragraph = el.text.split('\n')[0];
+    document.write('${el.h1}');
+    if (el.tags) {
+        for (var _b = 0, _c = el.tags; _b < _c.length; _b++) {
+            var tag = _c[_b];
+            document.write('${tags}');
+        }
+    }
+}
+console.log(news);
+var userObj = {
+    address: {}
+}; // пользователь без свойства "address"
+// Мы не можем использовать ?. для записи т.к. опциональная цепочка ?. не имеет смысла в левой части присваивания.
+// userObj?.adress.street = 'roz' //Левая часть выражения присваивания не может быть обращением к нему
+// Так создаются сложные объекты необходимой конфигурации
+var street; //может быть, а может и не быть
+if (street && userObj.address) {
+    userObj.address.street = 'roz';
+}
+else if (street && !userObj.address) {
+    userObj.address = {};
+    userObj.address.street = 'roz';
+}
+// console.log(userObj.address.street) // Ошибка!
+console.log(user.address ? user.address.street : undefined); // развернутая запись
+console.log((_a = userObj.address) === null || _a === void 0 ? void 0 : _a.street); // сокращенная запись 
+fetch('http://jservice.io/api/random?count=1').
+    then(function (response) {
+    return response.json();
+})
+    .then(function (data) {
+    var _a, _b;
+    console.log(data);
+    data = [];
+    console.log((_b = (_a = data[0]) === null || _a === void 0 ? void 0 : _a.category) === null || _b === void 0 ? void 0 : _b.id);
+});
+console.log(JSON.stringify(news));
+// let user = null;
+// user?.name = "John"; // Ошибка, не работает
+// то же самое что написать undefined = "John"
+// obj?.prop – возвращает obj.prop если obj существует, в противном случае undefined.
+// obj?.[prop] – возвращает obj[prop] если obj существует, в противном случае undefined.
+// obj.method?.() – вызывает obj.method(), если obj.method существует, в противном случае возвращает undefined.
+// Мы должны использовать ?. осторожно, только там, где по логике кода допустимо,
+//  что левая часть не существует. Чтобы он не скрывал от нас ошибки программирования, если они возникнут.
+// Number ('12') тоже самое +'12'

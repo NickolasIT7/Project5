@@ -221,24 +221,24 @@ console.log(car)
 // let user2 = makeUser("John", 30);
 // console.log(user2)
 
-function showMessage1() {
-  console.log('Всем привет!');
-}
-showMessage1()
+// function showMessage1() {
+//   console.log('Всем привет!');
+// }
+// showMessage1()
 
-function CurrTimeAndSeconds(hours, minutes, seconds) {
-  let TimeInSeconds = hours * 3600 + minutes * 60 + seconds
-  let AboutSeconds = +(prompt('на сколько увеличить время в секундах') as string)
-  let NewTimeInSeconds = TimeInSeconds + AboutSeconds
-  let hours2 = Math.floor(NewTimeInSeconds / 3600)
-  let minutes2 = Math.floor((NewTimeInSeconds - (hours2 * 3600)) / 60)
-  let seconds2 = Math.floor(NewTimeInSeconds%60)
-  let NewCurrentTime = `${hours2}:${minutes2}:${seconds2}`
-  // return NewCurrentTime;
-  console.log(NewCurrentTime)
-}
+// function CurrTimeAndSeconds(hours, minutes, seconds) {
+//   let TimeInSeconds = hours * 3600 + minutes * 60 + seconds
+//   let AboutSeconds = +(prompt('на сколько увеличить время в секундах') as string)
+//   let NewTimeInSeconds = TimeInSeconds + AboutSeconds
+//   let hours2 = Math.floor(NewTimeInSeconds / 3600)
+//   let minutes2 = Math.floor((NewTimeInSeconds - (hours2 * 3600)) / 60)
+//   let seconds2 = Math.floor(NewTimeInSeconds%60)
+//   let NewCurrentTime = `${hours2}:${minutes2}:${seconds2}`
+//   // return NewCurrentTime;
+//   console.log(NewCurrentTime)
+// }
 
-CurrTimeAndSeconds(12,10,15)
+// CurrTimeAndSeconds(12,10,15)
 // console.log(CurrTimeAndSeconds(12,10,15))
 
 // Создать объект, хранящий в себе отдельно числитель и знаменатель дроби, 
@@ -458,3 +458,77 @@ clone.work.salari = 200
 console.log( mainUser.name ); // все ещё John в первоначальном объекте
 console.log( clone.name ) //уже Pete
 console.log (clone.work.salari)
+
+type News = {
+ h1:string,
+ image:string,
+ text:string,
+ paragraph:string,
+ tags?:[string],
+
+}
+
+const news: Array<News> = [ 
+{
+  h1:'getafe',
+  image:'getafe1.jpg',
+  text :'23',
+  paragraph:'23',
+  tags: ['la-liga']
+ 
+}
+]
+
+  for (let el of news) {
+    el.paragraph = el.text.split('\n') [0]
+  document.write('${el.h1}')  
+  if (el.tags) {
+  for (let tag of el.tags) {
+    document.write('${tags}')
+  }
+  }
+}
+console.log(news)
+
+const userObj = {
+ address:{} 
+} as any // пользователь без свойства "address"
+// Мы не можем использовать ?. для записи т.к. опциональная цепочка ?. не имеет смысла в левой части присваивания.
+// userObj?.adress.street = 'roz' //Левая часть выражения присваивания не может быть обращением к нему
+// Так создаются сложные объекты необходимой конфигурации
+let street //может быть, а может и не быть
+if (street && userObj.address) {
+userObj.address.street = 'roz'
+} else if (street && !userObj.address) {
+userObj.address = {}
+userObj.address.street = 'roz'
+}
+
+// console.log(userObj.address.street) // Ошибка!
+
+console.log(user.address ? user.address.street : undefined) // развернутая запись
+console.log(userObj.address?.street) // сокращенная запись 
+
+fetch ('http://jservice.io/api/random?count=1').
+  then((response) => {
+    return response.json()
+  })
+.then((data) =>{
+  console.log(data)
+ data =[]
+ console.log(data[0]?.category?.id)
+})
+
+console.log(JSON.stringify(news))
+
+// let user = null;
+// user?.name = "John"; // Ошибка, не работает
+ // то же самое что написать undefined = "John"
+
+// obj?.prop – возвращает obj.prop если obj существует, в противном случае undefined.
+// obj?.[prop] – возвращает obj[prop] если obj существует, в противном случае undefined.
+// obj.method?.() – вызывает obj.method(), если obj.method существует, в противном случае возвращает undefined.
+
+// Мы должны использовать ?. осторожно, только там, где по логике кода допустимо,
+//  что левая часть не существует. Чтобы он не скрывал от нас ошибки программирования, если они возникнут.
+// Number ('12') тоже самое +'12'
