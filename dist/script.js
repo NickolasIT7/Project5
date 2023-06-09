@@ -441,17 +441,16 @@ else if (street && !userObj.address) {
 // console.log(userObj.address.street) // Ошибка!
 console.log(user.address ? user.address.street : undefined); // развернутая запись
 console.log((_a = userObj.address) === null || _a === void 0 ? void 0 : _a.street); // сокращенная запись 
-fetch('http://jservice.io/api/random?count=1').
-    then(function (response) {
-    return response.json();
-})
-    .then(function (data) {
-    var _a, _b;
-    console.log(data);
-    data = [];
-    console.log((_b = (_a = data[0]) === null || _a === void 0 ? void 0 : _a.category) === null || _b === void 0 ? void 0 : _b.id);
-});
-console.log(JSON.stringify(news));
+// fetch ('http://jservice.io/api/random?count=1').
+//   then((response) => {
+//     return response.json()
+//   })
+// .then((data) =>{
+//   console.log(data)
+//  data =[]
+//  console.log(data[0]?.category?.id)
+// })
+// console.log(JSON.stringify(news))
 // let user = null;
 // user?.name = "John"; // Ошибка, не работает
 // то же самое что написать undefined = "John"
@@ -461,3 +460,101 @@ console.log(JSON.stringify(news));
 // Мы должны использовать ?. осторожно, только там, где по логике кода допустимо,
 //  что левая часть не существует. Чтобы он не скрывал от нас ошибки программирования, если они возникнут.
 // Number ('12') тоже самое +'12'
+var billion = 1000000000; //1 миллиард, буквально: 1 и 9 нулей
+var billion1 = 1e9;
+console.log(billion == billion1);
+// 1e3 = 1 * 1000
+// 1.23e6 = 1.23 * 1000000
+// 1 делится на 1 с 3 нулями
+// 1e-3 = 1 / 1000 (=0.001)
+// 1.23 делится на 1 с 6 нулями
+// 1.23e-6 = 1.23 / 1000000 (=0.00000123)
+// Шестнадцатеричные, двоичные и восьмеричные числа
+// 0x - префикс для записи в шестнадцатиричной системе счисления
+console.log('oxf5', 0xff); //255
+// 0b - префикс для записи в двоичной системе счисления
+console.log('ob10010', 18);
+// 0o - префикс для записи в восьмиричной системе счисления
+console.log('0o377', 255);
+// base может варьироваться от 2 до 36 (по умолчанию 10)
+console.log('255..toString', 255..toString(2));
+console.log('255..toString', 255..toString(8));
+console.log('255..toString', 255..toString(16));
+// Округление
+// Одна из часто используемых операций при работе с числами – это округление.
+// В JavaScript есть несколько встроенных функций для работы с округлением:
+// Math.floor
+// Округление в меньшую сторону: 3.1 становится 3, а -1.1 — -2.
+console.log('Math.floor(3.1)', Math.floor(3.1));
+// Math.ceil
+// Округление в большую сторону: 3.1 становится 4, а -1.1 — -1.
+console.log('Math.ceil(3.1)', Math.ceil(3.1));
+// Math.round
+// Округление до ближайшего целого: 3.1 становится 3, 3.6 — 4, а -1.1 — -1.
+console.log('Math.round(3.1)', Math.round(3.1));
+// Math.trunc (не поддерживается в Internet Explorer)
+// Производит удаление дробной части без округления: 3.1 становится 3, а -1.1 — -1.
+console.log('Math.trunc(3.1)', Math.trunc(3.1));
+// Округление до n-го знака
+// 1 способ
+// Умножить и разделить.
+// Например, чтобы округлить число до второго знака после запятой, 
+// мы можем умножить число на 100, вызвать функцию округления и разделить обратно.
+console.log('Math.floor(1.243456* 100) / 100 ', Math.floor(1.243456 * 100) / 100); // 1.23456 -> 123.456 -> 123 -> 1.23
+// 2 способ
+// Метод toFixed(n) округляет число до n знаков после запятой 
+// и возвращает строковое представление результата.
+console.log('1.234656.toFixed(2)', 1.234656.toFixed(2)); //1.24
+console.log('90..toFixed(2)', 90..toFixed(2)); //90.00
+console.log('90000.00.toLocaleString', 90000.00.toLocaleString('ru-RU')); //'90 000'
+// Потеря точности
+console.log(0.1.toFixed(20)); //// 0.10000000000000000555
+// Можно ли обойти проблему? 
+// Конечно, наиболее надёжный способ — это округлить результат используя метод toFixed(n):
+// console.log('0.1+0.2',0.1+0.2)//0.30000000000000004
+console.log('+(0.1+0.2).toFixed(2)', +(0.1 + 0.2).toFixed(2));
+// Проверка: isFinite и isNaN
+// Infinity (и -Infinity) — особенное численное значение, которое ведёт себя в точности как математическая бесконечность ∞.
+// NaN представляет ошибку.
+// Эти числовые значения принадлежат типу number, но они не являются «обычными» числами, поэтому есть функции для их проверки:
+// isNaN(value) преобразует значение в число и проверяет является ли оно NaN:
+// alert( isNaN(NaN) );  true
+// alert( isNaN("str") );  true
+// Значение NaN уникально тем, что оно не является равным ничему другому, даже самому себе:
+// alert('NaN === NaN', NaN === NaN ); false
+// Методы Number.isNaN и Number.isFinite – это более «строгие» версии функций isNaN и isFinite. 
+// Они не преобразуют аргумент в число, а наоборот – первым делом проверяют,
+// является ли аргумент числом (принадлежит ли он к типу number).
+// Не стоит считать Number.isNaN и Number.isFinite более «корректными» версиями функций isNaN и isFinite. 
+// Это дополняющие друг-друга инструменты для разных задач.
+// Сравнение Object.is
+// Существует специальный метод Object.is, который сравнивает значения 
+// примерно как ===, но более надёжен в двух особых ситуациях:
+// Работает с NaN: 
+console.log('Object.is(NaN, NaN) === true', Object.is(NaN, NaN) === true); //здесь он хорош.
+// Значения 0 и -0 разные: 
+console.log('Object.is(0, -0) === false', Object.is(0, -0) === false);
+// это редко используется, но технически эти значения разные.
+// Во всех других случаях Object.is(a, b) идентичен a === b.
+// parseInt и parseFloat
+console.log(parseInt('0xff', 16)); //255
+// Math.random()
+// Возвращает псевдослучайное число в диапазоне от 0 (включительно) до 1 (но не включая 1)
+// Math.max(a, b, c...) / Math.min(a, b, c...)
+// Возвращает наибольшее/наименьшее число из перечисленных аргументов.
+//Правильное округление 6.35
+console.log(6.35.toFixed(20)); // 6.34999999999999964473
+console.log(Math.round(6.35 * 10) / 10); // 6.35 -> 63.5 -> 64(rounded) -> 6.4
+//случайное число
+function randomInt(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
+}
+//случайное число в выровненной верятностью появления
+function randomInteger(min, max) {
+    var rand = min + Math.random() * (max - min);
+    return Math.round(rand);
+}
+alert(randomInteger(1, 3));
+console.log('Math.min(1,1,5,7,8,15,47,32)', Math.min(1, 1, 5, 7, 8, 15, 47, 32));
+console.log('Math.max(1,1,5,7,8,15,47,32)', Math.max(1, 1, 5, 7, 8, 15, 47, 32));
+console.log('Math.max(..[1,1,5,7,8,15,47,32])', Math.max.apply(Math, [1, 1, 5, 7, 8, 15, 47, 32])); //Можем развернуть массив используя spread оператор
