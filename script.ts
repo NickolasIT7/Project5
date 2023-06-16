@@ -253,84 +253,84 @@ console.log(car)
 
 
 const fraction1 = {
-numerator:2,
-denominator:5,  
+  numerator: 2,
+  denominator: 5,
 }
 
 const fraction2 = {
-  numerator:2,
-  denominator:8,  
-  }
+  numerator: 2,
+  denominator: 8,
+}
 
 console.log(`${fraction1.numerator}/${fraction1.denominator} and ${fraction2.numerator}/${fraction2.denominator}`)
 
-function maxDenominator (f:any) {
+function maxDenominator(f: any) {
   const min = f.numerator < f.denominator ? f.numerator : f.denominator
-  for (let i = min; i>1; i--) {
-  if (f.numerator % i == 0 && f.denominator % i == 0)
-  return i
-  } 
+  for (let i = min; i > 1; i--) {
+    if (f.numerator % i == 0 && f.denominator % i == 0)
+      return i
+  }
   return 1
 }
-function fractionReduction (f:any) {
-const denominator = maxDenominator (f)
-f.numerator /= denominator
-f.denominator /= denominator
-return f
+function fractionReduction(f: any) {
+  const denominator = maxDenominator(f)
+  f.numerator /= denominator
+  f.denominator /= denominator
+  return f
 }
 
-function fractionSubstraction (f1:any,f2:any) {
-  const ajusted = fractionAjust (f1,f2)
- const sub = {
- numerator:ajusted.f1.numerator - ajusted.f2.numerator,
- denominator:f1.denominator, 
- } 
- return fractionReduction(sub)
-}
- 
-function fractionAjust (f1:any, f2:any) {
- const f1D = f1.denominator
- const f2D = f2.denominator
- f1.numerator *=f2D
- f1.denominator *=f2D
- f2.numerator *=f1D
- f2.denominator *=f1D
- return {f1,f2}
+function fractionSubstraction(f1: any, f2: any) {
+  const ajusted = fractionAjust(f1, f2)
+  const sub = {
+    numerator: ajusted.f1.numerator - ajusted.f2.numerator,
+    denominator: f1.denominator,
+  }
+  return fractionReduction(sub)
 }
 
-function fractionMultiplication (f1:any, f2:any) {
-const mult = {
-  numerator: f1.numerator * f2.numerator,
-  denominator:f1.denominator * f2.denominator,
- }
- return fractionReduction(mult)
+function fractionAjust(f1: any, f2: any) {
+  const f1D = f1.denominator
+  const f2D = f2.denominator
+  f1.numerator *= f2D
+  f1.denominator *= f2D
+  f2.numerator *= f1D
+  f2.denominator *= f1D
+  return { f1, f2 }
 }
 
-function fractionDivision (f1: any, f2: any) {
-const div = {
- numerator: f1.numerator * f2.denominator,
- donominator: f1.denominator * f2.numerator,
-}
-return fractionReduction(div)
-}
-
-function fractionSum (f1:any, f2:any) {
-const ajusted = fractionAjust (f1, f2)
-const sum = {
-numerator:ajusted.f1.numerator + ajusted.f2.numerator,
-denominator:ajusted.f1.denominator
-}
-return fractionReduction(sum)
+function fractionMultiplication(f1: any, f2: any) {
+  const mult = {
+    numerator: f1.numerator * f2.numerator,
+    denominator: f1.denominator * f2.denominator,
+  }
+  return fractionReduction(mult)
 }
 
-const sumResult = fractionSum (fraction1, fraction2)
-const subResult = fractionSubstraction (fraction1, fraction2)
-const multResult = fractionMultiplication (fraction1, fraction2)
-const divResult = fractionDivision (fraction1, fraction2)
-console.log (`sum = ${sumResult.numerator}/ ${sumResult.denominator}`)
-console.log (`sub = ${subResult.numerator}/ ${subResult.denominator}`)
-console.log (`mult = ${multResult.numerator}/ ${multResult.denominator}`)
-console.log (`div = ${divResult.numerator}/ ${divResult.denominator}`)
+function fractionDivision(f1: any, f2: any) {
+  const div = {
+    numerator: f1.numerator * f2.denominator,
+    donominator: f1.denominator * f2.numerator,
+  }
+  return fractionReduction(div)
+}
+
+function fractionSum(f1: any, f2: any) {
+  const ajusted = fractionAjust(f1, f2)
+  const sum = {
+    numerator: ajusted.f1.numerator + ajusted.f2.numerator,
+    denominator: ajusted.f1.denominator
+  }
+  return fractionReduction(sum)
+}
+
+const sumResult = fractionSum(fraction1, fraction2)
+const subResult = fractionSubstraction(fraction1, fraction2)
+const multResult = fractionMultiplication(fraction1, fraction2)
+const divResult = fractionDivision(fraction1, fraction2)
+console.log(`sum = ${sumResult.numerator}/ ${sumResult.denominator}`)
+console.log(`sub = ${subResult.numerator}/ ${subResult.denominator}`)
+console.log(`mult = ${multResult.numerator}/ ${multResult.denominator}`)
+console.log(`div = ${divResult.numerator}/ ${divResult.denominator}`)
 
 // Создайте пустой объект user.
 // Добавьте свойство name со значением John.
@@ -345,11 +345,11 @@ newUser.name = 'Pete'
 delete newUser.name
 
 // Напишите функцию isEmpty(obj), которая возвращает true, если у объекта нет свойств, иначе false.
-const obj1 = {a:1}
-const obj2 = {a:1}
-console.log ('obj1 === obj2', obj1 === obj2)
+const obj1 = { a: 1 }
+const obj2 = { a: 1 }
+console.log('obj1 === obj2', obj1 === obj2)
 
-function isEmpty(obj:any) {
+function isEmpty(obj: any) {
 
 }
 
@@ -365,15 +365,15 @@ let salaries = {
 
 let salariesSum = 0
 for (let key in salaries) {
-salariesSum += parseFloat(salaries[key])
+  salariesSum += parseFloat(salaries[key])
 }
 console.log(salariesSum)
 
 // Создайте функцию multiplyNumeric(obj), которая умножает все числовые свойства объекта obj на 2.
-function multiplyNumeric(obj:any) {
+function multiplyNumeric(obj: any) {
   for (let key in obj) {
-  if (typeof (obj[key]) == 'number') 
-  obj[key]*=2
+    if (typeof (obj[key]) == 'number')
+      obj[key] *= 2
   }
 }
 multiplyNumeric(salaries)
@@ -408,11 +408,11 @@ console.log(salaries)
 let messageStr = "Привет!";
 let phraseStr = messageStr;
 
-console.log (`messageStr`,messageStr)
-console.log ('phraseStr', phraseStr)
-phraseStr +='User!'
-console.log (`messageStr`,messageStr)
-console.log ('phraseStr', phraseStr)
+console.log(`messageStr`, messageStr)
+console.log('phraseStr', phraseStr)
+phraseStr += 'User!'
+console.log(`messageStr`, messageStr)
+console.log('phraseStr', phraseStr)
 
 // Два объекта равны только в том случае, если это один и тот же объект.
 
@@ -420,7 +420,7 @@ let mainUser = {
   name: "John",
   age: 30,
   work: {
-  salari:100  
+    salari: 100
   }
 } as any
 
@@ -439,7 +439,7 @@ let clone = {} as any; // новый пустой объект
 // }
 // }
 // 2 Spred оператор (развертывание)
-clone = {...mainUser, work: {...mainUser.work}}
+clone = { ...mainUser, work: { ...mainUser.work } }
 //  3 Object.assign
 // clone = Object.assign ({}, mainUser, {work: {...mainUser.work}})
 //  Для плоских объектов доступны 2 варианта записи
@@ -455,53 +455,53 @@ clone = {...mainUser, work: {...mainUser.work}}
 clone.name = "Pete"; // изменим в нём данные
 console.log(clone)
 clone.work.salari = 200
-console.log( mainUser.name ); // все ещё John в первоначальном объекте
-console.log( clone.name ) //уже Pete
-console.log (clone.work.salari)
+console.log(mainUser.name); // все ещё John в первоначальном объекте
+console.log(clone.name) //уже Pete
+console.log(clone.work.salari)
 
 type News = {
- h1:string,
- image:string,
- text:string,
- paragraph:string,
- tags?:[string],
+  h1: string,
+  image: string,
+  text: string,
+  paragraph: string,
+  tags?: [string],
 
 }
 
-const news: Array<News> = [ 
-{
-  h1:'getafe',
-  image:'getafe1.jpg',
-  text :'23',
-  paragraph:'23',
-  tags: ['la-liga']
- 
-}
+const news: Array<News> = [
+  {
+    h1: 'getafe',
+    image: 'getafe1.jpg',
+    text: '23',
+    paragraph: '23',
+    tags: ['la-liga']
+
+  }
 ]
 
-  for (let el of news) {
-    el.paragraph = el.text.split('\n') [0]
-  document.write('${el.h1}')  
+for (let el of news) {
+  el.paragraph = el.text.split('\n')[0]
+  document.write('${el.h1}')
   if (el.tags) {
-  for (let tag of el.tags) {
-    document.write('${tags}')
-  }
+    for (let tag of el.tags) {
+      document.write('${tags}')
+    }
   }
 }
 console.log(news)
 
 const userObj = {
- address:{} 
+  address: {}
 } as any // пользователь без свойства "address"
 // Мы не можем использовать ?. для записи т.к. опциональная цепочка ?. не имеет смысла в левой части присваивания.
 // userObj?.adress.street = 'roz' //Левая часть выражения присваивания не может быть обращением к нему
 // Так создаются сложные объекты необходимой конфигурации
 let street //может быть, а может и не быть
 if (street && userObj.address) {
-userObj.address.street = 'roz'
+  userObj.address.street = 'roz'
 } else if (street && !userObj.address) {
-userObj.address = {}
-userObj.address.street = 'roz'
+  userObj.address = {}
+  userObj.address.street = 'roz'
 }
 
 // console.log(userObj.address.street) // Ошибка!
@@ -523,7 +523,7 @@ console.log(userObj.address?.street) // сокращенная запись
 
 // let user = null;
 // user?.name = "John"; // Ошибка, не работает
- // то же самое что написать undefined = "John"
+// то же самое что написать undefined = "John"
 
 // obj?.prop – возвращает obj.prop если obj существует, в противном случае undefined.
 // obj?.[prop] – возвращает obj[prop] если obj существует, в противном случае undefined.
@@ -535,7 +535,7 @@ console.log(userObj.address?.street) // сокращенная запись
 
 let billion = 1000000000 //1 миллиард, буквально: 1 и 9 нулей
 let billion1 = 1e9
-console.log(billion==billion1)
+console.log(billion == billion1)
 
 // 1e3 = 1 * 1000
 // 1.23e6 = 1.23 * 1000000
@@ -548,13 +548,13 @@ console.log(billion==billion1)
 
 // Шестнадцатеричные, двоичные и восьмеричные числа
 // 0x - префикс для записи в шестнадцатиричной системе счисления
-console.log('oxf5',0xff)//255
+console.log('oxf5', 0xff)//255
 
 // 0b - префикс для записи в двоичной системе счисления
-console.log ('ob10010',0b10010)
+console.log('ob10010', 0b10010)
 
 // 0o - префикс для записи в восьмиричной системе счисления
-console.log ('0o377',0o377)
+console.log('0o377', 0o377)
 
 // base может варьироваться от 2 до 36 (по умолчанию 10)
 console.log('255..toString', 255..toString(2))
@@ -589,14 +589,14 @@ console.log('Math.trunc(3.1)', Math.trunc(3.1))
 // Например, чтобы округлить число до второго знака после запятой, 
 // мы можем умножить число на 100, вызвать функцию округления и разделить обратно.
 
-console.log('Math.floor(1.243456* 100) / 100 ', Math.floor(1.243456 * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
+console.log('Math.floor(1.243456* 100) / 100 ', Math.floor(1.243456 * 100) / 100); // 1.23456 -> 123.456 -> 123 -> 1.23
 
 // 2 способ
 // Метод toFixed(n) округляет число до n знаков после запятой 
 // и возвращает строковое представление результата.
-console.log('1.234656.toFixed(2)',1.234656.toFixed(2))//1.24
-console.log('90..toFixed(2)',90..toFixed(2))//90.00
-console.log('90000.00.toLocaleString',90000.00.toLocaleString('ru-RU'))//'90 000'
+console.log('1.234656.toFixed(2)', 1.234656.toFixed(2))//1.24
+console.log('90..toFixed(2)', 90..toFixed(2))//90.00
+console.log('90000.00.toLocaleString', 90000.00.toLocaleString('ru-RU'))//'90 000'
 
 // Потеря точности
 console.log(0.1.toFixed(20)) //// 0.10000000000000000555
@@ -605,7 +605,7 @@ console.log(0.1.toFixed(20)) //// 0.10000000000000000555
 // Конечно, наиболее надёжный способ — это округлить результат используя метод toFixed(n):
 
 // console.log('0.1+0.2',0.1+0.2)//0.30000000000000004
-console.log('+(0.1+0.2).toFixed(2)',+(0.1+0.2).toFixed(2))
+console.log('+(0.1+0.2).toFixed(2)', +(0.1 + 0.2).toFixed(2))
 
 // Проверка: isFinite и isNaN
 
@@ -633,15 +633,15 @@ console.log('+(0.1+0.2).toFixed(2)',+(0.1+0.2).toFixed(2))
 // примерно как ===, но более надёжен в двух особых ситуациях:
 
 // Работает с NaN: 
-console.log('Object.is(NaN, NaN) === true',Object.is(NaN, NaN) === true) //здесь он хорош.
+console.log('Object.is(NaN, NaN) === true', Object.is(NaN, NaN) === true) //здесь он хорош.
 // Значения 0 и -0 разные: 
-console.log('Object.is(0, -0) === false',Object.is(0, -0) === false)
+console.log('Object.is(0, -0) === false', Object.is(0, -0) === false)
 // это редко используется, но технически эти значения разные.
 // Во всех других случаях Object.is(a, b) идентичен a === b.
 
 // parseInt и parseFloat
 
-console.log( parseInt('0xff', 16) ) //255
+console.log(parseInt('0xff', 16)) //255
 
 // Math.random()
 // Возвращает псевдослучайное число в диапазоне от 0 (включительно) до 1 (но не включая 1)
@@ -650,12 +650,12 @@ console.log( parseInt('0xff', 16) ) //255
 // Возвращает наибольшее/наименьшее число из перечисленных аргументов.
 
 //Правильное округление 6.35
-console.log( 6.35.toFixed(20) ); // 6.34999999999999964473
-console.log( Math.round(6.35 * 10) / 10 ); // 6.35 -> 63.5 -> 64(rounded) -> 6.4
+console.log(6.35.toFixed(20)); // 6.34999999999999964473
+console.log(Math.round(6.35 * 10) / 10); // 6.35 -> 63.5 -> 64(rounded) -> 6.4
 
 //случайное число
-function randomInt(min:number, max:number) {
-  return Math.round(Math.random() *(max-min) + min)
+function randomInt(min: number, max: number) {
+  return Math.round(Math.random() * (max - min) + min)
 }
 //случайное число в выровненной верятностью появления
 function randomInteger(min, max) {
@@ -663,11 +663,11 @@ function randomInteger(min, max) {
   return Math.round(rand);
 }
 
-alert( randomInteger(1, 3) );
+alert(randomInteger(1, 3));
 
-console.log('Math.min(1,1,5,7,8,15,47,32)',Math.min(1,1,5,7,8,15,47,32))
-console.log('Math.max(1,1,5,7,8,15,47,32)',Math.max(1,1,5,7,8,15,47,32))
-console.log('Math.max(..[1,1,5,7,8,15,47,32])',Math.max(...[1,1,5,7,8,15,47,32])) //Можем развернуть массив используя spread оператор
+console.log('Math.min(1,1,5,7,8,15,47,32)', Math.min(1, 1, 5, 7, 8, 15, 47, 32))
+console.log('Math.max(1,1,5,7,8,15,47,32)', Math.max(1, 1, 5, 7, 8, 15, 47, 32))
+console.log('Math.max(..[1,1,5,7,8,15,47,32])', Math.max(...[1, 1, 5, 7, 8, 15, 47, 32])) //Можем развернуть массив используя spread оператор
 
 // 10. Заросите у пользователя целое число и выведите в ответ, четное число или нет. 
 // В задании используйте логические операторы, не надо использовать if или switch.
@@ -684,7 +684,7 @@ let guestList = `Guests:
 
 console.log(guestList)
 
-console.log( `My\n`.length ) // 3 (\ - один спецсимвол)
+console.log(`My\n`.length) // 3 (\ - один спецсимвол)
 
 // let testStr = `Hello`;
 
@@ -706,11 +706,11 @@ for (let char of "Hello") {
 //console.log( testStr[0] ); // не работает
 
 let testStr = 'Hi Alex'
-testStr = testStr[0].toLowerCase() + testStr.slice(1,5)+testStr[5].toUpperCase+testStr.slice(6) //заменяем строку
+testStr = testStr[0].toLowerCase() + testStr.slice(1, 5) + testStr[5].toUpperCase + testStr.slice(6) //заменяем строку
 console.log(testStr)
 
-alert( 'Interface'.toUpperCase() ); // INTERFACE
-alert( 'Interface'.toLowerCase() ); // interface
+alert('Interface'.toUpperCase()); // INTERFACE
+alert('Interface'.toLowerCase()); // interface
 
 // Поиск подстроки
 
@@ -721,10 +721,10 @@ alert( 'Interface'.toLowerCase() ); // interface
 
 let TestStr = 'Widget with id';
 
-console.log( TestStr.indexOf('Widget') ); // 0, потому что подстрока 'Widget' найдена в начале
-console.log( TestStr.indexOf('widget') ); // -1, совпадений нет, поиск чувствителен к регистру
+console.log(TestStr.indexOf('Widget')); // 0, потому что подстрока 'Widget' найдена в начале
+console.log(TestStr.indexOf('widget')); // -1, совпадений нет, поиск чувствителен к регистру
 
-console.log( TestStr.indexOf("id") ); // 1, подстрока "id" найдена на позиции 1 (..idget with id)
+console.log(TestStr.indexOf("id")); // 1, подстрока "id" найдена на позиции 1 (..idget with id)
 
 // let index = 0
 // while (true) {
@@ -742,18 +742,18 @@ console.log( TestStr.indexOf("id") ); // 1, подстрока "id" найден
 // Он используется тогда, когда нужно получить самое последнее вхождение: перед концом строки 
 // или начинающееся до (включительно) определённой позиции.
 
-console.log ('testStr.lastIndexOf("id")', testStr.lastIndexOf("id"))
+console.log('testStr.lastIndexOf("id")', testStr.lastIndexOf("id"))
 
 // includes, startsWith, endsWith
 
-console.log( "Widget with id".includes("Widget") ); // true
+console.log("Widget with id".includes("Widget")); // true
 
-console.log( "Hello".includes("Bye") ); // false
+console.log("Hello".includes("Bye")); // false
 
-console.log( "Widget".startsWith("Wid") ); // true, "Wid" — начало "Widget"
-console.log( "Widget".endsWith("get") ); // true, "get" — окончание "Widget
+console.log("Widget".startsWith("Wid")); // true, "Wid" — начало "Widget"
+console.log("Widget".endsWith("get")); // true, "get" — окончание "Widget
 
-console.log( "Widget".endsWith("get")?'Строка "Widget" заканчивается на подстроку "get"':'Строка "Widget" не заканчивается на строку "get"')
+console.log("Widget".endsWith("get") ? 'Строка "Widget" заканчивается на подстроку "get"' : 'Строка "Widget" не заканчивается на строку "get"')
 
 // Получение подстроки
 
@@ -761,7 +761,7 @@ console.log( "Widget".endsWith("get")?'Строка "Widget" заканчива�
 // str.slice(start [, end])
 // Возвращает часть строки от start до (не включая) end.
 
-console.log ('"Widget with id".slice(7)', testStr.slice(7))
+console.log('"Widget with id".slice(7)', testStr.slice(7))
 
 // str.substring(start [, end])
 // Возвращает часть строки между start и end (не включая) end.
@@ -774,10 +774,10 @@ console.log ('"Widget with id".slice(7)', testStr.slice(7))
 
 // В противоположность предыдущим методам, этот позволяет указать длину вместо конечной позиции
 
-console.log('z > Z', 'z'>'Z')
-console.log( "z".codePointAt(0) ) // 122
-console.log( "Z".codePointAt(0) ) // 90
-console.log( String.fromCodePoint(128555) ); //😫
+console.log('z > Z', 'z' > 'Z')
+console.log("z".codePointAt(0)) // 122
+console.log("Z".codePointAt(0)) // 90
+console.log(String.fromCodePoint(128555)); //😫
 console.log('😫.lenght')//2
 
 let str = '';
@@ -785,7 +785,7 @@ let str = '';
 for (let i = 65; i <= 220; i++) {
   str += String.fromCodePoint(i);
 }
-console.log( str );
+console.log(str);
 // ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 // ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ
 
@@ -795,7 +795,7 @@ console.log( str );
 // Положительное число, если str больше str2.
 // 0, если строки равны.
 
-console.log('Österreich'>'Zealand') // true.Сравнение по кодам символа
+console.log('Österreich' > 'Zealand') // true.Сравнение по кодам символа
 console.log('Österreich'.localeCompare('Zealand')); // -1. Сравнение по положению в алфавите
 
 //Методы replace и replaceAll возвращают новую строку
@@ -803,13 +803,13 @@ str = "Ослик Иа-Иа посмотрел на виадук"
 console.log(str.replace('Иа', 'юю'))//меняет только первое совпадение
 
 //метод split(simb) разбивает строку на массив строку по символу-разделителю simb
-console.log (str.split(''))
+console.log(str.split(''))
 //метод join(simb) соединяет массив в строку символом-разделителем simb
-console.log (str.split('').join('_'))
-console.log ([0,1,2,3,5,5].join('_'))
+console.log(str.split('').join('_'))
+console.log([0, 1, 2, 3, 5, 5].join('_'))
 
 str.trim()// — убирает пробелы в начале и конце строки.
-console.log ('"     s  t  r     ".(trim)', "        s     t           r      ".trim())
+console.log('"     s  t  r     ".(trim)', "        s     t           r      ".trim())
 
 // str.repeat(n) — повторяет строку n раз.
 console.log('"abc".repeat(3)', "abc".repeat(3))
@@ -818,11 +818,167 @@ console.log('"abc".repeat(3)', "abc".repeat(3))
 // Функция возвращает 1, если в первой строке больше символов, чем во второй; 
 // -1 – если во второй больше символов, чем в первой; или 0 – если строки одинаковой длины.
 
-function compare (a,b) {
-if (a.lenght>b.lenght)
-return 1; 
-else if (a.lenght<b.lenght)
-return -1;
-else 
-return 0  
+function compare(a, b) {
+  if (a.lenght > b.lenght)
+    return 1;
+  else if (a.lenght < b.lenght)
+    return -1;
+  else
+    return 0
 }
+
+// Массивы
+// Существует два варианта синтаксиса для создания пустого массива:
+let arr = new Array()
+console.log(arr)
+arr = new Array(12, 15, 35)
+console.log(arr)
+arr = new Array(10) //Если указать только одно число, то создастся пустой массив на n элементов
+console.log('Array(10)', arr)
+arr = []
+console.log('[]', arr)
+// Элементы массива нумеруются, начиная с нуля
+// Мы можем получить элемент, указав его номер в квадратных скобках
+let fruits = ["Яблоко", "Апельсин", "Слива"];
+
+console.log(fruits[0]); // Яблоко
+console.log(fruits[1]); // Апельсин
+console.log(fruits[2]); // Слива
+//Также работает метод at()
+
+// console.log('fruits.at(1)',fruits.at(1))
+//В отличии от строк, мы можем заменить элемент
+fruits[2] = 'Груша' // теперь ["Яблоко", "Апельсин", "Груша"]
+
+//...Или добавить новый к существующему массиву 
+fruits[3] = 'Лимон' //теперь ["Яблоко", "Апельсин", "Груша", "Лимон"]
+
+
+//Для добавления элементов в массив существуют специальные методыю. По индексу обычно не добавляют
+//Если надо добавить элементов в конец массива можем использовать один из вариантов:
+fruits.push('Слива')
+fruits[fruits.length] = 'Слива'
+
+//Общее число элементов массива содержится в его свойстве length:
+console.log(fruits)// ["Яблоко", "Апельсин", "Слива","Груша", "Лимон", "Слива"];
+alert(fruits.length) // 6
+
+//Массивы ведут себя также как объекты в плане того, что значения хранятся по ссылку
+const fruits2 = fruits //Сохранили в переменную fruits2 ссылку на массив переменной fruits
+fruits2.push('Банан')
+console.log(fruits) //в массив переменной fruits добавили еще один элемент
+
+//console.log([]==[])//всегда false, потому что ссылки разные
+
+console.log('{}.toString()', {}.toString()) //[object Object]
+console.log('[1,2,[3,4],function(){}, {}].toString()', [1, 2, [3, 4], function () { }, {}])
+
+const arr3 = [1, 'dasd', [1, 2, ['ftsrad', 43]], [12, 35]]
+console.log("arr3", arr3)
+//Самый простой способ сделать сложный массив, состоящий из примитивов плоским
+console.log("arr3.split(',')", arr3.toString().split(','))
+fruits.length = 3 //Изменили количество элементов в массиве. Все, что не вошли - исчезли
+fruits.length = 7 //Если увеличить длину массива, появятся новые индексы, но элементы будут пустые
+console.log('fruits', fruits) //(3) ["Яблоко", "Апельсин", "Груша"]
+
+//fruits.lengt = -1.Ошибка. Длина массива не может быть меньше 0.
+
+//Методы pop/push, shift/unshift
+// Эффективность
+// Методы push/pop выполняются быстро, а методы shift/unshift – медленно.
+//pop и shift удаляют первый(shift) и последний(pop) элемент и возвращают его значение
+
+function pop(arr: any[]) {
+  const el = arr[arr.length - 1] //читаем последний элемент
+  arr.length = arr.length - 1 //удаляем последний элемент
+  return el                   //возвращаем последний элемент
+}
+
+function shift(arr: any[]) {
+  const el = arr[0]     //читаем последний элемент
+  arr = arr.slice(1)   //удаляем последний элемент
+  return el             //возвращаем последний элемент
+}
+
+//push и unshift добавляют элементы в начало(unshift) или конец(push) массива и возвращают новую длину массива
+
+function push(arr: any[], elements: any[]) {
+  arr = [...arr, ...elements]
+  return arr.length
+}
+
+function unshift(arr: any[], elements: any[]) {
+  arr = [...arr, ...elements]
+  return arr.length
+}
+
+
+//Если мы работаем с массивом, как с обычным объектом.
+//  Способы оптимизации, используемые для массивов, в этом случае не подходят, 
+//  поэтому они будут отключены и никакой выгоды не принесут.
+
+// Варианты неправильного применения массива:
+
+// Добавление нечислового свойства, например: arr.test = 5.
+// Создание «дыр», например: добавление arr[0], затем arr[1000] (между ними ничего нет).
+// Заполнение массива в обратном порядке, например: arr[1000], arr[999] и т.д.
+// Массив следует считать особой структурой, позволяющей работать с упорядоченными данными. 
+// Для этого массивы предоставляют специальные методы. Массивы тщательно настроены в движках JavaScript для работы 
+// с однотипными упорядоченными данными, поэтому, пожалуйста, используйте их именно в таких случаях. 
+// Если вам нужны произвольные ключи, вполне возможно, лучше подойдёт обычный объект {}.
+
+// Перебор элементов
+// Одним из самых старых способов перебора элементов массива является цикл for по цифровым индексам:
+
+arr = ["Яблоко", "Апельсин", "Груша"];
+console.log('классический цикл for', arr)
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i]);
+}
+// Но для массивов возможен и другой вариант цикла, for..of:
+
+fruits = ["Яблоко", "Апельсин", "Слива"];
+
+// проходит по значениям. Нет доступа к индексам
+console.log('for..of', fruits)
+for (let fruit of fruits) {
+  console.log(fruit);
+}
+// Цикл for..of не предоставляет доступа к номеру текущего элемента, только к его значению, но в большинстве случаев этого достаточно. А также это короче.
+
+// Технически, так как массив является объектом, можно использовать и вариант for..in:
+
+arr = ["Яблоко", "Апельсин", "Груша"];
+
+for (let key in arr) {
+  console.log('arr[key] ', arr[key]); // Яблоко, Апельсин, Груша
+}
+// Но на самом деле это – плохая идея. Существуют скрытые недостатки этого способа:
+
+// Цикл for..in выполняет перебор всех свойств объекта, а не только цифровых.
+
+// В браузере и других программных средах также существуют так называемые «псевдомассивы» – объекты, которые выглядят, как массив. То есть, у них есть свойство length и индексы, но они также могут иметь дополнительные нечисловые свойства и методы, которые нам обычно не нужны. Тем не менее, цикл for..in выведет и их. Поэтому, если нам приходится иметь дело с объектами, похожими на массив, такие «лишние» свойства могут стать проблемой.
+
+// Цикл for..in оптимизирован под произвольные объекты, не массивы, и поэтому в 10-100 раз медленнее. Увеличение скорости выполнения может иметь значение только при возникновении узких мест. Но мы всё же должны представлять разницу.
+
+// В общем, не следует использовать цикл for..in для массивов.
+
+//Многомерные массивы
+// Массивы могут содержать элементы, которые тоже являются массивами. 
+// Это можно использовать для создания многомерных массивов, например, для хранения матриц:
+
+let matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+];
+
+console.log( matrix[1][1] ); // 5, центральный элемент
+
+
+console.log('fruits',fruits)
+arr = [...fruits] //Копируем массив 
+fruits.push('Кокос')
+console.log('fruits',fruits) 
+console.log('arr',arr) //arr не изменился
+
