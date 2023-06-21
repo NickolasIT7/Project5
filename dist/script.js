@@ -410,27 +410,32 @@ clone.work.salari = 200;
 console.log(mainUser.name); // все ещё John в первоначальном объекте
 console.log(clone.name); //уже Pete
 console.log(clone.work.salari);
-var news = [
-    {
-        h1: 'getafe',
-        image: 'getafe1.jpg',
-        text: '23',
-        paragraph: '23',
-        tags: ['la-liga']
-    }
-];
-for (var _i = 0, news_1 = news; _i < news_1.length; _i++) {
-    var el = news_1[_i];
-    el.paragraph = el.text.split('\n')[0];
-    document.write('${el.h1}');
-    if (el.tags) {
-        for (var _b = 0, _c = el.tags; _b < _c.length; _b++) {
-            var tag = _c[_b];
-            document.write('${tags}');
-        }
-    }
-}
-console.log(news);
+// type News = {
+//   h1: string,
+//   image: string,
+//   text: string,
+//   paragraph: string,
+//   tags?: [string],
+// }
+// const news: Array<News> = [
+//   {
+//     h1: 'getafe',
+//     image: 'getafe1.jpg',
+//     text: '23',
+//     paragraph: '23',
+//     tags: ['la-liga']
+//   }
+// ]
+// for (let el of news) {
+//   el.paragraph = el.text.split('\n')[0]
+//   document.write(`${el.h1}`)
+//   if (el.tags) {
+//     for (let tag of el.tags) {
+//       document.write(`${tags}`)
+//     }
+//   }
+// }
+// console.log(news)
 var userObj = {
     address: {}
 }; // пользователь без свойства "address"
@@ -561,7 +566,7 @@ function randomInteger(min, max) {
     var rand = min + Math.random() * (max - min);
     return Math.round(rand);
 }
-alert(randomInteger(1, 3));
+console.log(randomInteger(1, 3));
 console.log('Math.min(1,1,5,7,8,15,47,32)', Math.min(1, 1, 5, 7, 8, 15, 47, 32));
 console.log('Math.max(1,1,5,7,8,15,47,32)', Math.max(1, 1, 5, 7, 8, 15, 47, 32));
 console.log('Math.max(..[1,1,5,7,8,15,47,32])', Math.max.apply(Math, [1, 1, 5, 7, 8, 15, 47, 32])); //Можем развернуть массив используя spread оператор
@@ -580,8 +585,8 @@ console.log("My\n".length); // 3 (\ - один спецсимвол)
 // получаем последний символ
 // alert( testStr[testStr.length - 1] ); // o
 // alert( testStr.at(-1) ); // o
-for (var _d = 0, _e = "Hello"; _d < _e.length; _d++) {
-    var char = _e[_d];
+for (var _i = 0, _b = "Hello"; _i < _b.length; _i++) {
+    var char = _b[_i];
     console.log(char); // H,e,l,l,o (char — сначала "H", потом "e", потом "l" и т.д.)
 }
 //testStr[0] = 'h'; // ошибка, разрешено только чтение
@@ -589,8 +594,8 @@ for (var _d = 0, _e = "Hello"; _d < _e.length; _d++) {
 var testStr = 'Hi Alex';
 testStr = testStr[0].toLowerCase() + testStr.slice(1, 5) + testStr[5].toUpperCase + testStr.slice(6); //заменяем строку
 console.log(testStr);
-alert('Interface'.toUpperCase()); // INTERFACE
-alert('Interface'.toLowerCase()); // interface
+// alert('Interface'.toUpperCase()); // INTERFACE
+// alert('Interface'.toLowerCase()); // interface
 // Поиск подстроки
 // Первый метод — str.indexOf(substr, pos).
 // Он ищет подстроку substr в строке str, начиная с позиции pos, и возвращает позицию, 
@@ -700,7 +705,7 @@ fruits.push('Слива');
 fruits[fruits.length] = 'Слива';
 //Общее число элементов массива содержится в его свойстве length:
 console.log(fruits); // ["Яблоко", "Апельсин", "Слива","Груша", "Лимон", "Слива"];
-alert(fruits.length); // 6
+console.log(fruits.length); // 6
 //Массивы ведут себя также как объекты в плане того, что значения хранятся по ссылку
 var fruits2 = fruits; //Сохранили в переменную fruits2 ссылку на массив переменной fruits
 fruits2.push('Банан');
@@ -761,8 +766,8 @@ for (var i = 0; i < arr.length; i++) {
 fruits = ["Яблоко", "Апельсин", "Слива"];
 // проходит по значениям. Нет доступа к индексам
 console.log('for..of', fruits);
-for (var _f = 0, fruits_1 = fruits; _f < fruits_1.length; _f++) {
-    var fruit = fruits_1[_f];
+for (var _c = 0, fruits_1 = fruits; _c < fruits_1.length; _c++) {
+    var fruit = fruits_1[_c];
     console.log(fruit);
 }
 // Цикл for..of не предоставляет доступа к номеру текущего элемента, только к его значению, но в большинстве случаев этого достаточно. А также это короче.
@@ -790,3 +795,189 @@ arr = __spreadArrays(fruits); //Копируем массив
 fruits.push('Кокос');
 console.log('fruits', fruits);
 console.log('arr', arr); //arr не изменился
+// pz2 - 2
+// Создать массив «Список покупок». Каждый элемент массива
+// является объектом, который содержит название продукта, необ-
+// ходимое количество и куплен или нет. Написать несколько функ-
+// ций для работы с таким массивом.
+// 1 Вывод всего списка на экран таким образом, чтобы сначала
+// шли некупленные продукты, а потом – купленные.
+//  2 Добавление покупки в список. Учтите, что при добавлении
+// покупки с уже существующим в списке продуктом, необ-
+// ходимо увеличивать количество в существующей покупке,
+// а не добавлять новую.
+// 3 Покупка продукта. Функция принимает название продукта
+// и отмечает его как купленный.
+var purchase = [
+    {
+        name: 'a',
+        count: 10,
+        purchased: true
+    },
+    {
+        name: 'b',
+        count: 5,
+        purchased: false
+    },
+    {
+        name: 'c',
+        count: 3,
+        purchased: true
+    },
+    {
+        name: 'd',
+        count: 1,
+        purchased: true
+    },
+];
+var purchasedol = document.querySelector('.purchase');
+var showPurchaseButton = document.querySelector('.showPurchase');
+var addPurchaseButton = document.querySelector('.addPurchase');
+var setPurchasedButton = document.querySelector('.setPurchased');
+function showPurchase() {
+    if (purchasedol) {
+        purchasedol.innerHTML = "";
+    }
+    for (var _i = 0, purchase_1 = purchase; _i < purchase_1.length; _i++) {
+        var el = purchase_1[_i];
+        if (!el.purchased) {
+            if (purchasedol) {
+                purchasedol.innerHTML += "<li>" + el.name + " \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E \u043A\u0443\u043F\u0438\u0442\u044C " + el.count + " \u0448\u0442\u0443\u043A </li>";
+            }
+        }
+    }
+    for (var _a = 0, purchase_2 = purchase; _a < purchase_2.length; _a++) {
+        var el = purchase_2[_a];
+        if (el.purchased) {
+            if (purchasedol) {
+                purchasedol.innerHTML += "<li>" + el.name + " \u043A\u0443\u043F\u043B\u0435\u043D\u043E " + el.count + " \u0448\u0442\u0443\u043A </li>";
+            }
+        }
+    }
+}
+function addPurchase() {
+    var name = prompt('Введите название покупки');
+    var count = +prompt('Введите количество');
+    var find = false;
+    for (var _i = 0, purchase_3 = purchase; _i < purchase_3.length; _i++) {
+        var el = purchase_3[_i];
+        if (el.name == name) {
+            find = true;
+            el.count += count;
+        }
+    }
+    if (!find) {
+        purchase.push({
+            name: name,
+            count: count,
+            purchased: false
+        });
+    }
+    showPurchase();
+}
+function setPurchased() {
+    var name = prompt('Введите название покупки');
+    for (var _i = 0, purchase_4 = purchase; _i < purchase_4.length; _i++) {
+        var el = purchase_4[_i];
+        if (el.name == name) {
+            el.purchased = true;
+        }
+        showPurchase();
+    }
+}
+showPurchaseButton === null || showPurchaseButton === void 0 ? void 0 : showPurchaseButton.addEventListener('click', showPurchase);
+addPurchaseButton === null || addPurchaseButton === void 0 ? void 0 : addPurchaseButton.addEventListener('click', addPurchase);
+setPurchasedButton === null || setPurchasedButton === void 0 ? void 0 : setPurchasedButton.addEventListener('click', setPurchased);
+// Создать массив css-стилей (цвет, размер шрифта, выравнива-ние, подчеркивание и т. д.). 
+// Каждый элемент массива – это объект, состоящий из двух свойств: название стиля и значение стиля.
+// Написать функцию, которая принимает массив стилей и текст, и выводит этот текст с помощью document.write() 
+// в тегах <p></p>, добавив в открывающий тег атрибут style со всеми сти-лями, перечисленными в массиве.
+var styleRed = [
+    {
+        name: 'color',
+        value: 'red'
+    },
+    {
+        name: 'text-decoration',
+        value: 'underline'
+    },
+];
+var styleGreen = [
+    {
+        name: 'color',
+        value: 'green'
+    },
+    {
+        name: 'font-size',
+        value: '20px'
+    },
+];
+var printTextDiv = document.querySelector('.print.Text');
+function printText(style, text) {
+    var styleStr = '';
+    for (var _i = 0, style_1 = style; _i < style_1.length; _i++) {
+        var el = style_1[_i];
+        styleStr += el.name + ":" + el.value + ";";
+    }
+    if (printTextDiv) {
+        printTextDiv.innerHTML += "<p style= " + styleStr + " </p>";
+    }
+}
+printText(styleRed, 'Хетафе ');
+printText(styleGreen, 'Мадрид ');
+var rectangle = {
+    x: 10,
+    y1: 18,
+    x2: 16,
+    y2: 0
+};
+function getRectWidth(rectangle) {
+    return rectangle.x2 - rectangle.x1;
+}
+function getRectHeight(rectangle) {
+    return rectangle.y1 - rectangle.y2;
+}
+function getRectArea(rectangle) {
+    return getRectWidth(rectangle) * getRectHeight(rectangle);
+}
+function getRectperimeter(rectangle) {
+    return getRectWidth(rectangle) * 2 + getRectHeight(rectangle) * 2;
+}
+// Создать массив, описывающий чек в магазине. Каждый элемент массива состоит из названия товара, 
+// количества и цены за единицу товара. Написать следующие функции.
+// 1.Распечатка чека на экран.
+// 2.Подсчет общей суммы покупки.
+// 3.Получение самой дорогой покупки в чеке.
+// 4.Подсчет средней стоимости одного товара в чеке.
+var check = [
+    {
+        product: 'bread',
+        count: '3',
+        price: '50'
+    },
+    {
+        product: 'milk',
+        count: '2',
+        price: '70'
+    },
+    {
+        product: 'cheese',
+        count: '2',
+        price: '180'
+    },
+];
+function showCheck(arr) {
+    console.log(arr);
+}
+showCheck(check);
+function getSum(arr) {
+    var sum = 0;
+    for (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
+        var el = arr_1[_i];
+        sum += el.count * parseFloat(el.price);
+    }
+    return sum;
+}
+getSum(check);
+function maxPurchase() {
+}

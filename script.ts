@@ -459,36 +459,36 @@ console.log(mainUser.name); // все ещё John в первоначально�
 console.log(clone.name) //уже Pete
 console.log(clone.work.salari)
 
-type News = {
-  h1: string,
-  image: string,
-  text: string,
-  paragraph: string,
-  tags?: [string],
+// type News = {
+//   h1: string,
+//   image: string,
+//   text: string,
+//   paragraph: string,
+//   tags?: [string],
 
-}
+// }
 
-const news: Array<News> = [
-  {
-    h1: 'getafe',
-    image: 'getafe1.jpg',
-    text: '23',
-    paragraph: '23',
-    tags: ['la-liga']
+// const news: Array<News> = [
+//   {
+//     h1: 'getafe',
+//     image: 'getafe1.jpg',
+//     text: '23',
+//     paragraph: '23',
+//     tags: ['la-liga']
 
-  }
-]
+//   }
+// ]
 
-for (let el of news) {
-  el.paragraph = el.text.split('\n')[0]
-  document.write('${el.h1}')
-  if (el.tags) {
-    for (let tag of el.tags) {
-      document.write('${tags}')
-    }
-  }
-}
-console.log(news)
+// for (let el of news) {
+//   el.paragraph = el.text.split('\n')[0]
+//   document.write(`${el.h1}`)
+//   if (el.tags) {
+//     for (let tag of el.tags) {
+//       document.write(`${tags}`)
+//     }
+//   }
+// }
+// console.log(news)
 
 const userObj = {
   address: {}
@@ -663,7 +663,7 @@ function randomInteger(min, max) {
   return Math.round(rand);
 }
 
-alert(randomInteger(1, 3));
+console.log(randomInteger(1, 3));
 
 console.log('Math.min(1,1,5,7,8,15,47,32)', Math.min(1, 1, 5, 7, 8, 15, 47, 32))
 console.log('Math.max(1,1,5,7,8,15,47,32)', Math.max(1, 1, 5, 7, 8, 15, 47, 32))
@@ -709,8 +709,8 @@ let testStr = 'Hi Alex'
 testStr = testStr[0].toLowerCase() + testStr.slice(1, 5) + testStr[5].toUpperCase + testStr.slice(6) //заменяем строку
 console.log(testStr)
 
-alert('Interface'.toUpperCase()); // INTERFACE
-alert('Interface'.toLowerCase()); // interface
+// alert('Interface'.toUpperCase()); // INTERFACE
+// alert('Interface'.toLowerCase()); // interface
 
 // Поиск подстроки
 
@@ -861,7 +861,7 @@ fruits[fruits.length] = 'Слива'
 
 //Общее число элементов массива содержится в его свойстве length:
 console.log(fruits)// ["Яблоко", "Апельсин", "Слива","Груша", "Лимон", "Слива"];
-alert(fruits.length) // 6
+console.log(fruits.length) // 6
 
 //Массивы ведут себя также как объекты в плане того, что значения хранятся по ссылку
 const fruits2 = fruits //Сохранили в переменную fruits2 ссылку на массив переменной fruits
@@ -973,12 +973,211 @@ let matrix = [
   [7, 8, 9]
 ];
 
-console.log( matrix[1][1] ); // 5, центральный элемент
+console.log(matrix[1][1]); // 5, центральный элемент
 
 
-console.log('fruits',fruits)
+console.log('fruits', fruits)
 arr = [...fruits] //Копируем массив 
 fruits.push('Кокос')
-console.log('fruits',fruits) 
-console.log('arr',arr) //arr не изменился
+console.log('fruits', fruits)
+console.log('arr', arr) //arr не изменился
+
+// pz2 - 2
+// Создать массив «Список покупок». Каждый элемент массива
+// является объектом, который содержит название продукта, необ-
+// ходимое количество и куплен или нет. Написать несколько функ-
+// ций для работы с таким массивом.
+// 1 Вывод всего списка на экран таким образом, чтобы сначала
+// шли некупленные продукты, а потом – купленные.
+//  2 Добавление покупки в список. Учтите, что при добавлении
+// покупки с уже существующим в списке продуктом, необ-
+// ходимо увеличивать количество в существующей покупке,
+// а не добавлять новую.
+// 3 Покупка продукта. Функция принимает название продукта
+// и отмечает его как купленный.
+const purchase = [
+  {
+    name: 'a',
+    count: 10,
+    purchased: true,
+  },
+  {
+    name: 'b',
+    count: 5,
+    purchased: false,
+  },
+  {
+    name: 'c',
+    count: 3,
+    purchased: true,
+  },
+  {
+    name: 'd',
+    count: 1,
+    purchased: true,
+  },
+]
+const purchasedol = document.querySelector('.purchase')
+const showPurchaseButton = document.querySelector('.showPurchase')
+const addPurchaseButton = document.querySelector('.addPurchase')
+const setPurchasedButton = document.querySelector('.setPurchased')
+
+function showPurchase() {
+  if (purchasedol) {
+    purchasedol.innerHTML = ``
+  }
+  for (let el of purchase) {
+    if (!el.purchased) {
+      if (purchasedol) {
+        purchasedol.innerHTML += `<li>${el.name} необходимо купить ${el.count} штук </li>`
+      }
+    }
+  }
+  for (let el of purchase) {
+    if (el.purchased) {
+      if (purchasedol) {
+        purchasedol.innerHTML += `<li>${el.name} куплено ${el.count} штук </li>`
+      }
+    }
+  }
+}
+
+function addPurchase() {
+  const name = prompt('Введите название покупки') as string
+  const count = +(prompt('Введите количество') as string)
+  let find = false
+  for (let el of purchase) {
+    if (el.name == name) {
+      find = true
+      el.count += count
+    }
+  }
+  if (!find) {
+    purchase.push({
+      name,
+      count,
+      purchased: false
+    })
+  }
+  showPurchase()
+}
+function setPurchased() {
+  const name = prompt('Введите название покупки')
+  for (let el of purchase) {
+    if (el.name == name) {
+      el.purchased = true;
+    }
+    showPurchase()
+  }
+}
+
+showPurchaseButton?.addEventListener('click', showPurchase)
+addPurchaseButton?.addEventListener('click', addPurchase)
+setPurchasedButton?.addEventListener('click', setPurchased)
+
+// Создать массив css-стилей (цвет, размер шрифта, выравнива-ние, подчеркивание и т. д.). 
+// Каждый элемент массива – это объект, состоящий из двух свойств: название стиля и значение стиля.
+// Написать функцию, которая принимает массив стилей и текст, и выводит этот текст с помощью document.write() 
+// в тегах <p></p>, добавив в открывающий тег атрибут style со всеми сти-лями, перечисленными в массиве.
+
+const styleRed = [
+  {
+    name: 'color',
+    value: 'red',
+  },
+  {
+    name: 'text-decoration',
+    value: 'underline'
+  },
+]
+const styleGreen = [
+  {
+    name: 'color',
+    value: 'green',
+  },
+  {
+    name: 'font-size',
+    value: '20px'
+  },
+]
+
+const printTextDiv = document.querySelector('.print.Text')
+
+function printText(style: any[], text: string) {
+  let styleStr = ''
+  for (let el of style) {
+    styleStr += `${el.name}:${el.value};`
+  }
+  if (printTextDiv) {
+    printTextDiv.innerHTML += `<p style= ${styleStr} </p>`
+  }
+}
+printText(styleRed, 'Хетафе ');
+printText(styleGreen, 'Мадрид ');
+
+const rectangle = {
+  x: 10,
+  y1: 18,
+  x2: 16,
+  y2: 0
+}
+
+function getRectWidth(rectangle: any) {
+  return rectangle.x2 - rectangle.x1
+}
+function getRectHeight(rectangle: any) {
+  return rectangle.y1 - rectangle.y2
+}
+
+function getRectArea(rectangle: any) {
+  return getRectWidth(rectangle) * getRectHeight(rectangle)
+}
+function getRectperimeter(rectangle: any) {
+  return getRectWidth(rectangle) * 2 + getRectHeight(rectangle) * 2
+}
+
+
+// Создать массив, описывающий чек в магазине. Каждый элемент массива состоит из названия товара, 
+// количества и цены за единицу товара. Написать следующие функции.
+// 1.Распечатка чека на экран.
+// 2.Подсчет общей суммы покупки.
+// 3.Получение самой дорогой покупки в чеке.
+// 4.Подсчет средней стоимости одного товара в чеке.
+
+const check = [
+  {
+    product: 'bread',
+    count: '3',
+    price: '50',
+  },
+  {
+    product: 'milk',
+    count: '2',
+    price: '70',
+  },
+  {
+    product: 'cheese',
+    count: '2',
+    price: '180',
+  },
+]
+
+function showCheck(arr:any[]) {
+console.log(arr)
+}
+showCheck(check)
+
+
+function getSum (arr:any[]) {
+let sum = 0  
+for (let el of arr) {
+sum+=el.count*parseFloat(el.price)  
+}
+return sum
+}
+getSum(check)
+
+function maxPurchase() {
+
+}
 
