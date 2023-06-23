@@ -888,7 +888,7 @@ function setPurchased() {
 showPurchaseButton === null || showPurchaseButton === void 0 ? void 0 : showPurchaseButton.addEventListener('click', showPurchase);
 addPurchaseButton === null || addPurchaseButton === void 0 ? void 0 : addPurchaseButton.addEventListener('click', addPurchase);
 setPurchasedButton === null || setPurchasedButton === void 0 ? void 0 : setPurchasedButton.addEventListener('click', setPurchased);
-// Создать массив css-стилей (цвет, размер шрифта, выравнива-ние, подчеркивание и т. д.). 
+// Создать массив css-стилей (цвет, размер шрифта, выравнивание, подчеркивание и т. д.). 
 // Каждый элемент массива – это объект, состоящий из двух свойств: название стиля и значение стиля.
 // Написать функцию, которая принимает массив стилей и текст, и выводит этот текст с помощью document.write() 
 // в тегах <p></p>, добавив в открывающий тег атрибут style со всеми сти-лями, перечисленными в массиве.
@@ -978,6 +978,67 @@ function getSum(arr) {
     }
     return sum;
 }
-getSum(check);
-function maxPurchase() {
+console.log(getSum(check));
+function maxPurchase(arr) {
+    var res = __spreadArrays(arr);
+    var maxCost = 0;
+    for (var _i = 0, res_1 = res; _i < res_1.length; _i++) {
+        var product = res_1[_i];
+        var cost = product.price * product.count;
+        if (cost > maxCost) {
+            maxCost = cost;
+        }
+    }
+    return maxCost;
 }
+console.log(maxPurchase(check));
+function averagePurchase(arr) {
+    var res = __spreadArrays(arr);
+    var averagePurch = 0;
+    var sum = 0;
+    for (var _i = 0, res_2 = res; _i < res_2.length; _i++) {
+        var product = res_2[_i];
+        sum += product.price * product.count;
+    }
+    return (sum / res.length).toFixed(2);
+}
+console.log(averagePurchase(check));
+// Создать массив аудиторий академии. Объект-аудитория состоит из названия, количества посадочных мест (от 10 до 20) и
+// названия факультета, для которого она предназначена.
+// Написать несколько функций для работы с ним.
+// 1 Вывод на экран всех аудиторий.
+// 2 Вывод на экран аудиторий для указанного факультета.
+// 3 Вывод на экран только тех аудиторий, которые подходят для
+// переданной группы. Объект-группа состоит из названия,
+// количества студентов и названия факультета.
+var audience = [
+    {
+        name: 'yandex',
+        count: '40',
+        faculty: 'html'
+    },
+    {
+        name: 'mail',
+        count: '22',
+        faculty: '1c'
+    },
+    {
+        name: 'rambler',
+        count: '28',
+        faculty: 'mysql'
+    }
+];
+function showAudience(arr) {
+    console.log(arr);
+}
+console.log(showAudience(audience));
+function showAudienceForFaculty(arr) {
+    var faculty = +prompt('Введите название факультета');
+    for (var el in arr) {
+        if (el.faculty = faculty)
+            el.faculty = true,
+            ;
+    }
+}
+console.log;
+showAudienceForFaculty();
