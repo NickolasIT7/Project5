@@ -1201,7 +1201,7 @@ function averagePurchase(arr: any[]) {
 
   return (sum / res.length).toFixed(2);
 }
-console.log(averagePurchase(check))
+console.log(averagePurchase(check));
 
 // Создать массив аудиторий академии. Объект-аудитория состоит из названия, количества посадочных мест (от 10 до 20) и
 // названия факультета, для которого она предназначена.
@@ -1215,33 +1215,60 @@ console.log(averagePurchase(check))
 const audience = [
   {
     name: 'yandex',
-    count: '40',
+    count: '20',
     faculty: 'html',
   },
   {
-    name:'mail',
-    count:'22',
-    faculty:'1c',
+    name: 'mail',
+    count: '12',
+    faculty: '1c',
   },
   {
-   name: 'rambler',
-   count:'28',
-   faculty:'mysql', 
+    name: 'rambler',
+    count: '18',
+    faculty: 'mysql',
   }
 ]
 function showAudience(arr: any[]) {
-console.log(arr)  
+  console.log(arr)
 }
-console.log(showAudience(audience))
+showAudience(audience)
 
 function showAudienceForFaculty(arr: any[]) {
-let faculty = +(prompt('Введите название факультета')as string)
-for(let el in arr) {
-if (el.faculty = faculty)
-el.faculty = true,
-} 
+  let faculty = prompt('Введите название факультета') as string
+  const auditories = [] as any
+  for (let el of arr) {
+    if (el.faculty == faculty) {
+      auditories.push(el)
+    }
+  }
+  return auditories
 }
-console.log showAudienceForFaculty();
+console.log(showAudienceForFaculty(audience));
 
+function showAudienceForGroup(arr: any[]) {
+  let students = +(prompt('Введите количество студентов') as string)
+  const group = [] as any
+  for (let el of arr) {
+    if (el.count > students) {
+      group.push(el)
+    }
+  }
+  return group
+}
+console.log(showAudienceForGroup(audience))
 
+// 1 Написать функцию, которая принимает строку и выводит
+// статистику о ней: количество букв, количество цифр и
+// количество других знаков.
+//номер идентификатора символа в строке
+const string1 = 'k234jas2s'
+function GetCount(arr: any[]) {
+  const letter = 0
+  const numb = 0
+  const sign = 0
+  for (let el of string1) {
+    
 
+  }
+}

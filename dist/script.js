@@ -1014,31 +1014,58 @@ console.log(averagePurchase(check));
 var audience = [
     {
         name: 'yandex',
-        count: '40',
+        count: '20',
         faculty: 'html'
     },
     {
         name: 'mail',
-        count: '22',
+        count: '12',
         faculty: '1c'
     },
     {
         name: 'rambler',
-        count: '28',
+        count: '18',
         faculty: 'mysql'
     }
 ];
 function showAudience(arr) {
     console.log(arr);
 }
-console.log(showAudience(audience));
+showAudience(audience);
 function showAudienceForFaculty(arr) {
-    var faculty = +prompt('Введите название факультета');
-    for (var el in arr) {
-        if (el.faculty = faculty)
-            el.faculty = true,
-            ;
+    var faculty = prompt('Введите название факультета');
+    var auditories = [];
+    for (var _i = 0, arr_2 = arr; _i < arr_2.length; _i++) {
+        var el = arr_2[_i];
+        if (el.faculty == faculty) {
+            auditories.push(el);
+        }
+    }
+    return auditories;
+}
+console.log(showAudienceForFaculty(audience));
+function showAudienceForGroup(arr) {
+    var students = +prompt('Введите количество студентов');
+    var group = [];
+    for (var _i = 0, arr_3 = arr; _i < arr_3.length; _i++) {
+        var el = arr_3[_i];
+        if (el.count > students) {
+            group.push(el);
+        }
+    }
+    return group;
+}
+console.log(showAudienceForGroup(audience));
+// 1 Написать функцию, которая принимает строку и выводит
+// статистику о ней: количество букв, количество цифр и
+// количество других знаков.
+//номер идентификатора символа в строке
+var string1 = 'k234jas2s';
+function GetCount(arr) {
+    var letter = 0;
+    var numb = 0;
+    var sign = 0;
+    for (var _i = 0, string1_1 = string1; _i < string1_1.length; _i++) {
+        var el = string1_1[_i];
     }
 }
-console.log;
-showAudienceForFaculty();
