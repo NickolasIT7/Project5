@@ -1069,3 +1069,86 @@ function GetCount(arr) {
         var el = string1_1[_i];
     }
 }
+//Создать еще один массив из 5 случайных чисел и написать
+// следующие функции. Функция принимает 2 массива и возвращает новый массив, 
+// в котором собраны все элементы из двух массивов без повторений.
+var arr1 = [1, 1, 2, 3, 5, 8, 7, 9, 10, 7];
+var arr2 = [5, 1, 6, 3, 2];
+function getUnicArray(a, b) {
+    var arr = [];
+    for (var _i = 0, a_1 = a; _i < a_1.length; _i++) {
+        var el = a_1[_i];
+        if (!arr.includes(el))
+            arr.push(el);
+    }
+    for (var _a = 0, b_1 = b; _a < b_1.length; _a++) {
+        var el = b_1[_a];
+        //for(let i=0;i<arr.lenght;i++)
+        //console.log('arr[+i+],arr[i]')
+        if (!arr.includes(el))
+            arr.push(el);
+    }
+    return arr;
+}
+console.log(getUnicArray(arr1, arr2));
+for (var _d = 0, _e = ['a', 'b', 'c', 'f', 'g']; _d < _e.length; _d++) {
+    var asd = _e[_d];
+    if (asd == 'c') {
+        console.log('встретили символ "c" и перешли на новую интерацию, игнорирую все следующие строки тела цикла');
+        continue;
+    }
+    if (asd == 'f')
+        console.log('встретили символ "f" и вышли из цикла, следующие символы не попадут в переменную char');
+    break;
+    console.log('asd', asd);
+}
+//как работает includes в массиве 
+var arrIncludes = function (arr, findEl) {
+    for (var _i = 0, arr_4 = arr; _i < arr_4.length; _i++) {
+        var el = arr_4[_i];
+        if (el === findEl)
+            return true;
+    }
+    return false;
+};
+console.log(arrIncludes(arr1, '1'));
+//как работает includes в строке 
+var strIncludes = function (str, subStr) {
+    for (var i = 0; i <= (str.length - subStr.length); i++) {
+        if (str.slice(i, i + subStr.length) === subStr)
+            return true;
+    }
+    return false;
+};
+console.log(strIncludes('strxcsdasd', 'xcs'));
+function powRecursive(x, n) {
+    // Условие выхода
+    if (n == 1) {
+        return x;
+    }
+    else {
+        console.log('x =', x, 'n =', n);
+        // Рекурсивная функция вызывает сама себя, пока не сработает условие выхода
+        return x * powRecursive(x, n - 1); //2 * 2 * 2 
+    }
+}
+console.log(powRecursive(2, 5)); // 8
+//Напишите функцию sumTo(n), которая вычисляет сумму чисел 1 + 2 + ... + n.
+// три варианта решения:
+// С использованием цикла. Через рекурсию, т.к. sumTo(n) = n + sumTo(n-1) for n > 1.
+// С использованием формулы арифметической прогрессии. Пример работы вашей функции:
+function sumTo(n) {
+    var sum = 0;
+    for (var i = 1; i <= n; i++) {
+        sum += i;
+    }
+    return sum;
+}
+console.log(sumTo(100));
+function sumTo2(n) {
+    return n == 0 ? n : n + sumTo2(n - 1);
+}
+function sumTo3(n) {
+    return n * (n + 1) / 2;
+}
+console.log(sumTo(100)); // 5050

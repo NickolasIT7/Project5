@@ -1268,7 +1268,91 @@ function GetCount(arr: any[]) {
   const numb = 0
   const sign = 0
   for (let el of string1) {
-    
+
 
   }
 }
+
+//Создать еще один массив из 5 случайных чисел и написать
+// следующие функции. Функция принимает 2 массива и возвращает новый массив, 
+// в котором собраны все элементы из двух массивов без повторений.
+const arr1 = [1, 1, 2, 3, 5, 8, 7, 9, 10, 7]
+const arr2 = [5, 1, 6, 3, 2]
+
+function getUnicArray(a: any[], b: any[]) {
+  const arr = [] as any
+  for (let el of a) {
+    if (!arr.includes(el)) arr.push(el)
+  }
+  for (let el of b) {
+    //for(let i=0;i<arr.lenght;i++)
+    //console.log('arr[+i+],arr[i]')
+    if (!arr.includes(el)) arr.push(el)
+  }
+  return arr
+}
+console.log(getUnicArray(arr1, arr2))
+
+for (let asd of ['a', 'b', 'c', 'f', 'g']) {
+  if (asd == 'c') {
+    console.log('встретили символ "c" и перешли на новую интерацию, игнорирую все следующие строки тела цикла')
+    continue
+  }
+  if (asd == 'f')
+    console.log('встретили символ "f" и вышли из цикла, следующие символы не попадут в переменную char')
+  break
+  console.log('asd', asd)
+}
+
+//как работает includes в массиве 
+const arrIncludes = (arr: any[], findEl: any) => {
+  for (let el of arr) {
+    if (el === findEl) return true
+  }
+  return false
+}
+console.log(arrIncludes(arr1, '1'))
+
+//как работает includes в строке 
+const strIncludes = (str: string, subStr: string) => {
+  for (let i = 0; i <= (str.length - subStr.length); i++) {
+    if (str.slice(i, i + subStr.length) === subStr) return true
+  }
+  return false
+}
+console.log(strIncludes('strxcsdasd', 'xcs'))
+
+function powRecursive(x: number, n: number): number {
+  // Условие выхода
+  if (n == 1) {
+    return x;
+  } else {
+    console.log('x =', x, 'n =', n)
+    // Рекурсивная функция вызывает сама себя, пока не сработает условие выхода
+    return x * powRecursive(x, n - 1); //2 * 2 * 2 
+  }
+}
+console.log(powRecursive(2, 5)); // 8
+
+//Напишите функцию sumTo(n), которая вычисляет сумму чисел 1 + 2 + ... + n.
+// три варианта решения:
+
+// С использованием цикла. Через рекурсию, т.к. sumTo(n) = n + sumTo(n-1) for n > 1.
+// С использованием формулы арифметической прогрессии. Пример работы вашей функции:
+
+function sumTo(n: number) {
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    sum += i;
+  }
+  return sum;
+}
+console.log(sumTo(100))
+
+function sumTo2(n: number): number {
+  return n == 0 ? n : n + sumTo2(n - 1)
+}
+function sumTo3(n: number) {
+  return n * (n + 1) / 2;
+}
+console.log(sumTo(100)); // 5050
