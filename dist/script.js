@@ -1152,3 +1152,20 @@ function sumTo3(n) {
     return n * (n + 1) / 2;
 }
 console.log(sumTo(100)); // 5050
+function reverseNumber(n, i) {
+    if (i === void 0) { i = String(n).length - 1; }
+    if (i == 0) {
+        return String(n)[i];
+    }
+    return +(String(n)[i] + reverseNumber(n, --i));
+}
+console.log(reverseNumber(12354));
+//Методы массивов
+var users = [
+    { id: 1, name: "Вася" },
+    { id: 2, name: "Петя" },
+    { id: 3, name: "Маша" },
+    { id: 4, name: "Вася" }
+];
+var mapResult = users.map(function (el) { return el.id + '' + el.name; }); //массив строк
+console.log(mapResult);

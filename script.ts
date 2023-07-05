@@ -1356,3 +1356,25 @@ function sumTo3(n: number) {
   return n * (n + 1) / 2;
 }
 console.log(sumTo(100)); // 5050
+
+
+function reverseNumber(n: number, i: number = String(n).length - 1):any {
+if (i == 0) {
+    return String(n)[i]
+  }
+  return +(String(n)[i] + reverseNumber(n, --i))
+}
+
+console.log(reverseNumber(12354))
+
+//Методы массивов
+
+let users = [
+  {id: 1, name: "Вася"},
+  {id: 2, name: "Петя"},
+  {id: 3, name: "Маша"},
+  {id: 4, name: "Вася"}
+];
+
+let mapResult = users.map(el=>el.id+''+el.name)//массив строк
+console.log(mapResult)
