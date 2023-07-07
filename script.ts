@@ -1212,51 +1212,51 @@ console.log(averagePurchase(check));
 // переданной группы. Объект-группа состоит из названия,
 // количества студентов и названия факультета.
 
-const audience = [
-  {
-    name: 'yandex',
-    count: '20',
-    faculty: 'html',
-  },
-  {
-    name: 'mail',
-    count: '12',
-    faculty: '1c',
-  },
-  {
-    name: 'rambler',
-    count: '18',
-    faculty: 'mysql',
-  }
-]
-function showAudience(arr: any[]) {
-  console.log(arr)
-}
-showAudience(audience)
+// const audience = [
+//   {
+//     name: 'yandex',
+//     count: '20',
+//     faculty: 'html',
+//   },
+//   {
+//     name: 'mail',
+//     count: '12',
+//     faculty: '1c',
+//   },
+//   {
+//     name: 'rambler',
+//     count: '18',
+//     faculty: 'mysql',
+//   }
+// ]
+// function showAudience(arr: any[]) {
+//   console.log(arr)
+// }
+// showAudience(audience)
 
-function showAudienceForFaculty(arr: any[]) {
-  let faculty = prompt('Введите название факультета') as string
-  const auditories = [] as any
-  for (let el of arr) {
-    if (el.faculty == faculty) {
-      auditories.push(el)
-    }
-  }
-  return auditories
-}
-console.log(showAudienceForFaculty(audience));
+// function showAudienceForFaculty(arr: any[]) {
+//   let faculty = prompt('Введите название факультета') as string
+//   const auditories = [] as any
+//   for (let el of arr) {
+//     if (el.faculty == faculty) {
+//       auditories.push(el)
+//     }
+//   }
+//   return auditories
+// }
+// console.log(showAudienceForFaculty(audience));
 
-function showAudienceForGroup(arr: any[]) {
-  let students = +(prompt('Введите количество студентов') as string)
-  const group = [] as any
-  for (let el of arr) {
-    if (el.count > students) {
-      group.push(el)
-    }
-  }
-  return group
-}
-console.log(showAudienceForGroup(audience))
+// function showAudienceForGroup(arr: any[]) {
+//   let students = +(prompt('Введите количество студентов') as string)
+//   const group = [] as any
+//   for (let el of arr) {
+//     if (el.count > students) {
+//       group.push(el)
+//     }
+//   }
+//   return group
+// }
+// console.log(showAudienceForGroup(audience))
 
 // 1 Написать функцию, которая принимает строку и выводит
 // статистику о ней: количество букв, количество цифр и
@@ -1276,22 +1276,22 @@ function GetCount(arr: any[]) {
 //Создать еще один массив из 5 случайных чисел и написать
 // следующие функции. Функция принимает 2 массива и возвращает новый массив, 
 // в котором собраны все элементы из двух массивов без повторений.
-const arr1 = [1, 1, 2, 3, 5, 8, 7, 9, 10, 7]
-const arr2 = [5, 1, 6, 3, 2]
+// const arr1 = [1, 1, 2, 3, 5, 8, 7, 9, 10, 7]
+// const arr2 = [5, 1, 6, 3, 2]
 
-function getUnicArray(a: any[], b: any[]) {
-  const arr = [] as any
-  for (let el of a) {
-    if (!arr.includes(el)) arr.push(el)
-  }
-  for (let el of b) {
-    //for(let i=0;i<arr.lenght;i++)
-    //console.log('arr[+i+],arr[i]')
-    if (!arr.includes(el)) arr.push(el)
-  }
-  return arr
-}
-console.log(getUnicArray(arr1, arr2))
+// function getUnicArray(a: any[], b: any[]) {
+//   const arr = [] as any
+//   for (let el of a) {
+//     if (!arr.includes(el)) arr.push(el)
+//   }
+//   for (let el of b) {
+//     //for(let i=0;i<arr.lenght;i++)
+//     //console.log('arr[+i+],arr[i]')
+//     if (!arr.includes(el)) arr.push(el)
+//   }
+//   return arr
+// }
+// console.log(getUnicArray(arr1, arr2))
 
 for (let asd of ['a', 'b', 'c', 'f', 'g']) {
   if (asd == 'c') {
@@ -1311,7 +1311,7 @@ const arrIncludes = (arr: any[], findEl: any) => {
   }
   return false
 }
-console.log(arrIncludes(arr1, '1'))
+console.log(arrIncludes(arr, '1'))
 
 //как работает includes в строке 
 const strIncludes = (str: string, subStr: string) => {
@@ -1358,8 +1358,8 @@ function sumTo3(n: number) {
 console.log(sumTo(100)); // 5050
 
 
-function reverseNumber(n: number, i: number = String(n).length - 1):any {
-if (i == 0) {
+function reverseNumber(n: number, i: number = String(n).length - 1): any {
+  if (i == 0) {
     return String(n)[i]
   }
   return +(String(n)[i] + reverseNumber(n, --i))
@@ -1370,11 +1370,50 @@ console.log(reverseNumber(12354))
 //Методы массивов
 
 let users = [
-  {id: 1, name: "Вася"},
-  {id: 2, name: "Петя"},
-  {id: 3, name: "Маша"},
-  {id: 4, name: "Вася"}
+  { id: 1, name: "Вася" },
+  { id: 2, name: "Петя" },
+  { id: 3, name: "Маша" },
+  { id: 4, name: "Вася" }
 ];
 
-let mapResult = users.map(el=>el.id+''+el.name)//массив строк
+let mapResult = users.map(el => el.id + '' + el.name)//массив строк
 console.log(mapResult)
+
+// Функция добавления нового элемента в массив по указанному индексу.
+
+let arr4 = [3, 6, 7, 2, 5, 5, 7, 3, 6, 4]
+function addElement(arr, index, value) {
+  arr.splice(index, 0, value)
+}
+addElement(arr4, 0, 6)
+console.log('arr', arr4)
+// Функция удаления элемента из массива по указанному индексу
+function delElement(arr, index) {
+  return arr.splice(index, 1)
+}
+delElement(arr4, 3)
+console.log('arr', arr4)
+
+// Функция принимает 2 массива и возвращает новый массив,в котором собраны общие элементы (то есть элементы,
+// которые встречаются и в первом и во втором массивах) без повторений.
+let arr02 = [5, 1, 6, 3, 2]
+function getNewUniqueArray(arr1,arr2) {
+  let arr = [] as any[]
+  arr1.forEach(el => {
+    if (!arr.includes(el)&&arr2.includes(el)) {
+      arr.push(el)
+    }
+  })  
+  return arr
+}
+console.log(getNewUniqueArray(arr4,arr02))
+
+//Функция принимает 2 массива и возвращает новый массив, в котором собраны все элементы из первого массива, 
+// которых нет во втором массиве
+function newMassive(arr1,arr2) {
+  let unique = arr1.filter((item) => arr2.indexOf(item) == -1)
+  return unique
+}
+console.log(arr02)
+console.log(arr4)
+console.log(newMassive(arr4,arr02))
