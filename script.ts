@@ -1397,23 +1397,90 @@ console.log('arr', arr4)
 // Функция принимает 2 массива и возвращает новый массив,в котором собраны общие элементы (то есть элементы,
 // которые встречаются и в первом и во втором массивах) без повторений.
 let arr02 = [5, 1, 6, 3, 2]
-function getNewUniqueArray(arr1,arr2) {
+function getNewUniqueArray(arr1, arr2) {
   let arr = [] as any[]
   arr1.forEach(el => {
-    if (!arr.includes(el)&&arr2.includes(el)) {
+    if (!arr.includes(el) && arr2.includes(el)) {
       arr.push(el)
     }
-  })  
+  })
   return arr
 }
-console.log(getNewUniqueArray(arr4,arr02))
+console.log(getNewUniqueArray(arr4, arr02))
 
 //Функция принимает 2 массива и возвращает новый массив, в котором собраны все элементы из первого массива, 
 // которых нет во втором массиве
-function newMassive(arr1,arr2) {
+function newMassive(arr1, arr2) {
   let unique = arr1.filter((item) => arr2.indexOf(item) == -1)
   return unique
 }
 console.log(arr02)
 console.log(arr4)
-console.log(newMassive(arr4,arr02))
+console.log(newMassive(arr4, arr02))
+
+let company = { 
+  sales: [{ name: 'John', salary: 1000 }, { name: 'Alice', salary: 600 }],
+  development: {
+    sites: [{ name: 'Peter', salary: 2000 }, { name: 'Alex', salary: 1800 }],
+    internals: [{ name: 'Jack', salary: 1300 }]
+  }
+};
+
+// Функция для подсчёта суммы зарплат
+function sumSalaries(department: any) {
+  if (Array.isArray(department)) {
+    const sum = department.reduce((prev, current) => prev + current.salary, 0); // сумма зарплат массива
+    return sum
+  } else {
+    let sum = 0
+    console.log(department, sum)
+    for (let subdep of Object.values(department)) {
+      sum += sumSalaries(subdep); // рекурсивно вызывается для подотделов, суммируя результаты
+    }
+    console.log('Сумма по подразделениям', department,sum)
+    return sum
+  }
+}
+console.log(sumSalaries(company)) // 6700
+
+const student1 = {name:'dasa',age:35,askQuestion(){alert('da')}}
+const student2 = {name:'rasa',age:31,askQuestion(){alert('net')}}
+
+console.log(student1)
+console.log(student2)
+
+function Student(name:string, age:number) {
+  this.name = name
+  this.age = age
+  this.askQuestion = function (text) {alert(text)}
+}
+
+const student3 = new Student('Max',15)
+const student4 = new Student('Vasya',25)
+console.log(student3)
+console.log(student4)
+
+class Student1{
+name = ''
+age = 0
+constructor(name:string,age:number) {
+ this.name = name
+ this.age = age 
+}
+askQuestion = function(text:string) {alert(text)}
+}
+const student5 = new Student1('Petr',54)
+console.log(student5)
+
+
+//4-2 Реализовать PrintMachine
+class  PrintMachine {
+size = 14
+color = 'red'
+font = 'Arial'
+constructor(size:number,color:string,font:string) {
+this.size = size 
+this.color = color
+this.font = font
+}
+}

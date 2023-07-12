@@ -1198,3 +1198,65 @@ function newMassive(arr1, arr2) {
 console.log(arr02);
 console.log(arr4);
 console.log(newMassive(arr4, arr02));
+var company = {
+    sales: [{ name: 'John', salary: 1000 }, { name: 'Alice', salary: 600 }],
+    development: {
+        sites: [{ name: 'Peter', salary: 2000 }, { name: 'Alex', salary: 1800 }],
+        internals: [{ name: 'Jack', salary: 1300 }]
+    }
+};
+// Функция для подсчёта суммы зарплат
+function sumSalaries(department) {
+    if (Array.isArray(department)) {
+        var sum = department.reduce(function (prev, current) { return prev + current.salary; }, 0); // сумма зарплат массива
+        return sum;
+    }
+    else {
+        var sum = 0;
+        console.log(department, sum);
+        for (var _i = 0, _a = Object.values(department); _i < _a.length; _i++) {
+            var subdep = _a[_i];
+            sum += sumSalaries(subdep); // рекурсивно вызывается для подотделов, суммируя результаты
+        }
+        console.log('Сумма по подразделениям', department, sum);
+        return sum;
+    }
+}
+console.log(sumSalaries(company)); // 6700
+var student1 = { name: 'dasa', age: 35, askQuestion: function () { alert('da'); } };
+var student2 = { name: 'rasa', age: 31, askQuestion: function () { alert('net'); } };
+console.log(student1);
+console.log(student2);
+function Student(name, age) {
+    this.name = name;
+    this.age = age;
+    this.askQuestion = function (text) { alert(text); };
+}
+var student3 = new Student('Max', 15);
+var student4 = new Student('Vasya', 25);
+console.log(student3);
+console.log(student4);
+var Student1 = /** @class */ (function () {
+    function Student1(name, age) {
+        this.name = '';
+        this.age = 0;
+        this.askQuestion = function (text) { alert(text); };
+        this.name = name;
+        this.age = age;
+    }
+    return Student1;
+}());
+var student5 = new Student1('Petr', 54);
+console.log(student5);
+//4-2 Реализовать PrintMachine
+var PrintMachine = /** @class */ (function () {
+    function PrintMachine(size, color, font) {
+        this.size = 14;
+        this.color = 'red';
+        this.font = 'Arial';
+        this.size = size;
+        this.color = color;
+        this.font = font;
+    }
+    return PrintMachine;
+}());
