@@ -1418,7 +1418,7 @@ console.log(arr02)
 console.log(arr4)
 console.log(newMassive(arr4, arr02))
 
-let company = { 
+let company = {
   sales: [{ name: 'John', salary: 1000 }, { name: 'Alice', salary: 600 }],
   development: {
     sites: [{ name: 'Peter', salary: 2000 }, { name: 'Alex', salary: 1800 }],
@@ -1437,50 +1437,188 @@ function sumSalaries(department: any) {
     for (let subdep of Object.values(department)) {
       sum += sumSalaries(subdep); // рекурсивно вызывается для подотделов, суммируя результаты
     }
-    console.log('Сумма по подразделениям', department,sum)
+    console.log('Сумма по подразделениям', department, sum)
     return sum
   }
 }
 console.log(sumSalaries(company)) // 6700
 
-const student1 = {name:'dasa',age:35,askQuestion(){alert('da')}}
-const student2 = {name:'rasa',age:31,askQuestion(){alert('net')}}
+const student1 = { name: 'dasa', age: 35, askQuestion() { alert('da') } }
+const student2 = { name: 'rasa', age: 31, askQuestion() { alert('net') } }
 
 console.log(student1)
 console.log(student2)
 
-function Student(name:string, age:number) {
-  this.name = name
-  this.age = age
-  this.askQuestion = function (text) {alert(text)}
+type Student = {
+  name: string,
+  age: number,
+  askQuestion: Function
 }
 
-const student3 = new Student('Max',15)
-const student4 = new Student('Vasya',25)
+function Student(this: any, name: string, age: number) {
+  this.name = name
+  this.age = age
+  this.askQuestion = function (text) { alert(text) }
+}
+
+const student3 = new Student('Max', 15)
+const student4 = new Student('Vasya', 25)
 console.log(student3)
 console.log(student4)
 
-class Student1{
-name = ''
-age = 0
-constructor(name:string,age:number) {
- this.name = name
- this.age = age 
+class Student1 {
+  name = ''
+  age = 0
+  constructor(name: string, age: number) {
+    this.name = name
+    this.age = age
+  }
+  askQuestion = function (text: string) { alert(text) }
 }
-askQuestion = function(text:string) {alert(text)}
-}
-const student5 = new Student1('Petr',54)
+const student5 = new Student1('Petr', 54)
 console.log(student5)
 
 
 //4-2 Реализовать PrintMachine
-class  PrintMachine {
-size = 14
-color = 'red'
-font = 'Arial'
-constructor(size:number,color:string,font:string) {
-this.size = size 
-this.color = color
-this.font = font
+// ■ размера шрифта;
+// ■ цвета шрифта;
+// ■ семейства шрифта;
+// ■ метода print(), который принимает текст и печатает его
+// соответствующим шрифтом с помощью document.write().
+// Создать объект такого класса и продемонстрировать работу
+// метода.
+class PrintMachine {
+  size = 14
+  color = 'red'
+  font = 'Arial'
+  tag = 'p'
+  constructor(size: number, color: string, font: string, tag: string = 'p') {
+    this.size = size
+    this.color = color
+    this.font = font
+    this.tag = tag
+  }
+  print = function (text: string) {
+    // @ts-ignore
+    document.write(`<${this.tag} style="font-size:${this.size}; color: ${this.color}; font-family:${this.font}">${text}</${this.tag}>`)
+  }
 }
+console.log(PrintMachine)
+
+function PM(size: number, color: string, font: string, tag: string = 'p'): any {
+  return function print(text: string) {
+    document.write(`<${tag} style="font-size:${size}; color: ${color}; font-family:${font}">${text}</${tag}>`)
+
+    const rPA14 = PM(14, 'red', 'Arial')
+    rPA14('sfdsfsdfwerwersdf sdfds fsdfs')
+
+    const bHT16 = PM(16, 'blue', 'Tahoma', 'h1')
+    bHT16('sdfsdfjwiooiwe nkuhyiuo hfsd')
+
+    const redParagraphArial14 = new PrintMachine(14, 'red', 'Arial')
+    const blueHeaderTahoma16 = new PrintMachine(16, 'blue', 'Tahoma', 'h1')
+
+    blueHeaderTahoma16.tag = 'h2'
+    blueHeaderTahoma16.print('sdfhsdkjfhsdk kjh ksjfdh sdk')
+    redParagraphArial14.print('fsddsfdsfsd')
+  }
 }
+
+
+;[0, 1, 2].forEach((el) => {
+  console.log(el)
+})
+function forEach(arr: any[], fn: Function) {
+  for (let i = 0; i < arr.length; i++) {
+    fn(arr[i], i, arr)
+  }
+}
+forEach([0, 1, 2], ((el, i) => {
+  console.log(el, i)
+}))
+
+function User(name) {
+  // this = {};  (неявно)
+
+  // добавляет свойства к this
+  this.name = name;
+  this.isAdmin = false;
+
+  // return this;  (неявно)
+}
+
+//Prototype 
+let animal = {
+  eats: true,
+  eat() {
+    console.log('am-am-am')
+  },
+  walk() {
+    console.log('top-top')
+  }
+} as any
+let rabbit = {
+  jumps: true,
+  __proto__: animal,
+  walk() {
+    console.log('jump-jump')
+  }
+} as any
+let longEar = {
+  earLength: 10,
+  __proto__: rabbit
+} as any
+
+//rabbit.__proto__ = animal; // (*)
+
+// теперь мы можем найти оба свойства в rabbit:
+console.log('rabbit.eats', rabbit.eats) // true (**)
+console.log('rabbit.jump', rabbit.jumps) // true
+rabbit.eat()
+rabbit.walk()
+console.log('rabbit', rabbit)
+console.log('longEar', longEar)
+longEar.eat()
+
+// Object.keys возвращает только собственные ключи
+console.log(Object.keys(longEar)); // jumps
+
+// for..in проходит и по своим, и по унаследованным ключам
+for(let prop in longEar) console.log(prop); // jumps, затем eats
+
+for(let prop in rabbit) {
+  let isOwn = rabbit.hasOwnProperty(prop);
+
+  if (isOwn) {
+    console.log(`Собственное свойство: ${prop}`); // Our: jumps
+  } else {
+    console.log(`Унаследованное свойство: ${prop}`); // Inherited: eats
+  }
+}
+
+let user0 = {
+  name: "John",
+  surname: "Smith",
+
+  set fullName(value) {
+    [this.name, ] = value.split(" ")[0]
+    this.surname = value.split(" ")[1]
+  },
+
+  get fullName() {
+    return `${this.name} ${this.surname}`;
+  }
+} as any
+
+let admin = {
+  __proto__: user0,
+  isAdmin: true
+} as any
+console.log({...admin})
+console.log(admin.fullName) // John Smith (*)
+
+// срабатывает сеттер!
+admin.fullName = "Alice Cooper" // (**)
+console.log(admin.name) // Alice
+console.log(admin.surname) // Cooperl
+console.log(admin)

@@ -1249,14 +1249,129 @@ var Student1 = /** @class */ (function () {
 var student5 = new Student1('Petr', 54);
 console.log(student5);
 //4-2 Реализовать PrintMachine
+// ■ размера шрифта;
+// ■ цвета шрифта;
+// ■ семейства шрифта;
+// ■ метода print(), который принимает текст и печатает его
+// соответствующим шрифтом с помощью document.write().
+// Создать объект такого класса и продемонстрировать работу
+// метода.
 var PrintMachine = /** @class */ (function () {
-    function PrintMachine(size, color, font) {
+    function PrintMachine(size, color, font, tag) {
+        if (tag === void 0) { tag = 'p'; }
         this.size = 14;
         this.color = 'red';
         this.font = 'Arial';
+        this.tag = 'p';
+        this.print = function (text) {
+            // @ts-ignore
+            document.write("<" + this.tag + " style=\"font-size:" + this.size + "; color: " + this.color + "; font-family:" + this.font + "\">" + text + "</" + this.tag + ">");
+        };
         this.size = size;
         this.color = color;
         this.font = font;
+        this.tag = tag;
     }
     return PrintMachine;
 }());
+console.log(PrintMachine);
+function PM(size, color, font, tag) {
+    if (tag === void 0) { tag = 'p'; }
+    return function print(text) {
+        document.write("<" + tag + " style=\"font-size:" + size + "; color: " + color + "; font-family:" + font + "\">" + text + "</" + tag + ">");
+        var rPA14 = PM(14, 'red', 'Arial');
+        rPA14('sfdsfsdfwerwersdf sdfds fsdfs');
+        var bHT16 = PM(16, 'blue', 'Tahoma', 'h1');
+        bHT16('sdfsdfjwiooiwe nkuhyiuo hfsd');
+        var redParagraphArial14 = new PrintMachine(14, 'red', 'Arial');
+        var blueHeaderTahoma16 = new PrintMachine(16, 'blue', 'Tahoma', 'h1');
+        blueHeaderTahoma16.tag = 'h2';
+        blueHeaderTahoma16.print('sdfhsdkjfhsdk kjh ksjfdh sdk');
+        redParagraphArial14.print('fsddsfdsfsd');
+    };
+}
+;
+[0, 1, 2].forEach(function (el) {
+    console.log(el);
+});
+function forEach(arr, fn) {
+    for (var i = 0; i < arr.length; i++) {
+        fn(arr[i], i, arr);
+    }
+}
+forEach([0, 1, 2], (function (el, i) {
+    console.log(el, i);
+}));
+function User(name) {
+    // this = {};  (неявно)
+    // добавляет свойства к this
+    this.name = name;
+    this.isAdmin = false;
+    // return this;  (неявно)
+}
+//Prototype 
+var animal = {
+    eats: true,
+    eat: function () {
+        console.log('am-am-am');
+    },
+    walk: function () {
+        console.log('top-top');
+    }
+};
+var rabbit = {
+    jumps: true,
+    __proto__: animal,
+    walk: function () {
+        console.log('jump-jump');
+    }
+};
+var longEar = {
+    earLength: 10,
+    __proto__: rabbit
+};
+//rabbit.__proto__ = animal; // (*)
+// теперь мы можем найти оба свойства в rabbit:
+console.log('rabbit.eats', rabbit.eats); // true (**)
+console.log('rabbit.jump', rabbit.jumps); // true
+rabbit.eat();
+rabbit.walk();
+console.log('rabbit', rabbit);
+console.log('longEar', longEar);
+longEar.eat();
+// Object.keys возвращает только собственные ключи
+console.log(Object.keys(longEar)); // jumps
+// for..in проходит и по своим, и по унаследованным ключам
+for (var prop in longEar)
+    console.log(prop); // jumps, затем eats
+for (var prop in rabbit) {
+    var isOwn = rabbit.hasOwnProperty(prop);
+    if (isOwn) {
+        console.log("\u0421\u043E\u0431\u0441\u0442\u0432\u0435\u043D\u043D\u043E\u0435 \u0441\u0432\u043E\u0439\u0441\u0442\u0432\u043E: " + prop); // Our: jumps
+    }
+    else {
+        console.log("\u0423\u043D\u0430\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u043D\u043D\u043E\u0435 \u0441\u0432\u043E\u0439\u0441\u0442\u0432\u043E: " + prop); // Inherited: eats
+    }
+}
+var user0 = {
+    name: "John",
+    surname: "Smith",
+    set fullName(value) {
+        this.name = value.split(" ")[0][0];
+        this.surname = value.split(" ")[1];
+    },
+    get fullName() {
+        return this.name + " " + this.surname;
+    }
+};
+var admin = {
+    __proto__: user0,
+    isAdmin: true
+};
+console.log(__assign({}, admin));
+console.log(admin.fullName); // John Smith (*)
+// срабатывает сеттер!
+admin.fullName = "Alice Cooper"; // (**)
+console.log(admin.name); // Alice
+console.log(admin.surname); // Cooperl
+console.log(admin);
