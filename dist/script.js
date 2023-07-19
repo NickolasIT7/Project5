@@ -1375,3 +1375,88 @@ admin.fullName = "Alice Cooper"; // (**)
 console.log(admin.name); // Alice
 console.log(admin.surname); // Cooperl
 console.log(admin);
+animal = {
+    eats: true
+};
+var Rabbit = (function (name) {
+    this.name = name;
+});
+// Не перезаписываем Rabbit.prototype полностью, а добавляем к нему свойство
+Rabbit.prototype.jumps = true;
+// Прототип по умолчанию сохраняется, и мы всё ещё имеем доступ к Rabbit.prototype.constructor
+var defaultRabbit = new Rabbit('Dooglas'); // наследует от {constructor: Rabbit}
+console.log(rabbit.constructor == Rabbit); // true (свойство получено из прототипа)
+var rabbit2 = new defaultRabbit.constructor("Black Rabbit");
+console.log('rabbit2', rabbit2);
+// Это удобно, когда у нас есть объект, но мы не знаем, какой конструктор использовался для его создания 
+// (например, он мог быть взят из сторонней библиотеки), а нам необходимо создать ещё один такой объект.
+Rabbit.prototype = animal;
+var newAnimal = {
+    breath: true
+};
+rabbit = new Rabbit("White Rabbit"); //  rabbit.__proto__ == animal
+Rabbit.prototype = newAnimal;
+var newRabbit = new Rabbit("mr Black");
+var superNewRabbit = new newRabbit.constructor("New");
+console.log('superNewRabbit', superNewRabbit);
+console.log('rabbit', rabbit); // true
+console.log('rabbit.eats', rabbit.eats); // true
+console.log('newRabbit', newRabbit); //undefined
+console.log('newRabbit.eats', newRabbit.eats); //undefined 
+console.log('newRabbit.breath', newRabbit.breath); // true
+console.log(new String('Валенсия'));
+var obj = {};
+console.log(obj);
+// console.log(obj.__proto__ === Object.prototype) // true
+// obj.toString === obj.__proto__.toString === Object.prototype.toString
+//Заимствование у прототипов
+//Например, если мы создаём объект, похожий на массив 
+// (псевдомассив), мы можем скопировать некоторые методы из Array в этот объект.
+var arrayLikeobj = {
+    0: "Hello",
+    1: "world!",
+    length: 2
+};
+arrayLikeobj.__proto__.join = Array.prototype.join;
+console.log(arrayLikeobj.join(',')); // Hello,world!
+arrayLikeobj.__proto__ = Array.prototype;
+arrayLikeobj.push('New');
+console.log(arrayLikeobj.join(',')); //Hello,world!,New!
+console.log(arrayLikeobj);
+//Заимствование методов – гибкий способ, позволяющий смешивать функциональность разных объектов по необходимости.
+//синтаксис "class"
+// class MyClass {
+// методы класса
+//   constructor() { ... }
+//   method1() { ... }
+//   method2() { ... }
+//   method3() { ... }
+//   ...
+// }
+// class newUser1 {
+//   constructor(name) { this.name = name; }
+//   sayHi() { alert(this.name); }
+// }
+var emptyClass = /** @class */ (function () {
+    function emptyClass() {
+    }
+    return emptyClass;
+}());
+console.log(emptyClass);
+var MyClass = /** @class */ (function () {
+    function MyClass() {
+        this.prop = 'value'; // свойство
+        // ...
+    }
+    MyClass.prototype.method = function () { }; // метод
+    Object.defineProperty(MyClass.prototype, "something", {
+        get: function () { return; } // геттер (должен обязательно возвращать значение)
+        ,
+        set: function (val) { } // сеттер (должен быть ровно один параметр)
+        ,
+        enumerable: false,
+        configurable: true
+    });
+    MyClass.prototype[Symbol.iterator] = function () { }; // метод с вычисляемым именем (здесь - символом)
+    return MyClass;
+}());
