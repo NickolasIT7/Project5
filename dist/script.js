@@ -1460,3 +1460,13 @@ var MyClass = /** @class */ (function () {
     MyClass.prototype[Symbol.iterator] = function () { }; // метод с вычисляемым именем (здесь - символом)
     return MyClass;
 }());
+//4 Написать функцию, которая считает сумму цифр числа
+function sumNumber(s) {
+    if (s.length == 1) {
+        return 1;
+    }
+    else {
+        return s[0] + s.slice(1);
+    }
+}
+console.log(sumNumber(8751));

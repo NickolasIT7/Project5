@@ -1584,9 +1584,9 @@ longEar.eat()
 console.log(Object.keys(longEar)); // jumps
 
 // for..in проходит и по своим, и по унаследованным ключам
-for(let prop in longEar) console.log(prop); // jumps, затем eats
+for (let prop in longEar) console.log(prop); // jumps, затем eats
 
-for(let prop in rabbit) {
+for (let prop in rabbit) {
   let isOwn = rabbit.hasOwnProperty(prop);
 
   if (isOwn) {
@@ -1601,7 +1601,7 @@ let user0 = {
   surname: "Smith",
 
   set fullName(value) {
-    [this.name, ] = value.split(" ")[0]
+    [this.name,] = value.split(" ")[0]
     this.surname = value.split(" ")[1]
   },
 
@@ -1614,7 +1614,7 @@ let admin = {
   __proto__: user0,
   isAdmin: true
 } as any
-console.log({...admin})
+console.log({ ...admin })
 console.log(admin.fullName) // John Smith (*)
 
 // срабатывает сеттер!
@@ -1627,7 +1627,7 @@ animal = {
   eats: true
 }
 
-const  Rabbit= (function(this:any, name:string) {
+const Rabbit = (function (this: any, name: string) {
   this.name = name
 }) as any
 
@@ -1635,20 +1635,20 @@ const  Rabbit= (function(this:any, name:string) {
 Rabbit.prototype.jumps = true
 // Прототип по умолчанию сохраняется, и мы всё ещё имеем доступ к Rabbit.prototype.constructor
 
-let  defaultRabbit = new Rabbit('Dooglas') // наследует от {constructor: Rabbit}
+let defaultRabbit = new Rabbit('Dooglas') // наследует от {constructor: Rabbit}
 
 console.log(rabbit.constructor == Rabbit) // true (свойство получено из прототипа)
 
 
 let rabbit2 = new defaultRabbit.constructor("Black Rabbit")
-console.log('rabbit2',rabbit2)
+console.log('rabbit2', rabbit2)
 // Это удобно, когда у нас есть объект, но мы не знаем, какой конструктор использовался для его создания 
 // (например, он мог быть взят из сторонней библиотеки), а нам необходимо создать ещё один такой объект.
 
 Rabbit.prototype = animal
 
-let newAnimal = { 
-breath:true
+let newAnimal = {
+  breath: true
 }
 rabbit = new Rabbit("White Rabbit") //  rabbit.__proto__ == animal
 Rabbit.prototype = newAnimal
@@ -1664,7 +1664,7 @@ console.log('newRabbit.breath', newRabbit.breath) // true
 console.log(new String('Валенсия'))
 
 let obj = {}
-console.log (obj)
+console.log(obj)
 // console.log(obj.__proto__ === Object.prototype) // true
 // obj.toString === obj.__proto__.toString === Object.prototype.toString
 
@@ -1672,7 +1672,7 @@ console.log (obj)
 //Например, если мы создаём объект, похожий на массив 
 // (псевдомассив), мы можем скопировать некоторые методы из Array в этот объект.
 
-const arrayLikeobj:any = {
+const arrayLikeobj: any = {
   0: "Hello",
   1: "world!",
   length: 2,
@@ -1715,10 +1715,21 @@ class MyClass {
   constructor() { // конструктор
     // ...
   }
-  method() {} // метод
-  get something() {return} // геттер (должен обязательно возвращать значение)
-  set something(val) {} // сеттер (должен быть ровно один параметр)
-  [Symbol.iterator]() {} // метод с вычисляемым именем (здесь - символом)
+  method() { } // метод
+  get something() { return } // геттер (должен обязательно возвращать значение)
+  set something(val) { } // сеттер (должен быть ровно один параметр)
+  [Symbol.iterator]() { } // метод с вычисляемым именем (здесь - символом)
   // ...
 }
+
+//4 Написать функцию, которая считает сумму цифр числа
+
+function sumNumber(s) {
+  if (s.length == 1){
+    return 1
+  } else {
+ return s[0] + s.slice(1)
+ }
+}
+console.log(sumNumber(8751))
 
