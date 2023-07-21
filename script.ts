@@ -1724,12 +1724,117 @@ class MyClass {
 
 //4 Написать функцию, которая считает сумму цифр числа
 
-function sumNumber(s) {
-  if (s.length == 1){
-    return 1
+function sumNumber(s: number) {
+  let ss = s.toString()
+  if (ss.length == 1) {
+    return s
   } else {
- return s[0] + s.slice(1)
- }
+    return +ss[0] + sumNumber(+ss.slice(1))
+  }
 }
 console.log(sumNumber(8751))
 
+//Наследование классов
+
+class Animal {
+  speed
+  name
+  constructor(name: string) {
+    this.speed = 0
+    this.name = name
+  }
+  run(speed: number) {
+    this.speed = speed;
+    console.log(`${this.name} бежит со скоростью ${this.speed}.`);
+  }
+  stop() {
+    this.speed = 0;
+    console.log(`${this.name} стоит неподвижно.`);
+  }
+}
+
+animal = new Animal("Мой питомец")
+
+class RabbitClass extends Animal {
+  maxSpeed
+  constructor(name:string, maxSpeed:number) {
+  super(name)  
+  this.maxSpeed = maxSpeed
+  }
+
+  hide() {
+    console.log(`${this.name} прячется!`)
+
+  }
+  stop() {
+    super.stop(); // вызываем родительский метод stop
+    this.hide(); // и затем hide
+  }
+}
+
+rabbit = new RabbitClass("Белый кролик",15)
+
+console.log(rabbit)
+rabbit.run(5) // Белый кролик бежит со скоростью 5.
+rabbit.hide() // Белый кролик прячется!
+
+class Animal1 extends Animal {
+  name = 'animal';
+ //1 место для аргументов
+ //2 место для конструктора 
+}
+
+
+class Rabbit1 extends Animal {
+  //генерируется для классов-потомков, у которых нет своего конструктора
+  //constructor(...args) {
+  //super(...args); 
+  //this доступен на этой строке, поэтому в конструкторе родителя будет обращение к его собственному this.name
+  name = 'rabbit';
+}
+
+// console.log(new Animal1()); // animal
+// console.log(new Rabbit1()); // rabbit
+
+
+let testObj = {
+  a: 10,
+  b: 18,
+  showA() {
+    console.log('this', this)
+    console.log('this == testObj', this == testObj)
+    console.log('this.a', this.a)
+    console.log('this.b', this.b)
+    console.log('this.a + this.b', this.a + this.b)
+  }
+}
+
+testObj.showA()
+
+function showThisCoords(this:any) {
+  console.log('this', this)
+  if (this) console.log(`(${this.x},${this.y})`)
+}
+
+showThisCoords()
+
+const coord1 = { 
+  x: 0, 
+  y: 1, 
+  sc: showThisCoords
+}
+const coord2 = { x: 10, y: -1, sc: showThisCoords }
+const coord3 = { 
+  x: 1000, 
+  y: 152, 
+  sc: showThisCoords
+}
+const coord4 = { 
+  x: 540, 
+  y: 81, 
+  sc: showThisCoords
+}
+coord1.sc()
+coord2.sc()
+coord3.sc()
+coord4.sc()

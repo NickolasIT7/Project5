@@ -12,6 +12,19 @@
 // newNumber += input [i]   
 // }
 // alert (newNumber)
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -1462,11 +1475,113 @@ var MyClass = /** @class */ (function () {
 }());
 //4 Написать функцию, которая считает сумму цифр числа
 function sumNumber(s) {
-    if (s.length == 1) {
-        return 1;
+    var ss = s.toString();
+    if (ss.length == 1) {
+        return s;
     }
     else {
-        return s[0] + s.slice(1);
+        return +ss[0] + sumNumber(+ss.slice(1));
     }
 }
 console.log(sumNumber(8751));
+//Наследование классов
+var Animal = /** @class */ (function () {
+    function Animal(name) {
+        this.speed = 0;
+        this.name = name;
+    }
+    Animal.prototype.run = function (speed) {
+        this.speed = speed;
+        console.log(this.name + " \u0431\u0435\u0436\u0438\u0442 \u0441\u043E \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C\u044E " + this.speed + ".");
+    };
+    Animal.prototype.stop = function () {
+        this.speed = 0;
+        console.log(this.name + " \u0441\u0442\u043E\u0438\u0442 \u043D\u0435\u043F\u043E\u0434\u0432\u0438\u0436\u043D\u043E.");
+    };
+    return Animal;
+}());
+animal = new Animal("Мой питомец");
+var RabbitClass = /** @class */ (function (_super) {
+    __extends(RabbitClass, _super);
+    function RabbitClass(name, maxSpeed) {
+        var _this = _super.call(this, name) || this;
+        _this.maxSpeed = maxSpeed;
+        return _this;
+    }
+    RabbitClass.prototype.hide = function () {
+        console.log(this.name + " \u043F\u0440\u044F\u0447\u0435\u0442\u0441\u044F!");
+    };
+    RabbitClass.prototype.stop = function () {
+        _super.prototype.stop.call(this); // вызываем родительский метод stop
+        this.hide(); // и затем hide
+    };
+    return RabbitClass;
+}(Animal));
+rabbit = new RabbitClass("Белый кролик", 15);
+console.log(rabbit);
+rabbit.run(5); // Белый кролик бежит со скоростью 5.
+rabbit.hide(); // Белый кролик прячется!
+var Animal1 = /** @class */ (function (_super) {
+    __extends(Animal1, _super);
+    function Animal1() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.name = 'animal';
+        return _this;
+        //1 место для аргументов
+        //2 место для конструктора 
+    }
+    return Animal1;
+}(Animal));
+var Rabbit1 = /** @class */ (function (_super) {
+    __extends(Rabbit1, _super);
+    function Rabbit1() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        //генерируется для классов-потомков, у которых нет своего конструктора
+        //constructor(...args) {
+        //super(...args); 
+        //this доступен на этой строке, поэтому в конструкторе родителя будет обращение к его собственному this.name
+        _this.name = 'rabbit';
+        return _this;
+    }
+    return Rabbit1;
+}(Animal));
+// console.log(new Animal1()); // animal
+// console.log(new Rabbit1()); // rabbit
+var testObj = {
+    a: 10,
+    b: 18,
+    showA: function () {
+        console.log('this', this);
+        console.log('this == testObj', this == testObj);
+        console.log('this.a', this.a);
+        console.log('this.b', this.b);
+        console.log('this.a + this.b', this.a + this.b);
+    }
+};
+testObj.showA();
+function showThisCoords() {
+    console.log('this', this);
+    if (this)
+        console.log("(" + this.x + "," + this.y + ")");
+}
+showThisCoords();
+var coord1 = {
+    x: 0,
+    y: 1,
+    sc: showThisCoords
+};
+var coord2 = { x: 10, y: -1, sc: showThisCoords };
+var coord3 = {
+    x: 1000,
+    y: 152,
+    sc: showThisCoords
+};
+var coord4 = {
+    x: 540,
+    y: 81,
+    sc: showThisCoords
+};
+coord1.sc();
+coord2.sc();
+coord3.sc();
+coord4.sc();
