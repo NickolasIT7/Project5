@@ -1585,3 +1585,117 @@ coord1.sc();
 coord2.sc();
 coord3.sc();
 coord4.sc();
+// Итого
+// Чтобы унаследовать от класса: class Child extends Parent:
+//   При этом Child.prototype.__proto__ будет равен Parent.prototype, так что методы будут унаследованы.
+// При переопределении конструктора:
+//   Обязателен вызов конструктора родителя super() в конструкторе Child до обращения к this.
+// При переопределении другого метода:
+//   Мы можем вызвать super.method() в методе Child для обращения к методу родителя Parent.
+// Внутренние детали:
+//   Методы запоминают свой объект во внутреннем свойстве[[HomeObject]].Благодаря этому работает super, он в его прототипе ищет родительские методы.
+// Работает только для методов записаных как method() {}
+// Не работает для для методов записаных как method: function() {}
+// Поэтому копировать метод, использующий super, между разными объектами небезопасно.
+//     Также:
+//   У функций-стрелок нет своего this и super, поэтому они «прозрачно» встраиваются во внешний контекст.
+// ?Статические свойства и методы
+// Мы также можем присвоить метод самому классу.Такие методы называются статическими.
+// В объявление класса они добавляются с помощью ключевого слова static, например:
+var StaticUser = /** @class */ (function () {
+    function StaticUser() {
+    }
+    StaticUser.staticMethod = function () {
+        console.log(this === StaticUser);
+    };
+    return StaticUser;
+}());
+StaticUser.staticMethod(); // true
+// Это фактически то же самое, что присвоить метод напрямую как свойство функции:
+var StaticUser2 = /** @class */ (function () {
+    function StaticUser2() {
+    }
+    return StaticUser2;
+}());
+// StaticUser2.staticMethod = function () 
+// {
+//     console.log(this === StaticUser2)
+// }
+// StaticUser2.staticMethod()
+// Статические свойства
+// Новая возможность
+// Эта возможность была добавлена в язык недавно.Примеры работают в последнем Chrome.
+// Статические свойства также возможны, они выглядят как свойства класса, но с static в начале:
+var Article = /** @class */ (function () {
+    var Article = /** @class */ (function () {
+        function Article() {
+        }
+        return Article;
+    }());
+    Object.defineProperty(Article, "publisher", {
+        enumerable: true,
+        configurable: true,
+        writable: true,
+        value: "Илья Кантор"
+    });
+    return Article;
+})();
+// console.log(Article.publisher) // Илья Кантор
+// Это то же самое, что и прямое присваивание Article:
+// Article.publisher = "Илья Кантор"
+// class Book {
+//     constructor(title) {
+//         Object.defineProperty(this, "title", {
+//             enumerable: true,
+//             configurable: true,
+//             writable: true,
+//             value: void 0
+//         })
+//         this.title = title
+//         Book.count++
+//     }
+//     static getCount() {
+//         return `На полке ${this.count} книги`
+//     }
+//     static burnBookByTitle(title, arr) {
+//         const index = arr.findIndex(el => el.title == title)
+//         arr[index].burn()
+//         arr.splice(index, 1)
+//     }
+//     burn() {
+//         Book.count--
+//     }
+// }
+//     Object.defineProperty(Book, "count", {
+//         enumerable: true,
+//         configurable: true,
+//         writable: true,
+//         value: 0
+//     })
+//     return Book;
+// })()
+// const shelter = [
+//     new Book('1'),
+//     new Book('2'),
+//     new Book('3'),
+//     new Book('4'),
+// ]
+// console.log(Book.getCount())
+// Book.burnBookByTitle('3', shelter)
+// console.log(shelter)
+// console.log(Book.getCount())
+// dz4-2
+// Реализовать класс, описывающий окружность. В классе должны быть следующие компоненты:
+// ■ поле, хранящее радиус окружности;
+// ■ get-свойство, возвращающее радиус окружности;
+// ■ set-свойство, устанавливающее радиус окружности;
+// ■ get-свойство, возвращающее диаметр окружности;
+// ■ метод, вычисляющий площадь окружности;
+// ■ метод, вычисляющий длину окружности.
+// Продемонстрировать работу свойств и методов.
+var circle = /** @class */ (function () {
+    function circle(radius) {
+        this.radius = radius;
+    }
+    return circle;
+}());
