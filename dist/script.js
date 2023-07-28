@@ -1699,3 +1699,59 @@ var circle = /** @class */ (function () {
     }
     return circle;
 }());
+var HtmlElement = /** @class */ (function () {
+    function HtmlElement(tag, single, text) {
+        this.attrs = [];
+        this.styles = [];
+        this.tag = tag;
+        this.single = single;
+        this.text = text;
+    }
+    HtmlElement.prototype.setAttr = function (attr) {
+        this.attrs.push(attr);
+    };
+    HtmlElement.prototype.setStyle = function (style) {
+        this.styles.push(style);
+    };
+    HtmlElement.prototype.appendElement = function (element) {
+        this.elements.push(element);
+    };
+    HtmlElement.prototype.prependElement = function (element) {
+        this.elements.unshift(element);
+    };
+    HtmlElement.prototype.getHtml = function () {
+        if (this.single) {
+            return "<" + this.tag + " " + this.attrs.join(' ') + " value=\"" + this.text + "\" >";
+        }
+        else {
+            var begin = "<" + this.tag + " " + this.attrs.join(' ') + ">" + this.text;
+            var end = "</" + this.tag + ">";
+            return begin + this.elements.map(function (el) { return el.getHtml(); }).join('') + end;
+        }
+    };
+    return HtmlElement;
+}());
+var imgElement = new HtmlElement('img', true, '');
+var pElement = new HtmlElement('p', false, 'Getafe');
+var h3Element = new HtmlElement('h3', false, 'Getafe');
+console.log(imgElement);
+imgElement.setAttr('src=https://upload.wikimedia.org/wikipedia/ru/thumb/3/3f/Getafe_cf_200px_RU.png/200px-Getafe_cf_200px_RU.png');
+imgElement.setStyle('color:red');
+imgElement.setStyle('padding:10px');
+imgElement.setAttr("style=\"" + imgElement.styles.join(';') + "\"");
+console.log(imgElement.getHtml());
+pElement.appendElement(imgElement);
+console.log(pElement.getHtml());
+var divElement = new HtmlElement('div', false, '');
+divElement.setAttr('style="width:300px; margin:10px"');
+var wrapperElement = new HtmlElement('div', false, '');
+wrapperElement.setAttr('id="wrapper"');
+wrapperElement.setStyle('display: flex');
+// wrapperElement.setStyle(style="$(wrapper.Element")
+wrapperElement.appendElement(divElement);
+divElement.appendElement(h3Element);
+divElement.appendElement(imgElement);
+divElement.appendElement(pElement);
+var divPrintElements = document.querySelector('printElements');
+if (divPrintElements)
+    divPrintElements.innerHTML = wrapperElement.getHtml();

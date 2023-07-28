@@ -1944,8 +1944,68 @@ let Article = /** @class */ (() => {
 // Продемонстрировать работу свойств и методов.
 
 class circle {
-radius
-constructor(radius) {
-this.radius = radius
+  radius
+  constructor(radius) {
+    this.radius = radius
+  }
 }
+
+class HtmlElement {
+  tag: string
+  single: boolean
+  text: string
+  attrs: string[] = []
+  styles: string[] = []
+  elements: HtmlElement[]
+  constructor(tag: string, single: boolean, text: string) {
+    this.tag = tag
+    this.single = single
+    this.text = text
+  }
+  setAttr(attr: string) {
+    this.attrs.push(attr)
+  }
+  setStyle(style: string) {
+    this.styles.push(style)
+  }
+  appendElement(element: HtmlElement) {
+    this.elements.push(element)
+  }
+  prependElement(element: HtmlElement) {
+    this.elements.unshift(element)
+  }
+
+  getHtml() {
+    if (this.single) {
+      return `<${this.tag} ${this.attrs.join(' ')} value="${this.text}" >`
+    } else {
+       const begin = `<${this.tag} ${this.attrs.join(' ')}>${this.text}`
+       const end = `</${this.tag}>`
+      return begin + this.elements.map(el=>el.getHtml()).join('') + end
+    }
+  }
 }
+
+const imgElement = new HtmlElement('img', true, '')
+const pElement = new HtmlElement('p', false, 'Getafe')
+const h3Element = new HtmlElement('h3',false,'Getafe')
+console.log(imgElement)
+imgElement.setAttr('src=https://upload.wikimedia.org/wikipedia/ru/thumb/3/3f/Getafe_cf_200px_RU.png/200px-Getafe_cf_200px_RU.png')
+imgElement.setStyle('color:red')
+imgElement.setStyle('padding:10px')
+imgElement.setAttr(`style="${imgElement.styles.join(';')}"`)
+console.log(imgElement.getHtml())
+pElement.appendElement(imgElement)
+console.log(pElement.getHtml())
+const divElement = new HtmlElement('div', false, '')
+divElement.setAttr('style="width:300px; margin:10px"')
+const wrapperElement = new HtmlElement('div',false, '')
+wrapperElement.setAttr('id="wrapper"')
+wrapperElement.setStyle('display: flex')
+// wrapperElement.setStyle(style="$(wrapper.Element")
+wrapperElement.appendElement(divElement)
+divElement.appendElement(h3Element)
+divElement.appendElement(imgElement)
+divElement.appendElement(pElement)
+const divPrintElements = document.querySelector('printElements')
+if (divPrintElements) divPrintElements.innerHTML = wrapperElement.getHtml()
