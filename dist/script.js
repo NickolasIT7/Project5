@@ -1703,6 +1703,7 @@ var HtmlElement = /** @class */ (function () {
     function HtmlElement(tag, single, text) {
         this.attrs = [];
         this.styles = [];
+        this.elements = [];
         this.tag = tag;
         this.single = single;
         this.text = text;
@@ -1747,11 +1748,10 @@ divElement.setAttr('style="width:300px; margin:10px"');
 var wrapperElement = new HtmlElement('div', false, '');
 wrapperElement.setAttr('id="wrapper"');
 wrapperElement.setStyle('display: flex');
-// wrapperElement.setStyle(style="$(wrapper.Element")
 wrapperElement.appendElement(divElement);
 divElement.appendElement(h3Element);
 divElement.appendElement(imgElement);
 divElement.appendElement(pElement);
-var divPrintElements = document.querySelector('printElements');
+var divPrintElements = document.querySelector('.printElements');
 if (divPrintElements)
     divPrintElements.innerHTML = wrapperElement.getHtml();

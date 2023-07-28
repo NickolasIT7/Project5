@@ -1956,7 +1956,7 @@ class HtmlElement {
   text: string
   attrs: string[] = []
   styles: string[] = []
-  elements: HtmlElement[]
+  elements: HtmlElement[] = []
   constructor(tag: string, single: boolean, text: string) {
     this.tag = tag
     this.single = single
@@ -2002,10 +2002,9 @@ divElement.setAttr('style="width:300px; margin:10px"')
 const wrapperElement = new HtmlElement('div',false, '')
 wrapperElement.setAttr('id="wrapper"')
 wrapperElement.setStyle('display: flex')
-// wrapperElement.setStyle(style="$(wrapper.Element")
 wrapperElement.appendElement(divElement)
 divElement.appendElement(h3Element)
 divElement.appendElement(imgElement)
 divElement.appendElement(pElement)
-const divPrintElements = document.querySelector('printElements')
+const divPrintElements = document.querySelector('.printElements')
 if (divPrintElements) divPrintElements.innerHTML = wrapperElement.getHtml()
