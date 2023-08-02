@@ -1979,16 +1979,16 @@ class HtmlElement {
     if (this.single) {
       return `<${this.tag} ${this.attrs.join(' ')} value="${this.text}" >`
     } else {
-       const begin = `<${this.tag} ${this.attrs.join(' ')}>${this.text}`
-       const end = `</${this.tag}>`
-      return begin + this.elements.map(el=>el.getHtml()).join('') + end
+      const begin = `<${this.tag} ${this.attrs.join(' ')}>${this.text}`
+      const end = `</${this.tag}>`
+      return begin + this.elements.map(el => el.getHtml()).join('') + end
     }
   }
 }
 
 const imgElement = new HtmlElement('img', true, '')
 const pElement = new HtmlElement('p', false, 'Getafe')
-const h3Element = new HtmlElement('h3',false,'Getafe')
+const h3Element = new HtmlElement('h3', false, 'Getafe')
 console.log(imgElement)
 imgElement.setAttr('src=https://upload.wikimedia.org/wikipedia/ru/thumb/3/3f/Getafe_cf_200px_RU.png/200px-Getafe_cf_200px_RU.png')
 imgElement.setStyle('color:red')
@@ -1999,7 +1999,7 @@ pElement.appendElement(imgElement)
 console.log(pElement.getHtml())
 const divElement = new HtmlElement('div', false, '')
 divElement.setAttr('style="width:300px; margin:10px"')
-const wrapperElement = new HtmlElement('div',false, '')
+const wrapperElement = new HtmlElement('div', false, '')
 wrapperElement.setAttr('id="wrapper"')
 wrapperElement.setStyle('display: flex')
 wrapperElement.appendElement(divElement)
@@ -2008,3 +2008,59 @@ divElement.appendElement(imgElement)
 divElement.appendElement(pElement)
 const divPrintElements = document.querySelector('.printElements')
 if (divPrintElements) divPrintElements.innerHTML = wrapperElement.getHtml()
+
+//задание 2
+//Реализовать класс, описывающий новость
+class infoNews {
+  heading;
+  text;
+  arrayTags;
+  date: Date;
+
+  constructor(heading, text, arrayTags, date: string) {
+    this.heading = heading;
+    this.text = text;
+    this.arrayTags = arrayTags;
+    this.date = new Date(date);
+  }
+  getDate() {
+    let today = new Date()
+    let yesterday = new Date(today.valueOf() - 1000 * 60 * 60 * 24)
+    if (this.date.toLocaleDateString() == today.toLocaleDateString()) {
+      return 'today'
+    } else if (this.date.valueOf() > (today.valueOf() - 1000 * 60 * 60 * 24 * 7)) {
+      return ((today.valueOf() - this.date.valueOf()) / (1000 * 60 * 60 * 24)).toFixed(0) + 'days ago '
+    } else {
+      return this.date.toLocaleDateString()
+    }
+    // print() {
+    // header.print(this.heading)  
+    // text.print(this.text)  
+    // date.print(this.date)  
+    // text.print(this.arrayTags.joun(''))  
+    // }
+  }
+}
+const post = new infoNews('you','never',['walk','alone'],'2023-07-29')
+console.log(post.getDate)
+
+//Дата и время
+
+//Создайте объект Date для даты: 20 февраля 2012 года, 3 часа 12 минут. Временная зона – местная.
+let date = new Date(2012,1,20,3,12)
+console.log(date)
+
+//Напишите функцию getWeekDay(date), 
+// показывающую день недели в коротком формате: «ПН», «ВТ», «СР», «ЧТ», «ПТ», «СБ», «ВС».
+function getWeekDay(date) {
+let day = ['вт','ср','чт','пт','сб','вс','пн']
+return day[date.getDay(day)]
+}
+let date1 = new Date(2023,8,2,21,6)
+console.log(getWeekDay(date))
+
+function getLocalDay(date:Date) {
+ let day = date.getDay()
+ return  [1,2,3,4,5,6,0][day]
+ } 
+console.log(getLocalDay(new Date))

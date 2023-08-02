@@ -1755,3 +1755,52 @@ divElement.appendElement(pElement);
 var divPrintElements = document.querySelector('.printElements');
 if (divPrintElements)
     divPrintElements.innerHTML = wrapperElement.getHtml();
+//задание 2
+//Реализовать класс, описывающий новость
+var infoNews = /** @class */ (function () {
+    function infoNews(heading, text, arrayTags, date) {
+        this.heading = heading;
+        this.text = text;
+        this.arrayTags = arrayTags;
+        this.date = new Date(date);
+    }
+    infoNews.prototype.getDate = function () {
+        var today = new Date();
+        var yesterday = new Date(today.valueOf() - 1000 * 60 * 60 * 24);
+        if (this.date.toLocaleDateString() == today.toLocaleDateString()) {
+            return 'today';
+        }
+        else if (this.date.valueOf() > (today.valueOf() - 1000 * 60 * 60 * 24 * 7)) {
+            return ((today.valueOf() - this.date.valueOf()) / (1000 * 60 * 60 * 24)).toFixed(0) + 'days ago ';
+        }
+        else {
+            return this.date.toLocaleDateString();
+        }
+        // print() {
+        // header.print(this.heading)  
+        // text.print(this.text)  
+        // date.print(this.date)  
+        // text.print(this.arrayTags.joun(''))  
+        // }
+    };
+    return infoNews;
+}());
+var post = new infoNews('you', 'never', ['walk', 'alone'], '2023-07-29');
+console.log(post.getDate);
+//Дата и время
+//Создайте объект Date для даты: 20 февраля 2012 года, 3 часа 12 минут. Временная зона – местная.
+var date = new Date(2012, 1, 20, 3, 12);
+console.log(date);
+//Напишите функцию getWeekDay(date), 
+// показывающую день недели в коротком формате: «ПН», «ВТ», «СР», «ЧТ», «ПТ», «СБ», «ВС».
+function getWeekDay(date) {
+    var day = ['вт', 'ср', 'чт', 'пт', 'сб', 'вс', 'пн'];
+    return day[date.getDay(day)];
+}
+var date1 = new Date(2023, 8, 2, 21, 6);
+console.log(getWeekDay(date));
+function getLocalDay(date) {
+    var day = date.getDay();
+    return [1, 2, 3, 4, 5, 6, 0][day];
+}
+console.log(getLocalDay(new Date));
