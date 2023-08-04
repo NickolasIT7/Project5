@@ -854,7 +854,7 @@ fruits[2] = 'Груша' // теперь ["Яблоко", "Апельсин", "�
 fruits[3] = 'Лимон' //теперь ["Яблоко", "Апельсин", "Груша", "Лимон"]
 
 
-//Для добавления элементов в массив существуют специальные методыю. По индексу обычно не добавляют
+//Для добавления элементов в массив существуют специальные методы. По индексу обычно не добавляют
 //Если надо добавить элементов в конец массива можем использовать один из вариантов:
 fruits.push('Слива')
 fruits[fruits.length] = 'Слива'
@@ -1943,12 +1943,44 @@ let Article = /** @class */ (() => {
 // ■ метод, вычисляющий длину окружности.
 // Продемонстрировать работу свойств и методов.
 
-class circle {
-  radius
+class Circle {
+  _radius
   constructor(radius) {
-    this.radius = radius
+    // все, что в комментариях происходит неявно
+    // this = {}  
+    this._radius = radius
+    // console.log(this) // {_radius:r, prototype:Circle}
+  }
+  get radius() {
+    return this._radius
+  }
+
+  set radius(value) {
+    this._radius = value
+  }
+  get diametr() {
+    let diametr = this._radius * 2
+    return diametr
+  }
+  getSquare() {
+
+    return Math.PI * Math.pow(this._radius, 2)
+  }
+  getCircleLength() {
+    return Math.PI * (this._radius * 2)
   }
 }
+
+const myCircle = new Circle(5)
+
+// console.log(myCircle._radius)
+console.log(myCircle.radius)
+myCircle.radius = 10
+console.log(myCircle.radius)
+console.log(myCircle.diametr)
+console.log(myCircle.getSquare())
+console.log(myCircle.getCircleLength())
+console.log(myCircle)
 
 class HtmlElement {
   tag: string
@@ -2041,26 +2073,89 @@ class infoNews {
     // }
   }
 }
-const post = new infoNews('you','never',['walk','alone'],'2023-07-29')
+const post = new infoNews('you', 'never', ['walk', 'alone'], '2023-07-29')
 console.log(post.getDate)
+
+class CssClass {
+  name : string
+  styles : string[] = []
+  constructor(name:string) {
+ this.name = name   
+  }
+setStyle(style:string) {
+this.styles.push(style)  
+} 
+delStyle(style:string) {
+const id = this.styles.findIndex((el)=>{el==style})  
+if (id!=1) this.styles.splice(id,1)
+}
+getCss() {
+return `${this.name} {$(this.styles.join(';'))}`
+
+}
+}
+
+class MainBlockHtml {
+cssObject:CssClass 
+htmlObject:HtmlElement
+constructor(c,h) {
+this.cssObject = c
+this.htmlObject = h  
+
+} 
+// getCode() {
+// const head = document.querySelector('head')
+// head?.innerHTML += <style>${this.cssArray.map((el)=></style>  
+// }
+}
 
 //Дата и время
 
 //Создайте объект Date для даты: 20 февраля 2012 года, 3 часа 12 минут. Временная зона – местная.
-let date = new Date(2012,1,20,3,12)
+let date = new Date(2012, 1, 20, 3, 12)
 console.log(date)
 
 //Напишите функцию getWeekDay(date), 
 // показывающую день недели в коротком формате: «ПН», «ВТ», «СР», «ЧТ», «ПТ», «СБ», «ВС».
 function getWeekDay(date) {
-let day = ['вт','ср','чт','пт','сб','вс','пн']
-return day[date.getDay(day)]
+  let day = ['вт', 'ср', 'чт', 'пт', 'сб', 'вс', 'пн']
+  return day[date.getDay(day)]
 }
-let date1 = new Date(2023,8,2,21,6)
+let date1 = new Date(2023, 8, 2, 21, 6)
 console.log(getWeekDay(date))
 
-function getLocalDay(date:Date) {
- let day = date.getDay()
- return  [1,2,3,4,5,6,0][day]
- } 
+function getLocalDay(date: Date) {
+  let day = date.getDay()
+  return [1, 2, 3, 4, 5, 6, 0][day]
+}
 console.log(getLocalDay(new Date))
+
+//Вычисляемое свойство
+// console.log(Object.getOwnPropertyDescriptor(user0,'fullName')) {
+// configurable:true
+// enumerable:true
+//!вместо value
+// get:f fullName() 
+//!вместо writeble.Если сеттера не существует - значение не установить
+// set:f fullName(value) 
+// }
+
+//Обычное свойство
+console.log(Object.getOwnPropertyDescriptor(animal, 'eats'))
+// {
+// writable: true,
+// configurable:true,
+// enumerable:true,
+// value:"Мой питомец",  
+// }
+
+//Метод прототипа
+console.log(Object.getOwnPropertyDescriptor(rabbit.__proto__, 'hide'))
+// {
+// configurable:true,
+//! По умолчанию не выводится в for..in
+// enumerable:false,
+// value:"Мой питомец", 
+// }
+
+console.log(Object.getOwnPropertyDescriptors(rabbit))

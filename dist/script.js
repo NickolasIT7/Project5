@@ -712,7 +712,7 @@ console.log(fruits[2]); // Слива
 fruits[2] = 'Груша'; // теперь ["Яблоко", "Апельсин", "Груша"]
 //...Или добавить новый к существующему массиву 
 fruits[3] = 'Лимон'; //теперь ["Яблоко", "Апельсин", "Груша", "Лимон"]
-//Для добавления элементов в массив существуют специальные методыю. По индексу обычно не добавляют
+//Для добавления элементов в массив существуют специальные методы. По индексу обычно не добавляют
 //Если надо добавить элементов в конец массива можем использовать один из вариантов:
 fruits.push('Слива');
 fruits[fruits.length] = 'Слива';
@@ -1693,12 +1693,48 @@ var Article = /** @class */ (function () {
 // ■ метод, вычисляющий площадь окружности;
 // ■ метод, вычисляющий длину окружности.
 // Продемонстрировать работу свойств и методов.
-var circle = /** @class */ (function () {
-    function circle(radius) {
-        this.radius = radius;
+var Circle = /** @class */ (function () {
+    function Circle(radius) {
+        // все, что в комментариях происходит неявно
+        // this = {}  
+        this._radius = radius;
+        // console.log(this) // {_radius:r, prototype:Circle}
     }
-    return circle;
+    Object.defineProperty(Circle.prototype, "radius", {
+        get: function () {
+            return this._radius;
+        },
+        set: function (value) {
+            this._radius = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Circle.prototype, "diametr", {
+        get: function () {
+            var diametr = this._radius * 2;
+            return diametr;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Circle.prototype.getSquare = function () {
+        return Math.PI * Math.pow(this._radius, 2);
+    };
+    Circle.prototype.getCircleLength = function () {
+        return Math.PI * (this._radius * 2);
+    };
+    return Circle;
 }());
+var myCircle = new Circle(5);
+// console.log(myCircle._radius)
+console.log(myCircle.radius);
+myCircle.radius = 10;
+console.log(myCircle.radius);
+console.log(myCircle.diametr);
+console.log(myCircle.getSquare());
+console.log(myCircle.getCircleLength());
+console.log(myCircle);
 var HtmlElement = /** @class */ (function () {
     function HtmlElement(tag, single, text) {
         this.attrs = [];
@@ -1787,6 +1823,31 @@ var infoNews = /** @class */ (function () {
 }());
 var post = new infoNews('you', 'never', ['walk', 'alone'], '2023-07-29');
 console.log(post.getDate);
+var CssClass = /** @class */ (function () {
+    function CssClass(name) {
+        this.styles = [];
+        this.name = name;
+    }
+    CssClass.prototype.setStyle = function (style) {
+        this.styles.push(style);
+    };
+    CssClass.prototype.delStyle = function (style) {
+        var id = this.styles.findIndex(function (el) { el == style; });
+        if (id != 1)
+            this.styles.splice(id, 1);
+    };
+    CssClass.prototype.getCss = function () {
+        return this.name + " {$(this.styles.join(';'))}";
+    };
+    return CssClass;
+}());
+var MainBlockHtml = /** @class */ (function () {
+    function MainBlockHtml(c, h) {
+        this.cssObject = c;
+        this.htmlObject = h;
+    }
+    return MainBlockHtml;
+}());
 //Дата и время
 //Создайте объект Date для даты: 20 февраля 2012 года, 3 часа 12 минут. Временная зона – местная.
 var date = new Date(2012, 1, 20, 3, 12);
@@ -1804,3 +1865,29 @@ function getLocalDay(date) {
     return [1, 2, 3, 4, 5, 6, 0][day];
 }
 console.log(getLocalDay(new Date));
+//Вычисляемое свойство
+// console.log(Object.getOwnPropertyDescriptor(user0,'fullName')) {
+// configurable:true
+// enumerable:true
+//!вместо value
+// get:f fullName() 
+//!вместо writeble.Если сеттера не существует - значение не установить
+// set:f fullName(value) 
+// }
+//Обычное свойство
+console.log(Object.getOwnPropertyDescriptor(animal, 'eats'));
+// {
+// writable: true,
+// configurable:true,
+// enumerable:true,
+// value:"Мой питомец",  
+// }
+//Метод прототипа
+console.log(Object.getOwnPropertyDescriptor(rabbit.__proto__, 'hide'));
+// {
+// configurable:true,
+//! По умолчанию не выводится в for..in
+// enumerable:false,
+// value:"Мой питомец", 
+// }
+console.log(Object.getOwnPropertyDescriptors(rabbit));
