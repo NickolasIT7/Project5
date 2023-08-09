@@ -1982,6 +1982,23 @@ console.log(myCircle.getSquare())
 console.log(myCircle.getCircleLength())
 console.log(myCircle)
 
+// Реализовать класс, описывающий html элемент.
+// Класс HtmlElement должен содержать внутри себя:
+// название тега;
+// самозакрывающийся тег или нет;
+// текстовое содержимое;
+// массив атрибутов;
+// массив стилей;
+// массив вложенных таких же тегов;
+// метод для установки атрибута;
+// метод для установки стиля;
+// метод для добавления вложенного элемента в конец текущего элемента;
+// метод для добавления вложенного элемента в начало текущего элемента;
+// метод getHtml(), который возвращает html код в виде строки, включая html код вложенных элементов.
+// С помощью написанного класса реализовать следующий блок и добавить его на страницу с помощью document.write().
+
+
+
 class HtmlElement {
   tag: string
   single: boolean
@@ -2021,6 +2038,7 @@ class HtmlElement {
 const imgElement = new HtmlElement('img', true, '')
 const pElement = new HtmlElement('p', false, 'Getafe')
 const h3Element = new HtmlElement('h3', false, 'Getafe')
+h3Element.setAttr('class="colorRed"')
 console.log(imgElement)
 imgElement.setAttr('src=https://upload.wikimedia.org/wikipedia/ru/thumb/3/3f/Getafe_cf_200px_RU.png/200px-Getafe_cf_200px_RU.png')
 imgElement.setStyle('color:red')
@@ -2038,11 +2056,15 @@ wrapperElement.appendElement(divElement)
 divElement.appendElement(h3Element)
 divElement.appendElement(imgElement)
 divElement.appendElement(pElement)
-const divPrintElements = document.querySelector('.printElements')
-if (divPrintElements) divPrintElements.innerHTML = wrapperElement.getHtml()
+// const divPrintElements = document.querySelector('.printElements')
+// if (divPrintElements) divPrintElements.innerHTML = wrapperElement.getHtml()
 
 //задание 2
-//Реализовать класс, описывающий новость
+// Реализовать класс, описывающий новость (заголовок, текст, массив тегов, дата публикации). В классе необходимо реализовать
+// один метод print, который выводит всю информацию в таком виде, как на рисунке 1
+// Обратите внимание на то, как выводится дата:
+// если с даты публикации прошло менее дня, то выводится «сегодня»;
+
 class infoNews {
   heading;
   text;
@@ -2076,38 +2098,63 @@ class infoNews {
 const post = new infoNews('you', 'never', ['walk', 'alone'], '2023-07-29')
 console.log(post.getDate)
 
-class CssClass {
-  name : string
-  styles : string[] = []
-  constructor(name:string) {
- this.name = name   
-  }
-setStyle(style:string) {
-this.styles.push(style)  
-} 
-delStyle(style:string) {
-const id = this.styles.findIndex((el)=>{el==style})  
-if (id!=1) this.styles.splice(id,1)
-}
-getCss() {
-return `${this.name} {$(this.styles.join(';'))}`
+// Реализовать класс, который описывает css класс.Класс CssClass должен содержать внутри себя:
+// название css класса;
+// массив стилей;
+// метод для установки стиля;
+// метод для удаления стиля;
+// метод getCss(), который возвращает css код в виде строки.
 
+class CssClass {
+  name: string
+  styles: string[] = []
+  constructor(name: string) {
+    this.name = name
+  }
+  setStyle(style: string) {
+    this.styles.push(style)
+  }
+  delStyle(style: string) {
+    const id = this.styles.findIndex((el) => { el == style })
+    if (id != 1) this.styles.splice(id, 1)
+  }
+  getCss() {
+    return `.${this.name} {${(this.styles.join(';'))}}`
+  }
 }
-}
+
+const colorRed = new CssClass('colorRed')
+colorRed.setStyle('color:red')
+colorRed.setStyle('font-size:24px')
+
+const colorGreen = new CssClass('colorGreen')
+colorGreen.setStyle('color:green')
+
+
+// Реализовать класс, описывающий блок html документ.
+// Класс HtmlBlock должен содержать внутри себя:
+// коллекцию стилей, описанных с помощью класса CssClass;
+// корневой элемент,
+// описанный с помощью класса HtmlElement;
+// метод getCode(), который возвращает строку с html кодом (сначала теги style с описанием всех классов, а потом
+// все html содержимое из корневого тега и его вложенных элементов).
+// С помощью написанных классов реализовать следующий блок и добавить его на страницу с помощью document.write().
 
 class MainBlockHtml {
-cssObject:CssClass 
-htmlObject:HtmlElement
-constructor(c,h) {
-this.cssObject = c
-this.htmlObject = h  
-
-} 
-// getCode() {
-// const head = document.querySelector('head')
-// head?.innerHTML += <style>${this.cssArray.map((el)=></style>  
-// }
+  htmlObject: HtmlElement
+  cssArray: CssClass[]
+  constructor(h, a) {
+    this.htmlObject = h
+    this.cssArray = a
+  }
+  getCode() {
+    document.head.innerHTML += `<style>${this.cssArray.map((el) => el.getCss()).join('\n')}</style>`
+    document.body.innerHTML += this.htmlObject.getHtml()
+  }
 }
+
+const pageObj = new MainBlockHtml(divElement,[colorRed,colorGreen])
+pageObj.getCode()
 
 //Дата и время
 

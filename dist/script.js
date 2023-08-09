@@ -1735,6 +1735,20 @@ console.log(myCircle.diametr);
 console.log(myCircle.getSquare());
 console.log(myCircle.getCircleLength());
 console.log(myCircle);
+// Реализовать класс, описывающий html элемент.
+// Класс HtmlElement должен содержать внутри себя:
+// название тега;
+// самозакрывающийся тег или нет;
+// текстовое содержимое;
+// массив атрибутов;
+// массив стилей;
+// массив вложенных таких же тегов;
+// метод для установки атрибута;
+// метод для установки стиля;
+// метод для добавления вложенного элемента в конец текущего элемента;
+// метод для добавления вложенного элемента в начало текущего элемента;
+// метод getHtml(), который возвращает html код в виде строки, включая html код вложенных элементов.
+// С помощью написанного класса реализовать следующий блок и добавить его на страницу с помощью document.write().
 var HtmlElement = /** @class */ (function () {
     function HtmlElement(tag, single, text) {
         this.attrs = [];
@@ -1771,6 +1785,7 @@ var HtmlElement = /** @class */ (function () {
 var imgElement = new HtmlElement('img', true, '');
 var pElement = new HtmlElement('p', false, 'Getafe');
 var h3Element = new HtmlElement('h3', false, 'Getafe');
+h3Element.setAttr('class="colorRed"');
 console.log(imgElement);
 imgElement.setAttr('src=https://upload.wikimedia.org/wikipedia/ru/thumb/3/3f/Getafe_cf_200px_RU.png/200px-Getafe_cf_200px_RU.png');
 imgElement.setStyle('color:red');
@@ -1788,11 +1803,13 @@ wrapperElement.appendElement(divElement);
 divElement.appendElement(h3Element);
 divElement.appendElement(imgElement);
 divElement.appendElement(pElement);
-var divPrintElements = document.querySelector('.printElements');
-if (divPrintElements)
-    divPrintElements.innerHTML = wrapperElement.getHtml();
+// const divPrintElements = document.querySelector('.printElements')
+// if (divPrintElements) divPrintElements.innerHTML = wrapperElement.getHtml()
 //задание 2
-//Реализовать класс, описывающий новость
+// Реализовать класс, описывающий новость (заголовок, текст, массив тегов, дата публикации). В классе необходимо реализовать
+// один метод print, который выводит всю информацию в таком виде, как на рисунке 1
+// Обратите внимание на то, как выводится дата:
+// если с даты публикации прошло менее дня, то выводится «сегодня»;
 var infoNews = /** @class */ (function () {
     function infoNews(heading, text, arrayTags, date) {
         this.heading = heading;
@@ -1823,6 +1840,12 @@ var infoNews = /** @class */ (function () {
 }());
 var post = new infoNews('you', 'never', ['walk', 'alone'], '2023-07-29');
 console.log(post.getDate);
+// Реализовать класс, который описывает css класс.Класс CssClass должен содержать внутри себя:
+// название css класса;
+// массив стилей;
+// метод для установки стиля;
+// метод для удаления стиля;
+// метод getCss(), который возвращает css код в виде строки.
 var CssClass = /** @class */ (function () {
     function CssClass(name) {
         this.styles = [];
@@ -1837,17 +1860,36 @@ var CssClass = /** @class */ (function () {
             this.styles.splice(id, 1);
     };
     CssClass.prototype.getCss = function () {
-        return this.name + " {$(this.styles.join(';'))}";
+        return "." + this.name + " {" + (this.styles.join(';')) + "}";
     };
     return CssClass;
 }());
+var colorRed = new CssClass('colorRed');
+colorRed.setStyle('color:red');
+colorRed.setStyle('font-size:24px');
+var colorGreen = new CssClass('colorGreen');
+colorGreen.setStyle('color:green');
+// Реализовать класс, описывающий блок html документ.
+// Класс HtmlBlock должен содержать внутри себя:
+// коллекцию стилей, описанных с помощью класса CssClass;
+// корневой элемент,
+// описанный с помощью класса HtmlElement;
+// метод getCode(), который возвращает строку с html кодом (сначала теги style с описанием всех классов, а потом
+// все html содержимое из корневого тега и его вложенных элементов).
+// С помощью написанных классов реализовать следующий блок и добавить его на страницу с помощью document.write().
 var MainBlockHtml = /** @class */ (function () {
-    function MainBlockHtml(c, h) {
-        this.cssObject = c;
+    function MainBlockHtml(h, a) {
         this.htmlObject = h;
+        this.cssArray = a;
     }
+    MainBlockHtml.prototype.getCode = function () {
+        document.head.innerHTML += "<style>" + this.cssArray.map(function (el) { return el.getCss(); }).join('\n') + "</style>";
+        document.body.innerHTML += this.htmlObject.getHtml();
+    };
     return MainBlockHtml;
 }());
+var pageObj = new MainBlockHtml(divElement, [colorRed, colorGreen]);
+pageObj.getCode();
 //Дата и время
 //Создайте объект Date для даты: 20 февраля 2012 года, 3 часа 12 минут. Временная зона – местная.
 var date = new Date(2012, 1, 20, 3, 12);
