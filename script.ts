@@ -2205,4 +2205,82 @@ console.log(Object.getOwnPropertyDescriptor(rabbit.__proto__, 'hide'))
 // value:"Мой питомец", 
 // }
 
-console.log(Object.getOwnPropertyDescriptors(rabbit))
+// console.log(Object.getOwnPropertyDescriptors(rabbit))
+
+
+async function download() {
+  const request = await fetch('https://fakerapi.it/api/v1/products?_quantity=10') // Запрос данных с серверав
+  const data = await request.json() // Преобразуем json из запроса d объект
+  console.log(data)
+  for (let el of data.data) {
+    document.body.appendChild(renderCard(el)) // рендерим карточки, добавляя их в конец body
+  }
+}
+
+const downloadButton = document.createElement('button')
+downloadButton.textContent = 'Загрузить товары'
+downloadButton.addEventListener('click', download)
+document.body.appendChild(downloadButton)
+
+function renderCard(el:any) {
+  const cardDiv = document.createElement('div')   // создаём родительский div, в кот. будем добавлять данные
+  cardDiv.style.display = 'flex'
+  cardDiv.style.margin = '0 auto'
+  cardDiv.style.maxWidth = '700px'
+  cardDiv.style.padding = '20px'
+  cardDiv.style.gap = '20px'
+  const cardImage = document.createElement('img') // создали картинку
+  cardImage.setAttribute('href', el.image)
+  cardImage.style.minWidth = '200px'
+  cardDiv.appendChild(cardImage)                  // Поместили картинку в корневой div
+  const dataDiv = document.createElement('div')   // создали div для текстовых данных
+  const cardH4 = document.createElement('h4')
+  cardH4.textContent = el.name
+  cardH4.addEventListener('click', () => { alert(el.name)})
+  const cardDescr = document.createElement('p')
+  cardDescr.textContent = el.description
+  const cardPrice = document.createElement('p')
+  cardPrice.textContent = el.price
+  dataDiv.appendChild(cardH4)
+  dataDiv.appendChild(cardDescr)
+  dataDiv.appendChild(cardPrice)
+  cardDiv.appendChild(dataDiv)                     // добавили div с текстовыми данными в корневой div
+  return cardDiv                                   // вернули заполненных данными кореневой div
+}
+
+//изменение документа
+
+// Методы для создания узлов:
+
+// document.createElement(tag) – создаёт элемент с заданным тегом,
+// document.createTextNode(value) – создаёт текстовый узел (редко используется),
+// elem.cloneNode(deep) – клонирует элемент, если deep==true, то со всеми дочерними элементами.
+// Вставка и удаление:
+
+// node.append(...nodes or strings) – вставляет в node в конец,
+// node.prepend(...nodes or strings) – вставляет в node в начало,
+// node.before(...nodes or strings) – вставляет прямо перед node,
+// node.after(...nodes or strings) – вставляет сразу после node,
+// node.replaceWith(...nodes or strings) – заменяет node.
+// node.remove() – удаляет node.
+// Устаревшие методы:
+
+// parent.appendChild(node)
+// parent.insertBefore(node, nextSibling)
+// parent.removeChild(node)
+// parent.replaceChild(newElem, node)
+// Все эти методы возвращают node.
+
+// Если нужно вставить фрагмент HTML, то elem.insertAdjacentHTML(where, html) вставляет в зависимости от where:
+
+// "beforebegin" – вставляет html прямо перед elem,
+// "afterbegin" – вставляет html в elem в начало,
+// "beforeend" – вставляет html в elem в конец,
+// "afterend" – вставляет html сразу после elem.
+
+// Также существуют похожие методы elem.insertAdjacentText и elem.insertAdjacentElement, 
+// они вставляют текстовые строки и элементы, но они редко используются.
+// Чтобы добавить HTML на страницу до завершения её загрузки:
+
+// document.write(html)
+// После загрузки страницы такой вызов затирает документ. В основном встречается в старых скриптах.

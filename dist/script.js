@@ -36,6 +36,42 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 var __spreadArrays = (this && this.__spreadArrays) || function () {
     for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
     for (var r = Array(s), k = 0, i = 0; i < il; i++)
@@ -1932,4 +1968,84 @@ console.log(Object.getOwnPropertyDescriptor(rabbit.__proto__, 'hide'));
 // enumerable:false,
 // value:"Мой питомец", 
 // }
-console.log(Object.getOwnPropertyDescriptors(rabbit));
+// console.log(Object.getOwnPropertyDescriptors(rabbit))
+function download() {
+    return __awaiter(this, void 0, void 0, function () {
+        var request, data, _i, _a, el;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, fetch('https://fakerapi.it/api/v1/products?_quantity=10')]; // Запрос данных с серверав
+                case 1:
+                    request = _b.sent() // Запрос данных с серверав
+                    ;
+                    return [4 /*yield*/, request.json()]; // Преобразуем json из запроса d объект
+                case 2:
+                    data = _b.sent() // Преобразуем json из запроса d объект
+                    ;
+                    console.log(data);
+                    for (_i = 0, _a = data.data; _i < _a.length; _i++) {
+                        el = _a[_i];
+                        document.body.appendChild(renderCard(el)); // рендерим карточки, добавляя их в конец body
+                    }
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+var downloadButton = document.createElement('button');
+downloadButton.textContent = 'Загрузить товары';
+downloadButton.addEventListener('click', download);
+document.body.appendChild(downloadButton);
+function renderCard(el) {
+    var cardDiv = document.createElement('div'); // создаём родительский div, в кот. будем добавлять данные
+    cardDiv.style.display = 'flex';
+    cardDiv.style.margin = '0 auto';
+    cardDiv.style.maxWidth = '700px';
+    cardDiv.style.padding = '20px';
+    cardDiv.style.gap = '20px';
+    var cardImage = document.createElement('img'); // создали картинку
+    cardImage.setAttribute('href', el.image);
+    cardImage.style.minWidth = '200px';
+    cardDiv.appendChild(cardImage); // Поместили картинку в корневой div
+    var dataDiv = document.createElement('div'); // создали div для текстовых данных
+    var cardH4 = document.createElement('h4');
+    cardH4.textContent = el.name;
+    cardH4.addEventListener('click', function () { alert(el.name); });
+    var cardDescr = document.createElement('p');
+    cardDescr.textContent = el.description;
+    var cardPrice = document.createElement('p');
+    cardPrice.textContent = el.price;
+    dataDiv.appendChild(cardH4);
+    dataDiv.appendChild(cardDescr);
+    dataDiv.appendChild(cardPrice);
+    cardDiv.appendChild(dataDiv); // добавили div с текстовыми данными в корневой div
+    return cardDiv; // вернули заполненных данными кореневой div
+}
+//изменение документа
+// Методы для создания узлов:
+// document.createElement(tag) – создаёт элемент с заданным тегом,
+// document.createTextNode(value) – создаёт текстовый узел (редко используется),
+// elem.cloneNode(deep) – клонирует элемент, если deep==true, то со всеми дочерними элементами.
+// Вставка и удаление:
+// node.append(...nodes or strings) – вставляет в node в конец,
+// node.prepend(...nodes or strings) – вставляет в node в начало,
+// node.before(...nodes or strings) – вставляет прямо перед node,
+// node.after(...nodes or strings) – вставляет сразу после node,
+// node.replaceWith(...nodes or strings) – заменяет node.
+// node.remove() – удаляет node.
+// Устаревшие методы:
+// parent.appendChild(node)
+// parent.insertBefore(node, nextSibling)
+// parent.removeChild(node)
+// parent.replaceChild(newElem, node)
+// Все эти методы возвращают node.
+// Если нужно вставить фрагмент HTML, то elem.insertAdjacentHTML(where, html) вставляет в зависимости от where:
+// "beforebegin" – вставляет html прямо перед elem,
+// "afterbegin" – вставляет html в elem в начало,
+// "beforeend" – вставляет html в elem в конец,
+// "afterend" – вставляет html сразу после elem.
+// Также существуют похожие методы elem.insertAdjacentText и elem.insertAdjacentElement, 
+// они вставляют текстовые строки и элементы, но они редко используются.
+// Чтобы добавить HTML на страницу до завершения её загрузки:
+// document.write(html)
+// После загрузки страницы такой вызов затирает документ. В основном встречается в старых скриптах.
