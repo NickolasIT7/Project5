@@ -1498,9 +1498,9 @@ class PrintMachine {
     this.font = font
     this.tag = tag
   }
-  print = function (text: string) {
+  print(text: string) {
     // @ts-ignore
-    document.write(`<${this.tag} style="font-size:${this.size}; color: ${this.color}; font-family:${this.font}">${text}</${this.tag}>`)
+    document.body.innerHTML += (`<${this.tag} style="font-size:${this.size}px; color: ${this.color}; font-family:${this.font}">${text}</${this.tag}>`)
   }
 }
 console.log(PrintMachine)
@@ -2065,10 +2065,14 @@ divElement.appendElement(pElement)
 // Обратите внимание на то, как выводится дата:
 // если с даты публикации прошло менее дня, то выводится «сегодня»;
 
+const header = new PrintMachine(20,'black','Arial','h2')
+const text = new PrintMachine(16,'black','Arial','p')
+const datePrint = new PrintMachine(18,'black','Arial','p')
+
 class infoNews {
   heading;
   text;
-  arrayTags;
+  arrayTags:Array<string>
   date: Date;
 
   constructor(heading, text, arrayTags, date: string) {
@@ -2083,20 +2087,20 @@ class infoNews {
     if (this.date.toLocaleDateString() == today.toLocaleDateString()) {
       return 'today'
     } else if (this.date.valueOf() > (today.valueOf() - 1000 * 60 * 60 * 24 * 7)) {
-      return ((today.valueOf() - this.date.valueOf()) / (1000 * 60 * 60 * 24)).toFixed(0) + 'days ago '
+      return ((today.valueOf() - this.date.valueOf()) / (1000 * 60 * 60 * 24)).toFixed(0) + ' days ago'
     } else {
       return this.date.toLocaleDateString()
     }
-    // print() {
-    // header.print(this.heading)  
-    // text.print(this.text)  
-    // date.print(this.date)  
-    // text.print(this.arrayTags.joun(''))  
-    // }
+  }
+  print() {
+    header.print(this.heading)  
+    text.print(this.text)  
+    datePrint.print(`<i>${this.getDate()}<i>`)
+    text.print(this.arrayTags.join('  '))  
   }
 }
 const post = new infoNews('you', 'never', ['walk', 'alone'], '2023-07-29')
-console.log(post.getDate)
+console.log(post.getDate())
 
 // Реализовать класс, который описывает css класс.Класс CssClass должен содержать внутри себя:
 // название css класса;
@@ -2284,3 +2288,79 @@ function renderCard(el:any) {
 
 // document.write(html)
 // После загрузки страницы такой вызов затирает документ. В основном встречается в старых скриптах.
+
+//3
+
+// Реализовать класс, описывающий новостную ленту. Класс должен содержать:
+// ■ массив новостей;+
+// ■ get-свойство, которое возвращает количество новостей;+
+// ■ метод для вывода на экран всех новостей;+
+// ■ метод для добавления новости;
+// ■ метод для удаления новости;
+// ■ метод для сортировки новостей по дате (от последних новостей до старых);
+// ■ метод для поиска новостей по тегу (возвращает массив новостей, в которых указан переданный в метод тег).
+// Продемонстрировать работу написанных методов.
+
+
+class NewsFeed {
+  array: infoNews[]
+  constructor(NewsArray: infoNews[]){
+    this.array = NewsArray
+  }
+  get count() {
+    return this.array.length
+  }
+  print() {
+    this.array.forEach(el=>{
+      el.print()
+    })
+  }
+}
+
+
+const feed = new NewsFeed([
+  new infoNews('you', 'never', ['walk', 'alone'], '2023-08-23'),
+  new infoNews('you2', 'never', ['walk', 'alone'], '2023-08-21'),
+  new infoNews('you3', 'never', ['walk', 'alone'], '2023-07-24'),
+  new infoNews('you4', 'never', ['walk', 'alone'], '2023-07-9'),
+])
+
+feed.print()
+
+//Стили и классы
+//className – строковое значение, удобно для управления всем набором классов.
+//classList – объект с методами add/remove/toggle/contains, удобно для управления отдельными классами.
+//Метод getComputedStyle(elem, [pseudo]) возвращает объект, похожий по формату на style
+
+
+//Планирование: setTimeout и setInterval
+
+function showNotification({top = 0, right = 0, className, html}) {
+
+  let notification = document.createElement('div');
+  notification.className = "notification";
+  if (className) {
+    notification.classList.add(className);
+  }
+
+  notification.style.top = top + 'px';
+  notification.style.right = right + 'px';
+
+  notification.innerHTML = html;
+  document.body.append(notification);
+
+  setTimeout(() => notification.remove(), 1500);
+}
+
+
+
+showNotification({
+  top: 10,
+  right: 10,
+  html: 'Hello ',
+  className: "welcome"
+});
+
+
+
+

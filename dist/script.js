@@ -1312,15 +1312,15 @@ var PrintMachine = /** @class */ (function () {
         this.color = 'red';
         this.font = 'Arial';
         this.tag = 'p';
-        this.print = function (text) {
-            // @ts-ignore
-            document.write("<" + this.tag + " style=\"font-size:" + this.size + "; color: " + this.color + "; font-family:" + this.font + "\">" + text + "</" + this.tag + ">");
-        };
         this.size = size;
         this.color = color;
         this.font = font;
         this.tag = tag;
     }
+    PrintMachine.prototype.print = function (text) {
+        // @ts-ignore
+        document.body.innerHTML += ("<" + this.tag + " style=\"font-size:" + this.size + "px; color: " + this.color + "; font-family:" + this.font + "\">" + text + "</" + this.tag + ">");
+    };
     return PrintMachine;
 }());
 console.log(PrintMachine);
@@ -1846,6 +1846,9 @@ divElement.appendElement(pElement);
 // один метод print, который выводит всю информацию в таком виде, как на рисунке 1
 // Обратите внимание на то, как выводится дата:
 // если с даты публикации прошло менее дня, то выводится «сегодня»;
+var header = new PrintMachine(20, 'black', 'Arial', 'h2');
+var text = new PrintMachine(16, 'black', 'Arial', 'p');
+var datePrint = new PrintMachine(18, 'black', 'Arial', 'p');
 var infoNews = /** @class */ (function () {
     function infoNews(heading, text, arrayTags, date) {
         this.heading = heading;
@@ -1860,22 +1863,22 @@ var infoNews = /** @class */ (function () {
             return 'today';
         }
         else if (this.date.valueOf() > (today.valueOf() - 1000 * 60 * 60 * 24 * 7)) {
-            return ((today.valueOf() - this.date.valueOf()) / (1000 * 60 * 60 * 24)).toFixed(0) + 'days ago ';
+            return ((today.valueOf() - this.date.valueOf()) / (1000 * 60 * 60 * 24)).toFixed(0) + ' days ago';
         }
         else {
             return this.date.toLocaleDateString();
         }
-        // print() {
-        // header.print(this.heading)  
-        // text.print(this.text)  
-        // date.print(this.date)  
-        // text.print(this.arrayTags.joun(''))  
-        // }
+    };
+    infoNews.prototype.print = function () {
+        header.print(this.heading);
+        text.print(this.text);
+        datePrint.print("<i>" + this.getDate() + "<i>");
+        text.print(this.arrayTags.join('  '));
     };
     return infoNews;
 }());
 var post = new infoNews('you', 'never', ['walk', 'alone'], '2023-07-29');
-console.log(post.getDate);
+console.log(post.getDate());
 // Реализовать класс, который описывает css класс.Класс CssClass должен содержать внутри себя:
 // название css класса;
 // массив стилей;
@@ -2049,3 +2052,62 @@ function renderCard(el) {
 // Чтобы добавить HTML на страницу до завершения её загрузки:
 // document.write(html)
 // После загрузки страницы такой вызов затирает документ. В основном встречается в старых скриптах.
+//3
+// Реализовать класс, описывающий новостную ленту. Класс должен содержать:
+// ■ массив новостей;+
+// ■ get-свойство, которое возвращает количество новостей;+
+// ■ метод для вывода на экран всех новостей;+
+// ■ метод для добавления новости;
+// ■ метод для удаления новости;
+// ■ метод для сортировки новостей по дате (от последних новостей до старых);
+// ■ метод для поиска новостей по тегу (возвращает массив новостей, в которых указан переданный в метод тег).
+// Продемонстрировать работу написанных методов.
+var NewsFeed = /** @class */ (function () {
+    function NewsFeed(NewsArray) {
+        this.array = NewsArray;
+    }
+    Object.defineProperty(NewsFeed.prototype, "count", {
+        get: function () {
+            return this.array.length;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    NewsFeed.prototype.print = function () {
+        this.array.forEach(function (el) {
+            el.print();
+        });
+    };
+    return NewsFeed;
+}());
+var feed = new NewsFeed([
+    new infoNews('you', 'never', ['walk', 'alone'], '2023-08-23'),
+    new infoNews('you2', 'never', ['walk', 'alone'], '2023-08-21'),
+    new infoNews('you3', 'never', ['walk', 'alone'], '2023-07-24'),
+    new infoNews('you4', 'never', ['walk', 'alone'], '2023-07-9'),
+]);
+feed.print();
+//Стили и классы
+//className – строковое значение, удобно для управления всем набором классов.
+//classList – объект с методами add/remove/toggle/contains, удобно для управления отдельными классами.
+//Метод getComputedStyle(elem, [pseudo]) возвращает объект, похожий по формату на style
+//Планирование: setTimeout и setInterval
+function showNotification(_a) {
+    var _b = _a.top, top = _b === void 0 ? 0 : _b, _c = _a.right, right = _c === void 0 ? 0 : _c, className = _a.className, html = _a.html;
+    var notification = document.createElement('div');
+    notification.className = "notification";
+    if (className) {
+        notification.classList.add(className);
+    }
+    notification.style.top = top + 'px';
+    notification.style.right = right + 'px';
+    notification.innerHTML = html;
+    document.body.append(notification);
+    setTimeout(function () { return notification.remove(); }, 1500);
+}
+showNotification({
+    top: 10,
+    right: 10,
+    html: 'Hello ',
+    className: "welcome"
+});
