@@ -2111,3 +2111,30 @@ showNotification({
     html: 'Hello ',
     className: "welcome"
 });
+//Размеры и прокрутка элементов
+//Размеры и прокрутка окна
+//Координаты
+// ? Плавный скролл
+// elem.scrollTo({
+//   left: 0,
+//   top: 0,
+//   behavior: 'smooth'
+// })
+// ?Полная высота документа с прокручиваемой частью
+// let scrollHeight = Math.max(
+//   document.body.scrollHeight, document.documentElement.scrollHeight,
+//   document.body.offsetHeight, document.documentElement.offsetHeight,
+//   document.body.clientHeight, document.documentElement.clientHeight
+// )
+// ?Текущая прокрутка сверху  window.pageYOffset
+// ?Текущая прокрутка слева   window.pageXOffset
+// ?получаем координаты элемента в контексте документа
+// function getCoords(elem) {
+//   let box = elem.getBoundingClientRect();
+//   return {
+//     top: box.top + window.pageYOffset,
+//     right: box.right + window.pageXOffset,
+//     bottom: box.bottom + window.pageYOffset,
+//     left: box.left + window.pageXOffset
+//   };
+// }
