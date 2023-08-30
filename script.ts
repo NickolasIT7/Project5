@@ -2425,3 +2425,8 @@ function numberToString(num) {
   return textNumber
 }
 console.log(numberToString(textNumber))
+
+//обработчики событий
+//Атрибут HTML: onclick="...".
+//DOM-свойство: elem.onclick = function.
+//Специальные методы: elem.addEventListener(event, handler[, phase]) для добавления, removeEventListener для удаления.
