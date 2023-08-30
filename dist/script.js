@@ -2138,3 +2138,32 @@ showNotification({
 //     left: box.left + window.pageXOffset
 //   };
 // }
+//1 Написать функцию, которая принимает строку и выводит статистику о ней: количество букв, количество цифр и количество других знаков.
+//3 цикла и условие
+//метод массива includes
+function displayStringStatistics(strc) {
+    var letters = 'abcdefghijklmnopqrstuvwxyz';
+    var digits = '0123456789';
+    var chars = '_+=-!@#$%^&*()~`*[]{}\\|/';
+    var l = 0, d = 0, c = 0;
+    for (var _i = 0, strc_1 = strc; _i < strc_1.length; _i++) {
+        var char = strc_1[_i];
+        if (letters.includes(char))
+            l++;
+        if (digits.includes(char))
+            d++;
+        if (chars.includes(char))
+            c++;
+    }
+    console.log("num of letters " + l + "\nnum of digits " + d + "\nnum of chars " + c);
+    // return {letters:l,digits:d,chars:c}
+}
+displayStringStatistics('as35dfsj24Stsas#');
+//2 Написать функцию, которая принимает двузначное число и возвращает его в текстовом виде.
+// Например: 35 – тридцать пять, 89 – восемьдесят девять, 12 – двенадцать.
+var num = 35;
+function numberToString(num) {
+    var textNumber = num.toString();
+    return textNumber;
+}
+console.log(numberToString(textNumber));

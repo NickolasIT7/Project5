@@ -2065,14 +2065,14 @@ divElement.appendElement(pElement)
 // Обратите внимание на то, как выводится дата:
 // если с даты публикации прошло менее дня, то выводится «сегодня»;
 
-const header = new PrintMachine(20,'black','Arial','h2')
-const text = new PrintMachine(16,'black','Arial','p')
-const datePrint = new PrintMachine(18,'black','Arial','p')
+const header = new PrintMachine(20, 'black', 'Arial', 'h2')
+const text = new PrintMachine(16, 'black', 'Arial', 'p')
+const datePrint = new PrintMachine(18, 'black', 'Arial', 'p')
 
 class infoNews {
   heading;
   text;
-  arrayTags:Array<string>
+  arrayTags: Array<string>
   date: Date;
 
   constructor(heading, text, arrayTags, date: string) {
@@ -2093,10 +2093,10 @@ class infoNews {
     }
   }
   print() {
-    header.print(this.heading)  
-    text.print(this.text)  
+    header.print(this.heading)
+    text.print(this.text)
     datePrint.print(`<i>${this.getDate()}<i>`)
-    text.print(this.arrayTags.join('  '))  
+    text.print(this.arrayTags.join('  '))
   }
 }
 const post = new infoNews('you', 'never', ['walk', 'alone'], '2023-07-29')
@@ -2157,7 +2157,7 @@ class MainBlockHtml {
   }
 }
 
-const pageObj = new MainBlockHtml(divElement,[colorRed,colorGreen])
+const pageObj = new MainBlockHtml(divElement, [colorRed, colorGreen])
 pageObj.getCode()
 
 //Дата и время
@@ -2226,7 +2226,7 @@ downloadButton.textContent = 'Загрузить товары'
 downloadButton.addEventListener('click', download)
 document.body.appendChild(downloadButton)
 
-function renderCard(el:any) {
+function renderCard(el: any) {
   const cardDiv = document.createElement('div')   // создаём родительский div, в кот. будем добавлять данные
   cardDiv.style.display = 'flex'
   cardDiv.style.margin = '0 auto'
@@ -2240,7 +2240,7 @@ function renderCard(el:any) {
   const dataDiv = document.createElement('div')   // создали div для текстовых данных
   const cardH4 = document.createElement('h4')
   cardH4.textContent = el.name
-  cardH4.addEventListener('click', () => { alert(el.name)})
+  cardH4.addEventListener('click', () => { alert(el.name) })
   const cardDescr = document.createElement('p')
   cardDescr.textContent = el.description
   const cardPrice = document.createElement('p')
@@ -2304,14 +2304,14 @@ function renderCard(el:any) {
 
 class NewsFeed {
   array: infoNews[]
-  constructor(NewsArray: infoNews[]){
+  constructor(NewsArray: infoNews[]) {
     this.array = NewsArray
   }
   get count() {
     return this.array.length
   }
   print() {
-    this.array.forEach(el=>{
+    this.array.forEach(el => {
       el.print()
     })
   }
@@ -2335,7 +2335,7 @@ feed.print()
 
 //Планирование: setTimeout и setInterval
 
-function showNotification({top = 0, right = 0, className, html}) {
+function showNotification({ top = 0, right = 0, className, html }) {
 
   let notification = document.createElement('div');
   notification.className = "notification";
@@ -2394,3 +2394,34 @@ showNotification({
 //     left: box.left + window.pageXOffset
 //   };
 // }
+
+//1 Написать функцию, которая принимает строку и выводит статистику о ней: количество букв, количество цифр и количество других знаков.
+//3 цикла и условие
+//метод массива includes
+
+function displayStringStatistics(strc:string) {
+  const letters = 'abcdefghijklmnopqrstuvwxyz'
+  const digits = '0123456789'
+  const chars = '_+=-!@#$%^&*()~`*[]{}\\|/'
+  let l=0,d=0,c=0
+  for (let char of strc) {
+    if (letters.includes(char)) l++
+    if (digits.includes(char)) d++
+    if (chars.includes(char)) c++
+  }
+  console.log(`num of letters ${l}
+num of digits ${d}
+num of chars ${c}`)
+  // return {letters:l,digits:d,chars:c}
+}
+displayStringStatistics('as35dfsj24Stsas#')
+
+//2 Написать функцию, которая принимает двузначное число и возвращает его в текстовом виде.
+// Например: 35 – тридцать пять, 89 – восемьдесят девять, 12 – двенадцать.
+
+let num = 35
+function numberToString(num) {
+  let textNumber = num.toString()
+  return textNumber
+}
+console.log(numberToString(textNumber))
