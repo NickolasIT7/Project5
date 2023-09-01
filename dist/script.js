@@ -2161,13 +2161,63 @@ function displayStringStatistics(strc) {
 displayStringStatistics('as35dfsj24Stsas#');
 //2 Написать функцию, которая принимает двузначное число и возвращает его в текстовом виде.
 // Например: 35 – тридцать пять, 89 – восемьдесят девять, 12 – двенадцать.
-var num = 35;
-function numberToString(num) {
-    var textNumber = num.toString();
-    return textNumber;
-}
-console.log(numberToString(textNumber));
+// let num = 35
+// function numberToString(num) {
+//   let textNumber = num.toString()
+//   return textNumber
+// }
+// console.log(numberToString(textNumber))
 //обработчики событий
 //Атрибут HTML: onclick="...".
 //DOM-свойство: elem.onclick = function.
 //Специальные методы: elem.addEventListener(event, handler[, phase]) для добавления, removeEventListener для удаления.
+// const arr = str.join//превращение массива в строку
+//3 Написать функцию, которая заменяет в полученной строке большие буквы на маленькие, 
+//маленькие – на большие, а цифры – на знак нижнего подчеркивания.
+function changeSymbol(str) {
+    var arr = str.split(''); //превращение строки в массив 
+    var big = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var small = 'abcdefghijklmnopqrstuvwxyz';
+    var num = '0123456789';
+    for (var i = 0; i < arr.length; i++) {
+        if (big.includes(arr[i])) {
+            arr[i] = arr[i].toLowerCase();
+        }
+        else if (small.includes(arr[i])) {
+            arr[i] = arr[i].toUpperCase();
+        }
+        else if (num.includes(arr[i])) {
+            arr[i] = '_';
+        }
+    }
+    return arr.join('');
+}
+console.log(changeSymbol('12axcSs2'));
+//4 Написать функцию, которая преобразует названия css-стилей с дефисом в название в СamelСase стиле: font-size в fontSize, background-color в backgroundColor, text- align в textAlign.
+function changeStyleName(style) {
+    var arr = style.split('-');
+    console.log('arr', arr);
+    arr.forEach(function (el, i, arr) {
+        if (i > 0) {
+            console.log('el', el);
+            arr[i] = el[0].toUpperCase() + el.slice(1);
+        }
+    });
+    console.log('arr', arr);
+    return arr.join('');
+}
+console.log(changeStyleName('font-size-normal'));
+//5 Написать функцию, которая принимает словосочетание и превращает его в аббревиатуру.
+//Например: cascading style sheets в CSS, объектно-ориентированное программирование в ООП.
+function wordToAbbr(word) {
+    return word.split(' ').map(function (i) { return i[0].toUpperCase(); }).join('');
+}
+console.log(wordToAbbr('cascading style sheets'));
+//6 Написать функцию, которая принимает любое количество строк, объединяет их в одну длинную строку и возвращает ее.
+function joinStr(str, str2) {
+    var arr = str.split('');
+    var arr2 = str2.split('');
+    var arr1 = arr.concat([arr, arr2]);
+    return arr.join('');
+}
+console.log(joinStr('Google', 'Opera'));
