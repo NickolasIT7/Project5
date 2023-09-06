@@ -2168,7 +2168,7 @@ console.log(date)
 
 //Напишите функцию getWeekDay(date), 
 // показывающую день недели в коротком формате: «ПН», «ВТ», «СР», «ЧТ», «ПТ», «СБ», «ВС».
-function getWeekDay(date) {
+function getWeekDay(date:any) {
   let day = ['вт', 'ср', 'чт', 'пт', 'сб', 'вс', 'пн']
   return day[date.getDay(day)]
 }
@@ -2479,7 +2479,42 @@ console.log(wordToAbbr('cascading style sheets'))
 function joinStr(str, str2: string) {
   const arr = str.split('')
   const arr2 = str2.split('')
-  let arr1 = arr.concat([arr,arr2])
+  let arr1 = arr.concat([arr, arr2])
   return arr.join('')
 }
 console.log(joinStr('Google', 'Opera'))
+
+//2
+// Реализуйте класс ExtendedDate, унаследовав его от стандартного класса Date и добавив следующие возможности:
+// метод для вывода даты (числа и месяца) текстом
+// метод для проверки – это прошедшая дата или будущая (если прошедшая, то метод возвращает false; если будущая или текущая, то true);
+// метод для проверки – високосный год или нет;
+// метод, возвращающий следующую дату.
+// Создайте объект класса ExtendedDate и выведите на экран результаты работы новых методов.
+
+class ExtendedDate extends Date {
+  getRussianDate() {
+    const month = ['январь', 'ф', 'м', 'а', 'м', 'и', 'и', 'а', 'с', 'о', 'н', 'д']
+    return this.getDate() + ' ' + month[this.getMonth()]
+  }
+  now() {
+    this.now()
+  }
+  parse(val: string) {
+    this.parse(val)
+  }
+}
+
+console.log((new ExtendedDate('2020-12-26')).getRussianDate())
+
+//Всплытие и погружение
+// При наступлении события – самый глубоко вложенный элемент, на котором оно произошло, помечается как «целевой» (event.target).
+
+// Затем событие сначала двигается вниз от корня документа к event.target, по пути вызывая обработчики, поставленные через addEventListener(...., true), где true – это сокращение для {capture: true}.
+// Далее обработчики вызываются на целевом элементе.
+// Далее событие двигается от event.target вверх к корню документа, по пути вызывая обработчики, поставленные через on<event> и addEventListener без третьего аргумента или с третьим аргументом равным false.
+// Каждый обработчик имеет доступ к свойствам события event:
+
+// event.target – самый глубокий элемент, на котором произошло событие.
+// event.currentTarget (=this) – элемент, на котором в данный момент сработал обработчик (тот, на котором «висит» конкретный обработчик)
+// event.eventPhase – на какой фазе он сработал (погружение=1, фаза цели=2, всплытие=3).
