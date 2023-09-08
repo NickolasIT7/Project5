@@ -361,7 +361,7 @@ let salaries = {
   John: 100,
   Ann: '160$',
   Pete: 130
-}
+} as any
 
 let salariesSum = 0
 for (let key in salaries) {
@@ -658,7 +658,7 @@ function randomInt(min: number, max: number) {
   return Math.round(Math.random() * (max - min) + min)
 }
 //случайное число в выровненной верятностью появления
-function randomInteger(min, max) {
+function randomInteger(min:any,max:any) {
   let rand = min + Math.random() * (max - min);
   return Math.round(rand);
 }
@@ -818,7 +818,7 @@ console.log('"abc".repeat(3)', "abc".repeat(3))
 // Функция возвращает 1, если в первой строке больше символов, чем во второй; 
 // -1 – если во второй больше символов, чем в первой; или 0 – если строки одинаковой длины.
 
-function compare(a, b) {
+function compare(a:any, b:any) {
   if (a.lenght > b.lenght)
     return 1;
   else if (a.lenght < b.lenght)
@@ -1211,28 +1211,31 @@ console.log(averagePurchase(check));
 // 3 Вывод на экран только тех аудиторий, которые подходят для
 // переданной группы. Объект-группа состоит из названия,
 // количества студентов и названия факультета.
+// 4 Функция сортировки аудиторий по количеству мест.
+// 5Функция сортировки аудиторий по названию (по алфавиту).
 
-// const audience = [
-//   {
-//     name: 'yandex',
-//     count: '20',
-//     faculty: 'html',
-//   },
-//   {
-//     name: 'mail',
-//     count: '12',
-//     faculty: '1c',
-//   },
-//   {
-//     name: 'rambler',
-//     count: '18',
-//     faculty: 'mysql',
-//   }
-// ]
-// function showAudience(arr: any[]) {
-//   console.log(arr)
-// }
-// showAudience(audience)
+
+const audience = [
+  {
+    name: 'yandex',
+    count: 2,
+    faculty: 'html',
+  },
+  {
+    name: 'mail',
+    count: 12,
+    faculty: '1c',
+  },
+  {
+    name: 'rambler',
+    count: 18,
+    faculty: 'mysql',
+  }
+]
+function showAudience(arr: any[]) {
+  console.log(arr)
+}
+showAudience(audience)
 
 // function showAudienceForFaculty(arr: any[]) {
 //   let faculty = prompt('Введите название факультета') as string
@@ -1257,6 +1260,18 @@ console.log(averagePurchase(check));
 //   return group
 // }
 // console.log(showAudienceForGroup(audience))
+
+function sortByCount(arr: any) {
+  audience.sort((a, b) => a.count - b.count)
+  return [...audience]
+}
+console.log(sortByCount(audience))
+function sortByAlfabet(arr: any) {
+  audience.sort((a, b) => a.name.localeCompare(b.name))
+  return [...audience]
+}
+console.log(sortByAlfabet(audience))
+
 
 // 1 Написать функцию, которая принимает строку и выводит
 // статистику о ней: количество букв, количество цифр и
@@ -1382,13 +1397,13 @@ console.log(mapResult)
 // Функция добавления нового элемента в массив по указанному индексу.
 
 let arr4 = [3, 6, 7, 2, 5, 5, 7, 3, 6, 4]
-function addElement(arr, index, value) {
+function addElement(arr:any, index:any, value:any) {
   arr.splice(index, 0, value)
 }
 addElement(arr4, 0, 6)
 console.log('arr', arr4)
 // Функция удаления элемента из массива по указанному индексу
-function delElement(arr, index) {
+function delElement(arr:any, index:any) {
   return arr.splice(index, 1)
 }
 delElement(arr4, 3)
@@ -1397,7 +1412,7 @@ console.log('arr', arr4)
 // Функция принимает 2 массива и возвращает новый массив,в котором собраны общие элементы (то есть элементы,
 // которые встречаются и в первом и во втором массивах) без повторений.
 let arr02 = [5, 1, 6, 3, 2]
-function getNewUniqueArray(arr1, arr2) {
+function getNewUniqueArray(arr1:any, arr2:any) {
   let arr = [] as any[]
   arr1.forEach(el => {
     if (!arr.includes(el) && arr2.includes(el)) {
@@ -1410,7 +1425,7 @@ console.log(getNewUniqueArray(arr4, arr02))
 
 //Функция принимает 2 массива и возвращает новый массив, в котором собраны все элементы из первого массива, 
 // которых нет во втором массиве
-function newMassive(arr1, arr2) {
+function newMassive(arr1:any, arr2:any) {
   let unique = arr1.filter((item) => arr2.indexOf(item) == -1)
   return unique
 }
@@ -1458,13 +1473,11 @@ type Student = {
 function Student(this: any, name: string, age: number) {
   this.name = name
   this.age = age
-  this.askQuestion = function (text) { alert(text) }
+  this.askQuestion = function (text:any) { alert(text) }
 }
 
-const student3 = new Student('Max', 15)
-const student4 = new Student('Vasya', 25)
-console.log(student3)
-console.log(student4)
+// const student3 = new Student('Max', 15) 
+// console.log(Student)
 
 class Student1 {
   name = ''
@@ -1533,16 +1546,16 @@ function forEach(arr: any[], fn: Function) {
     fn(arr[i], i, arr)
   }
 }
-forEach([0, 1, 2], ((el, i) => {
+forEach([0, 1, 2], ((el:any, i:any) => {
   console.log(el, i)
 }))
 
-function User(name) {
+function User(name:any) {
   // this = {};  (неявно)
 
   // добавляет свойства к this
-  this.name = name;
-  this.isAdmin = false;
+  // this.name = name;
+  // this.isAdmin = false;
 
   // return this;  (неявно)
 }
@@ -1945,7 +1958,7 @@ let Article = /** @class */ (() => {
 
 class Circle {
   _radius
-  constructor(radius) {
+  constructor(radius:any) {
     // все, что в комментариях происходит неявно
     // this = {}  
     this._radius = radius
@@ -2075,7 +2088,7 @@ class infoNews {
   arrayTags: Array<string>
   date: Date;
 
-  constructor(heading, text, arrayTags, date: string) {
+  constructor(heading:any, text:any, arrayTags:any, date: string) {
     this.heading = heading;
     this.text = text;
     this.arrayTags = arrayTags;
@@ -2147,7 +2160,7 @@ colorGreen.setStyle('color:green')
 class MainBlockHtml {
   htmlObject: HtmlElement
   cssArray: CssClass[]
-  constructor(h, a) {
+  constructor(h:any, a:any) {
     this.htmlObject = h
     this.cssArray = a
   }
@@ -2168,7 +2181,7 @@ console.log(date)
 
 //Напишите функцию getWeekDay(date), 
 // показывающую день недели в коротком формате: «ПН», «ВТ», «СР», «ЧТ», «ПТ», «СБ», «ВС».
-function getWeekDay(date:any) {
+function getWeekDay(date: any) {
   let day = ['вт', 'ср', 'чт', 'пт', 'сб', 'вс', 'пн']
   return day[date.getDay(day)]
 }
@@ -2476,11 +2489,8 @@ function wordToAbbr(word: string) {
 console.log(wordToAbbr('cascading style sheets'))
 
 //6 Написать функцию, которая принимает любое количество строк, объединяет их в одну длинную строку и возвращает ее.
-function joinStr(str, str2: string) {
-  const arr = str.split('')
-  const arr2 = str2.split('')
-  let arr1 = arr.concat([arr, arr2])
-  return arr.join('')
+function joinStr(...args: string[]) {
+  return args.join('')
 }
 console.log(joinStr('Google', 'Opera'))
 
@@ -2518,3 +2528,39 @@ console.log((new ExtendedDate('2020-12-26')).getRussianDate())
 // event.target – самый глубокий элемент, на котором произошло событие.
 // event.currentTarget (=this) – элемент, на котором в данный момент сработал обработчик (тот, на котором «висит» конкретный обработчик)
 // event.eventPhase – на какой фазе он сработал (погружение=1, фаза цели=2, всплытие=3).
+
+//Действия браузера по умолчанию
+
+// mousedown – начинает выделять текст (если двигать мышкой).
+// click на <input type="checkbox"> – ставит или убирает галочку в input.
+// submit – при нажатии на <input type="submit"> или при нажатии клавиши Enter в форме данные отправляются на сервер.
+// keydown – при нажатии клавиши в поле ввода появляется символ.
+// contextmenu – при правом клике показывается контекстное меню браузера.
+// …и многие другие…
+
+// Сделайте так, чтобы при клике на ссылки внутри элемента id="contents" пользователю выводился вопрос о том,
+// действительно ли он хочет покинуть страницу, и если он не хочет, то прерывать переход по ссылке.
+
+// Детали:
+// Содержимое #contents может быть загружено динамически и присвоено при помощи innerHTML. Так что найти все ссылки и поставить на них обработчики нельзя. Используйте делегирование.
+// Содержимое может иметь вложенные теги, в том числе внутри ссылок, например, <a href=".."><i>...</i></a>.
+
+const contents = document.createElement('div')
+contents.id = 'contents'
+
+//Имитация загрузки данных
+contents.innerHTML = '<p>Как насчёт того, чтобы прочитать <a href="wiki.com"><strong>Википедию</strong></a> или посетить <a href="W3.org"</a> и узнать о современных стандартах?</p>'
+contents.addEventListener('click', (event)=>{
+  let target = event.target as any
+  while (target!=contents) {
+    if (target?.nodeName == 'A') {
+      if (!confirm('Перейти по ссылке' + target.href + '?')) {
+        event.preventDefault()
+        return
+      }
+    }
+    target = target.parentNode
+  }
+})
+
+document.body.prepend(contents)

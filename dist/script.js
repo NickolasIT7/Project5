@@ -1,3 +1,4 @@
+"use strict";
 // 7dz
 // let input 
 // do {
@@ -12,73 +13,6 @@
 // newNumber += input [i]   
 // }
 // alert (newNumber)
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
-};
 var _a;
 // 2pz
 // let num = 1000
@@ -118,8 +52,7 @@ var _a;
 //   }
 //   console.log(local)
 //   console.log(showMessage(local))
-function showMessage(from, text, devider) {
-    if (devider === void 0) { devider = ':'; }
+function showMessage(from, text, devider = ':') {
     console.log(from + devider + '' + text);
 }
 showMessage('Аня', 'Привет!'); // Аня: Привет! (*)
@@ -163,11 +96,11 @@ showMessage('Аня', "Как дела?"); // Аня: Как дела? (**)
 var nothing;
 console.log(nothing);
 nothing = 2;
-var sayHi = function () {
+const sayHi = function () {
     console.log("Привет");
 };
 // alert(sayHi)
-var sayH = function () { return alert("Hello!"); };
+let sayH = () => alert("Hello!");
 // sayH();
 // Функции – это значения. Они могут быть присвоены, скопированы или объявлены в любом месте кода.
 // Если функция объявлена как отдельная инструкция в основном потоке кода, то это “Function Declaration”.
@@ -202,7 +135,7 @@ var sayH = function () { return alert("Hello!"); };
 // undefined – тип с единственным значением undefined, т.е. «значение не задано»,
 // object и symbol – сложные структуры данных и уникальные идентификаторы; их мы ещё не изучили.
 // Оператор typeof возвращает тип значения переменной.
-var varFromServer = '' || 0 || 'not';
+let varFromServer = '' || 0 || 'not';
 // Значения null и undefined особенные: они равны == только друг другу, но не равны ничему ещё.
 /**
  * Возвращает x, возведённое в n-ную степень.
@@ -217,25 +150,25 @@ function pow(x, n) {
         return NaN;
     if (Math.round(n) != n)
         return NaN;
-    return Math.pow(x, n);
+    return x ** n;
 }
 pow(2, 2);
 //Объекты
 //Создание пустого объекта
-var user = {}; //синтаксис "литерал объекта"
-var user1 = new Object(); //синтаксис "конструктор объекта"
+const user = {}; //синтаксис "литерал объекта"
+const user1 = new Object(); //синтаксис "конструктор объекта"
 user.age = 18;
 user['two words'] = 'ok';
 user[18] = 18;
 user['two words'] = 'not';
 console.log(user['18']);
-var car = {
+const car = {
     wheels: 4,
     engine: 'v8',
     hp: 200,
-    'two words': 'yes'
+    'two words': 'yes',
 };
-var horsePowers = 'hP';
+let horsePowers = 'hP';
 console.log(car[horsePowers]);
 delete car['two words'];
 car.wheels = 5;
@@ -280,107 +213,107 @@ console.log(car);
 // 3 Функция умножения 2-х объектов-дробей.
 // 4 Функция деления 2-х объектов-дробей.
 // 5 Функция сокращения объекта-дроби.
-var fraction1 = {
+const fraction1 = {
     numerator: 2,
-    denominator: 5
+    denominator: 5,
 };
-var fraction2 = {
+const fraction2 = {
     numerator: 2,
-    denominator: 8
+    denominator: 8,
 };
-console.log(fraction1.numerator + "/" + fraction1.denominator + " and " + fraction2.numerator + "/" + fraction2.denominator);
+console.log(`${fraction1.numerator}/${fraction1.denominator} and ${fraction2.numerator}/${fraction2.denominator}`);
 function maxDenominator(f) {
-    var min = f.numerator < f.denominator ? f.numerator : f.denominator;
-    for (var i = min; i > 1; i--) {
+    const min = f.numerator < f.denominator ? f.numerator : f.denominator;
+    for (let i = min; i > 1; i--) {
         if (f.numerator % i == 0 && f.denominator % i == 0)
             return i;
     }
     return 1;
 }
 function fractionReduction(f) {
-    var denominator = maxDenominator(f);
+    const denominator = maxDenominator(f);
     f.numerator /= denominator;
     f.denominator /= denominator;
     return f;
 }
 function fractionSubstraction(f1, f2) {
-    var ajusted = fractionAjust(f1, f2);
-    var sub = {
+    const ajusted = fractionAjust(f1, f2);
+    const sub = {
         numerator: ajusted.f1.numerator - ajusted.f2.numerator,
-        denominator: f1.denominator
+        denominator: f1.denominator,
     };
     return fractionReduction(sub);
 }
 function fractionAjust(f1, f2) {
-    var f1D = f1.denominator;
-    var f2D = f2.denominator;
+    const f1D = f1.denominator;
+    const f2D = f2.denominator;
     f1.numerator *= f2D;
     f1.denominator *= f2D;
     f2.numerator *= f1D;
     f2.denominator *= f1D;
-    return { f1: f1, f2: f2 };
+    return { f1, f2 };
 }
 function fractionMultiplication(f1, f2) {
-    var mult = {
+    const mult = {
         numerator: f1.numerator * f2.numerator,
-        denominator: f1.denominator * f2.denominator
+        denominator: f1.denominator * f2.denominator,
     };
     return fractionReduction(mult);
 }
 function fractionDivision(f1, f2) {
-    var div = {
+    const div = {
         numerator: f1.numerator * f2.denominator,
-        donominator: f1.denominator * f2.numerator
+        donominator: f1.denominator * f2.numerator,
     };
     return fractionReduction(div);
 }
 function fractionSum(f1, f2) {
-    var ajusted = fractionAjust(f1, f2);
-    var sum = {
+    const ajusted = fractionAjust(f1, f2);
+    const sum = {
         numerator: ajusted.f1.numerator + ajusted.f2.numerator,
         denominator: ajusted.f1.denominator
     };
     return fractionReduction(sum);
 }
-var sumResult = fractionSum(fraction1, fraction2);
-var subResult = fractionSubstraction(fraction1, fraction2);
-var multResult = fractionMultiplication(fraction1, fraction2);
-var divResult = fractionDivision(fraction1, fraction2);
-console.log("sum = " + sumResult.numerator + "/ " + sumResult.denominator);
-console.log("sub = " + subResult.numerator + "/ " + subResult.denominator);
-console.log("mult = " + multResult.numerator + "/ " + multResult.denominator);
-console.log("div = " + divResult.numerator + "/ " + divResult.denominator);
+const sumResult = fractionSum(fraction1, fraction2);
+const subResult = fractionSubstraction(fraction1, fraction2);
+const multResult = fractionMultiplication(fraction1, fraction2);
+const divResult = fractionDivision(fraction1, fraction2);
+console.log(`sum = ${sumResult.numerator}/ ${sumResult.denominator}`);
+console.log(`sub = ${subResult.numerator}/ ${subResult.denominator}`);
+console.log(`mult = ${multResult.numerator}/ ${multResult.denominator}`);
+console.log(`div = ${divResult.numerator}/ ${divResult.denominator}`);
 // Создайте пустой объект user.
 // Добавьте свойство name со значением John.
 // Добавьте свойство surname со значением Smith.
 // Измените значение свойства name на Pete.
 // Удалите свойство name из объекта.
-var newUser = {};
+const newUser = {};
 newUser.name = 'John';
 newUser.surname = 'Smith';
 newUser.name = 'Pete';
 delete newUser.name;
 // Напишите функцию isEmpty(obj), которая возвращает true, если у объекта нет свойств, иначе false.
-var obj1 = { a: 1 };
-var obj2 = { a: 1 };
+const obj1 = { a: 1 };
+const obj2 = { a: 1 };
 console.log('obj1 === obj2', obj1 === obj2);
 function isEmpty(obj) {
 }
 //Два одинаковых объекта никогда не будут равны
 // У нас есть объект, в котором хранятся зарплаты нашей команды:
-var salaries = {
+let salaries = {
     John: 100,
     Ann: '160$',
     Pete: 130
 };
-var salariesSum = 0;
-for (var key in salaries) {
+let salariesSum = 0;
+for (let key in salaries) {
     salariesSum += parseFloat(salaries[key]);
 }
 console.log(salariesSum);
 // Создайте функцию multiplyNumeric(obj), которая умножает все числовые свойства объекта obj на 2.
 function multiplyNumeric(obj) {
-    for (var key in obj) {
+    for (let key in obj) {
         if (typeof (obj[key]) == 'number')
             obj[key] *= 2;
     }
@@ -412,22 +345,22 @@ console.log(salaries);
 // console.log(currTime(currentTime))
 // const minutes = +(prompt('Input minutes to add') as string)
 // console.log(currTime(addMinutes(currentTime, minutes)))
-var messageStr = "Привет!";
-var phraseStr = messageStr;
-console.log("messageStr", messageStr);
+let messageStr = "Привет!";
+let phraseStr = messageStr;
+console.log(`messageStr`, messageStr);
 console.log('phraseStr', phraseStr);
 phraseStr += 'User!';
-console.log("messageStr", messageStr);
+console.log(`messageStr`, messageStr);
 console.log('phraseStr', phraseStr);
 // Два объекта равны только в том случае, если это один и тот же объект.
-var mainUser = {
+let mainUser = {
     name: "John",
     age: 30,
     work: {
         salari: 100
     }
 };
-var clone = {}; // новый пустой объект
+let clone = {}; // новый пустой объект
 // давайте скопируем все свойства user в него
 //1 способ клонирования объектов.Копирование свойств объекта в цикле
 // for (let key in mainUser) {
@@ -441,7 +374,7 @@ var clone = {}; // новый пустой объект
 // }
 // }
 // 2 Spred оператор (развертывание)
-clone = __assign(__assign({}, mainUser), { work: __assign({}, mainUser.work) });
+clone = { ...mainUser, work: { ...mainUser.work } };
 //  3 Object.assign
 // clone = Object.assign ({}, mainUser, {work: {...mainUser.work}})
 //  Для плоских объектов доступны 2 варианта записи
@@ -485,13 +418,13 @@ console.log(clone.work.salari);
 //   }
 // }
 // console.log(news)
-var userObj = {
+const userObj = {
     address: {}
 }; // пользователь без свойства "address"
 // Мы не можем использовать ?. для записи т.к. опциональная цепочка ?. не имеет смысла в левой части присваивания.
 // userObj?.adress.street = 'roz' //Левая часть выражения присваивания не может быть обращением к нему
 // Так создаются сложные объекты необходимой конфигурации
-var street; //может быть, а может и не быть
+let street; //может быть, а может и не быть
 if (street && userObj.address) {
     userObj.address.street = 'roz';
 }
@@ -521,8 +454,8 @@ console.log((_a = userObj.address) === null || _a === void 0 ? void 0 : _a.stree
 // Мы должны использовать ?. осторожно, только там, где по логике кода допустимо,
 //  что левая часть не существует. Чтобы он не скрывал от нас ошибки программирования, если они возникнут.
 // Number ('12') тоже самое +'12'
-var billion = 1000000000; //1 миллиард, буквально: 1 и 9 нулей
-var billion1 = 1e9;
+let billion = 1000000000; //1 миллиард, буквально: 1 и 9 нулей
+let billion1 = 1e9;
 console.log(billion == billion1);
 // 1e3 = 1 * 1000
 // 1.23e6 = 1.23 * 1000000
@@ -534,9 +467,9 @@ console.log(billion == billion1);
 // 0x - префикс для записи в шестнадцатиричной системе счисления
 console.log('oxf5', 0xff); //255
 // 0b - префикс для записи в двоичной системе счисления
-console.log('ob10010', 18);
+console.log('ob10010', 0b10010);
 // 0o - префикс для записи в восьмиричной системе счисления
-console.log('0o377', 255);
+console.log('0o377', 0o377);
 // base может варьироваться от 2 до 36 (по умолчанию 10)
 console.log('255..toString', 255..toString(2));
 console.log('255..toString', 255..toString(8));
@@ -612,21 +545,25 @@ function randomInt(min, max) {
 }
 //случайное число в выровненной верятностью появления
 function randomInteger(min, max) {
-    var rand = min + Math.random() * (max - min);
+    let rand = min + Math.random() * (max - min);
     return Math.round(rand);
 }
 console.log(randomInteger(1, 3));
 console.log('Math.min(1,1,5,7,8,15,47,32)', Math.min(1, 1, 5, 7, 8, 15, 47, 32));
 console.log('Math.max(1,1,5,7,8,15,47,32)', Math.max(1, 1, 5, 7, 8, 15, 47, 32));
-console.log('Math.max(..[1,1,5,7,8,15,47,32])', Math.max.apply(Math, [1, 1, 5, 7, 8, 15, 47, 32])); //Можем развернуть массив используя spread оператор
+console.log('Math.max(..[1,1,5,7,8,15,47,32])', Math.max(...[1, 1, 5, 7, 8, 15, 47, 32])); //Можем развернуть массив используя spread оператор
 // 10. Заросите у пользователя целое число и выведите в ответ, четное число или нет. 
 // В задании используйте логические операторы, не надо использовать if или switch.
 // let numFromUser = +(prompt('Введите целое число') as string)
 // const evenOdd = (numFromUser%2==0 && 'четное') || 'не четное'
 // console.log(evenOdd)
-var guestList = "Guests:\n * John\n * Pete\n * Mary\n";
+let guestList = `Guests:
+ * John
+ * Pete
+ * Mary
+`;
 console.log(guestList);
-console.log("My\n".length); // 3 (\ - один спецсимвол)
+console.log(`My\n`.length); // 3 (\ - один спецсимвол)
 // let testStr = `Hello`;
 // получаем первый символ
 // alert( testStr[0] ); // H
@@ -634,13 +571,12 @@ console.log("My\n".length); // 3 (\ - один спецсимвол)
 // получаем последний символ
 // alert( testStr[testStr.length - 1] ); // o
 // alert( testStr.at(-1) ); // o
-for (var _i = 0, _b = "Hello"; _i < _b.length; _i++) {
-    var char = _b[_i];
+for (let char of "Hello") {
     console.log(char); // H,e,l,l,o (char — сначала "H", потом "e", потом "l" и т.д.)
 }
 //testStr[0] = 'h'; // ошибка, разрешено только чтение
 //console.log( testStr[0] ); // не работает
-var testStr = 'Hi Alex';
+let testStr = 'Hi Alex';
 testStr = testStr[0].toLowerCase() + testStr.slice(1, 5) + testStr[5].toUpperCase + testStr.slice(6); //заменяем строку
 console.log(testStr);
 // alert('Interface'.toUpperCase()); // INTERFACE
@@ -649,7 +585,7 @@ console.log(testStr);
 // Первый метод — str.indexOf(substr, pos).
 // Он ищет подстроку substr в строке str, начиная с позиции pos, и возвращает позицию, 
 // на которой располагается совпадение, либо -1 при отсутствии совпадений.
-var TestStr = 'Widget with id';
+let TestStr = 'Widget with id';
 console.log(TestStr.indexOf('Widget')); // 0, потому что подстрока 'Widget' найдена в начале
 console.log(TestStr.indexOf('widget')); // -1, совпадений нет, поиск чувствителен к регистру
 console.log(TestStr.indexOf("id")); // 1, подстрока "id" найдена на позиции 1 (..idget with id)
@@ -690,8 +626,8 @@ console.log("z".codePointAt(0)); // 122
 console.log("Z".codePointAt(0)); // 90
 console.log(String.fromCodePoint(128555)); //😫
 console.log('😫.lenght'); //2
-var str = '';
-for (var i = 65; i <= 220; i++) {
+let str = '';
+for (let i = 65; i <= 220; i++) {
     str += String.fromCodePoint(i);
 }
 console.log(str);
@@ -728,7 +664,7 @@ function compare(a, b) {
 }
 // Массивы
 // Существует два варианта синтаксиса для создания пустого массива:
-var arr = new Array();
+let arr = new Array();
 console.log(arr);
 arr = new Array(12, 15, 35);
 console.log(arr);
@@ -738,7 +674,7 @@ arr = [];
 console.log('[]', arr);
 // Элементы массива нумеруются, начиная с нуля
 // Мы можем получить элемент, указав его номер в квадратных скобках
-var fruits = ["Яблоко", "Апельсин", "Слива"];
+let fruits = ["Яблоко", "Апельсин", "Слива"];
 console.log(fruits[0]); // Яблоко
 console.log(fruits[1]); // Апельсин
 console.log(fruits[2]); // Слива
@@ -756,13 +692,13 @@ fruits[fruits.length] = 'Слива';
 console.log(fruits); // ["Яблоко", "Апельсин", "Слива","Груша", "Лимон", "Слива"];
 console.log(fruits.length); // 6
 //Массивы ведут себя также как объекты в плане того, что значения хранятся по ссылку
-var fruits2 = fruits; //Сохранили в переменную fruits2 ссылку на массив переменной fruits
+const fruits2 = fruits; //Сохранили в переменную fruits2 ссылку на массив переменной fruits
 fruits2.push('Банан');
 console.log(fruits); //в массив переменной fruits добавили еще один элемент
 //console.log([]==[])//всегда false, потому что ссылки разные
 console.log('{}.toString()', {}.toString()); //[object Object]
 console.log('[1,2,[3,4],function(){}, {}].toString()', [1, 2, [3, 4], function () { }, {}]);
-var arr3 = [1, 'dasd', [1, 2, ['ftsrad', 43]], [12, 35]];
+const arr3 = [1, 'dasd', [1, 2, ['ftsrad', 43]], [12, 35]];
 console.log("arr3", arr3);
 //Самый простой способ сделать сложный массив, состоящий из примитивов плоским
 console.log("arr3.split(',')", arr3.toString().split(','));
@@ -775,22 +711,22 @@ console.log('fruits', fruits); //(3) ["Яблоко", "Апельсин", "Гр�
 // Методы push/pop выполняются быстро, а методы shift/unshift – медленно.
 //pop и shift удаляют первый(shift) и последний(pop) элемент и возвращают его значение
 function pop(arr) {
-    var el = arr[arr.length - 1]; //читаем последний элемент
+    const el = arr[arr.length - 1]; //читаем последний элемент
     arr.length = arr.length - 1; //удаляем последний элемент
     return el; //возвращаем последний элемент
 }
 function shift(arr) {
-    var el = arr[0]; //читаем последний элемент
+    const el = arr[0]; //читаем последний элемент
     arr = arr.slice(1); //удаляем последний элемент
     return el; //возвращаем последний элемент
 }
 //push и unshift добавляют элементы в начало(unshift) или конец(push) массива и возвращают новую длину массива
 function push(arr, elements) {
-    arr = __spreadArrays(arr, elements);
+    arr = [...arr, ...elements];
     return arr.length;
 }
 function unshift(arr, elements) {
-    arr = __spreadArrays(arr, elements);
+    arr = [...arr, ...elements];
     return arr.length;
 }
 //Если мы работаем с массивом, как с обычным объектом.
@@ -808,21 +744,20 @@ function unshift(arr, elements) {
 // Одним из самых старых способов перебора элементов массива является цикл for по цифровым индексам:
 arr = ["Яблоко", "Апельсин", "Груша"];
 console.log('классический цикл for', arr);
-for (var i = 0; i < arr.length; i++) {
+for (let i = 0; i < arr.length; i++) {
     console.log(arr[i]);
 }
 // Но для массивов возможен и другой вариант цикла, for..of:
 fruits = ["Яблоко", "Апельсин", "Слива"];
 // проходит по значениям. Нет доступа к индексам
 console.log('for..of', fruits);
-for (var _c = 0, fruits_1 = fruits; _c < fruits_1.length; _c++) {
-    var fruit = fruits_1[_c];
+for (let fruit of fruits) {
     console.log(fruit);
 }
 // Цикл for..of не предоставляет доступа к номеру текущего элемента, только к его значению, но в большинстве случаев этого достаточно. А также это короче.
 // Технически, так как массив является объектом, можно использовать и вариант for..in:
 arr = ["Яблоко", "Апельсин", "Груша"];
-for (var key in arr) {
+for (let key in arr) {
     console.log('arr[key] ', arr[key]); // Яблоко, Апельсин, Груша
 }
 // Но на самом деле это – плохая идея. Существуют скрытые недостатки этого способа:
@@ -833,14 +768,14 @@ for (var key in arr) {
 //Многомерные массивы
 // Массивы могут содержать элементы, которые тоже являются массивами. 
 // Это можно использовать для создания многомерных массивов, например, для хранения матриц:
-var matrix = [
+let matrix = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9]
 ];
 console.log(matrix[1][1]); // 5, центральный элемент
 console.log('fruits', fruits);
-arr = __spreadArrays(fruits); //Копируем массив 
+arr = [...fruits]; //Копируем массив 
 fruits.push('Кокос');
 console.log('fruits', fruits);
 console.log('arr', arr); //arr не изменился
@@ -857,59 +792,56 @@ console.log('arr', arr); //arr не изменился
 // а не добавлять новую.
 // 3 Покупка продукта. Функция принимает название продукта
 // и отмечает его как купленный.
-var purchase = [
+const purchase = [
     {
         name: 'a',
         count: 10,
-        purchased: true
+        purchased: true,
     },
     {
         name: 'b',
         count: 5,
-        purchased: false
+        purchased: false,
     },
     {
         name: 'c',
         count: 3,
-        purchased: true
+        purchased: true,
     },
     {
         name: 'd',
         count: 1,
-        purchased: true
+        purchased: true,
     },
 ];
-var purchasedol = document.querySelector('.purchase');
-var showPurchaseButton = document.querySelector('.showPurchase');
-var addPurchaseButton = document.querySelector('.addPurchase');
-var setPurchasedButton = document.querySelector('.setPurchased');
+const purchasedol = document.querySelector('.purchase');
+const showPurchaseButton = document.querySelector('.showPurchase');
+const addPurchaseButton = document.querySelector('.addPurchase');
+const setPurchasedButton = document.querySelector('.setPurchased');
 function showPurchase() {
     if (purchasedol) {
-        purchasedol.innerHTML = "";
+        purchasedol.innerHTML = ``;
     }
-    for (var _i = 0, purchase_1 = purchase; _i < purchase_1.length; _i++) {
-        var el = purchase_1[_i];
+    for (let el of purchase) {
         if (!el.purchased) {
             if (purchasedol) {
-                purchasedol.innerHTML += "<li>" + el.name + " \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E \u043A\u0443\u043F\u0438\u0442\u044C " + el.count + " \u0448\u0442\u0443\u043A </li>";
+                purchasedol.innerHTML += `<li>${el.name} необходимо купить ${el.count} штук </li>`;
             }
         }
     }
-    for (var _a = 0, purchase_2 = purchase; _a < purchase_2.length; _a++) {
-        var el = purchase_2[_a];
+    for (let el of purchase) {
         if (el.purchased) {
             if (purchasedol) {
-                purchasedol.innerHTML += "<li>" + el.name + " \u043A\u0443\u043F\u043B\u0435\u043D\u043E " + el.count + " \u0448\u0442\u0443\u043A </li>";
+                purchasedol.innerHTML += `<li>${el.name} куплено ${el.count} штук </li>`;
             }
         }
     }
 }
 function addPurchase() {
-    var name = prompt('Введите название покупки');
-    var count = +prompt('Введите количество');
-    var find = false;
-    for (var _i = 0, purchase_3 = purchase; _i < purchase_3.length; _i++) {
-        var el = purchase_3[_i];
+    const name = prompt('Введите название покупки');
+    const count = +prompt('Введите количество');
+    let find = false;
+    for (let el of purchase) {
         if (el.name == name) {
             find = true;
             el.count += count;
@@ -917,17 +849,16 @@ function addPurchase() {
     }
     if (!find) {
         purchase.push({
-            name: name,
-            count: count,
+            name,
+            count,
             purchased: false
         });
     }
     showPurchase();
 }
 function setPurchased() {
-    var name = prompt('Введите название покупки');
-    for (var _i = 0, purchase_4 = purchase; _i < purchase_4.length; _i++) {
-        var el = purchase_4[_i];
+    const name = prompt('Введите название покупки');
+    for (let el of purchase) {
         if (el.name == name) {
             el.purchased = true;
         }
@@ -941,40 +872,39 @@ setPurchasedButton === null || setPurchasedButton === void 0 ? void 0 : setPurch
 // Каждый элемент массива – это объект, состоящий из двух свойств: название стиля и значение стиля.
 // Написать функцию, которая принимает массив стилей и текст, и выводит этот текст с помощью document.write() 
 // в тегах <p></p>, добавив в открывающий тег атрибут style со всеми сти-лями, перечисленными в массиве.
-var styleRed = [
+const styleRed = [
     {
         name: 'color',
-        value: 'red'
+        value: 'red',
     },
     {
         name: 'text-decoration',
         value: 'underline'
     },
 ];
-var styleGreen = [
+const styleGreen = [
     {
         name: 'color',
-        value: 'green'
+        value: 'green',
     },
     {
         name: 'font-size',
         value: '20px'
     },
 ];
-var printTextDiv = document.querySelector('.print.Text');
+const printTextDiv = document.querySelector('.print.Text');
 function printText(style, text) {
-    var styleStr = '';
-    for (var _i = 0, style_1 = style; _i < style_1.length; _i++) {
-        var el = style_1[_i];
-        styleStr += el.name + ":" + el.value + ";";
+    let styleStr = '';
+    for (let el of style) {
+        styleStr += `${el.name}:${el.value};`;
     }
     if (printTextDiv) {
-        printTextDiv.innerHTML += "<p style= " + styleStr + " </p>";
+        printTextDiv.innerHTML += `<p style= ${styleStr} </p>`;
     }
 }
 printText(styleRed, 'Хетафе ');
 printText(styleGreen, 'Мадрид ');
-var rectangle = {
+const rectangle = {
     x: 10,
     y1: 18,
     x2: 16,
@@ -998,21 +928,21 @@ function getRectperimeter(rectangle) {
 // 2.Подсчет общей суммы покупки.
 // 3.Получение самой дорогой покупки в чеке.
 // 4.Подсчет средней стоимости одного товара в чеке.
-var check = [
+const check = [
     {
         product: 'bread',
         count: '3',
-        price: '50'
+        price: '50',
     },
     {
         product: 'milk',
         count: '2',
-        price: '70'
+        price: '70',
     },
     {
         product: 'cheese',
         count: '2',
-        price: '180'
+        price: '180',
     },
 ];
 function showCheck(arr) {
@@ -1020,20 +950,18 @@ function showCheck(arr) {
 }
 showCheck(check);
 function getSum(arr) {
-    var sum = 0;
-    for (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
-        var el = arr_1[_i];
+    let sum = 0;
+    for (let el of arr) {
         sum += el.count * parseFloat(el.price);
     }
     return sum;
 }
 console.log(getSum(check));
 function maxPurchase(arr) {
-    var res = __spreadArrays(arr);
-    var maxCost = 0;
-    for (var _i = 0, res_1 = res; _i < res_1.length; _i++) {
-        var product = res_1[_i];
-        var cost = product.price * product.count;
+    let res = [...arr];
+    let maxCost = 0;
+    for (const product of res) {
+        let cost = product.price * product.count;
         if (cost > maxCost) {
             maxCost = cost;
         }
@@ -1042,11 +970,10 @@ function maxPurchase(arr) {
 }
 console.log(maxPurchase(check));
 function averagePurchase(arr) {
-    var res = __spreadArrays(arr);
-    var averagePurch = 0;
-    var sum = 0;
-    for (var _i = 0, res_2 = res; _i < res_2.length; _i++) {
-        var product = res_2[_i];
+    let res = [...arr];
+    let averagePurch = 0;
+    let sum = 0;
+    for (const product of res) {
         sum += product.price * product.count;
     }
     return (sum / res.length).toFixed(2);
@@ -1060,27 +987,29 @@ console.log(averagePurchase(check));
 // 3 Вывод на экран только тех аудиторий, которые подходят для
 // переданной группы. Объект-группа состоит из названия,
 // количества студентов и названия факультета.
-// const audience = [
-//   {
-//     name: 'yandex',
-//     count: '20',
-//     faculty: 'html',
-//   },
-//   {
-//     name: 'mail',
-//     count: '12',
-//     faculty: '1c',
-//   },
-//   {
-//     name: 'rambler',
-//     count: '18',
-//     faculty: 'mysql',
-//   }
-// ]
-// function showAudience(arr: any[]) {
-//   console.log(arr)
-// }
-// showAudience(audience)
+// 4 Функция сортировки аудиторий по количеству мест.
+// 5Функция сортировки аудиторий по названию (по алфавиту).
+const audience = [
+    {
+        name: 'yandex',
+        count: 2,
+        faculty: 'html',
+    },
+    {
+        name: 'mail',
+        count: 12,
+        faculty: '1c',
+    },
+    {
+        name: 'rambler',
+        count: 18,
+        faculty: 'mysql',
+    }
+];
+function showAudience(arr) {
+    console.log(arr);
+}
+showAudience(audience);
 // function showAudienceForFaculty(arr: any[]) {
 //   let faculty = prompt('Введите название факультета') as string
 //   const auditories = [] as any
@@ -1103,17 +1032,26 @@ console.log(averagePurchase(check));
 //   return group
 // }
 // console.log(showAudienceForGroup(audience))
+function sortByCount(arr) {
+    audience.sort((a, b) => a.count - b.count);
+    return [...audience];
+}
+console.log(sortByCount(audience));
+function sortByAlfabet(arr) {
+    audience.sort((a, b) => a.name.localeCompare(b.name));
+    return [...audience];
+}
+console.log(sortByAlfabet(audience));
 // 1 Написать функцию, которая принимает строку и выводит
 // статистику о ней: количество букв, количество цифр и
 // количество других знаков.
 //номер идентификатора символа в строке
-var string1 = 'k234jas2s';
+const string1 = 'k234jas2s';
 function GetCount(arr) {
-    var letter = 0;
-    var numb = 0;
-    var sign = 0;
-    for (var _i = 0, string1_1 = string1; _i < string1_1.length; _i++) {
-        var el = string1_1[_i];
+    const letter = 0;
+    const numb = 0;
+    const sign = 0;
+    for (let el of string1) {
     }
 }
 //Создать еще один массив из 5 случайных чисел и написать
@@ -1134,8 +1072,7 @@ function GetCount(arr) {
 //   return arr
 // }
 // console.log(getUnicArray(arr1, arr2))
-for (var _d = 0, _e = ['a', 'b', 'c', 'f', 'g']; _d < _e.length; _d++) {
-    var asd = _e[_d];
+for (let asd of ['a', 'b', 'c', 'f', 'g']) {
     if (asd == 'c') {
         console.log('встретили символ "c" и перешли на новую интерацию, игнорирую все следующие строки тела цикла');
         continue;
@@ -1146,9 +1083,8 @@ for (var _d = 0, _e = ['a', 'b', 'c', 'f', 'g']; _d < _e.length; _d++) {
     console.log('asd', asd);
 }
 //как работает includes в массиве 
-var arrIncludes = function (arr, findEl) {
-    for (var _i = 0, arr_2 = arr; _i < arr_2.length; _i++) {
-        var el = arr_2[_i];
+const arrIncludes = (arr, findEl) => {
+    for (let el of arr) {
         if (el === findEl)
             return true;
     }
@@ -1156,8 +1092,8 @@ var arrIncludes = function (arr, findEl) {
 };
 console.log(arrIncludes(arr, '1'));
 //как работает includes в строке 
-var strIncludes = function (str, subStr) {
-    for (var i = 0; i <= (str.length - subStr.length); i++) {
+const strIncludes = (str, subStr) => {
+    for (let i = 0; i <= (str.length - subStr.length); i++) {
         if (str.slice(i, i + subStr.length) === subStr)
             return true;
     }
@@ -1181,8 +1117,8 @@ console.log(powRecursive(2, 5)); // 8
 // С использованием цикла. Через рекурсию, т.к. sumTo(n) = n + sumTo(n-1) for n > 1.
 // С использованием формулы арифметической прогрессии. Пример работы вашей функции:
 function sumTo(n) {
-    var sum = 0;
-    for (var i = 1; i <= n; i++) {
+    let sum = 0;
+    for (let i = 1; i <= n; i++) {
         sum += i;
     }
     return sum;
@@ -1195,8 +1131,7 @@ function sumTo3(n) {
     return n * (n + 1) / 2;
 }
 console.log(sumTo(100)); // 5050
-function reverseNumber(n, i) {
-    if (i === void 0) { i = String(n).length - 1; }
+function reverseNumber(n, i = String(n).length - 1) {
     if (i == 0) {
         return String(n)[i];
     }
@@ -1204,16 +1139,16 @@ function reverseNumber(n, i) {
 }
 console.log(reverseNumber(12354));
 //Методы массивов
-var users = [
+let users = [
     { id: 1, name: "Вася" },
     { id: 2, name: "Петя" },
     { id: 3, name: "Маша" },
     { id: 4, name: "Вася" }
 ];
-var mapResult = users.map(function (el) { return el.id + '' + el.name; }); //массив строк
+let mapResult = users.map(el => el.id + '' + el.name); //массив строк
 console.log(mapResult);
 // Функция добавления нового элемента в массив по указанному индексу.
-var arr4 = [3, 6, 7, 2, 5, 5, 7, 3, 6, 4];
+let arr4 = [3, 6, 7, 2, 5, 5, 7, 3, 6, 4];
 function addElement(arr, index, value) {
     arr.splice(index, 0, value);
 }
@@ -1227,10 +1162,10 @@ delElement(arr4, 3);
 console.log('arr', arr4);
 // Функция принимает 2 массива и возвращает новый массив,в котором собраны общие элементы (то есть элементы,
 // которые встречаются и в первом и во втором массивах) без повторений.
-var arr02 = [5, 1, 6, 3, 2];
+let arr02 = [5, 1, 6, 3, 2];
 function getNewUniqueArray(arr1, arr2) {
-    var arr = [];
-    arr1.forEach(function (el) {
+    let arr = [];
+    arr1.forEach(el => {
         if (!arr.includes(el) && arr2.includes(el)) {
             arr.push(el);
         }
@@ -1241,13 +1176,13 @@ console.log(getNewUniqueArray(arr4, arr02));
 //Функция принимает 2 массива и возвращает новый массив, в котором собраны все элементы из первого массива, 
 // которых нет во втором массиве
 function newMassive(arr1, arr2) {
-    var unique = arr1.filter(function (item) { return arr2.indexOf(item) == -1; });
+    let unique = arr1.filter((item) => arr2.indexOf(item) == -1);
     return unique;
 }
 console.log(arr02);
 console.log(arr4);
 console.log(newMassive(arr4, arr02));
-var company = {
+let company = {
     sales: [{ name: 'John', salary: 1000 }, { name: 'Alice', salary: 600 }],
     development: {
         sites: [{ name: 'Peter', salary: 2000 }, { name: 'Alex', salary: 1800 }],
@@ -1257,14 +1192,13 @@ var company = {
 // Функция для подсчёта суммы зарплат
 function sumSalaries(department) {
     if (Array.isArray(department)) {
-        var sum = department.reduce(function (prev, current) { return prev + current.salary; }, 0); // сумма зарплат массива
+        const sum = department.reduce((prev, current) => prev + current.salary, 0); // сумма зарплат массива
         return sum;
     }
     else {
-        var sum = 0;
+        let sum = 0;
         console.log(department, sum);
-        for (var _i = 0, _a = Object.values(department); _i < _a.length; _i++) {
-            var subdep = _a[_i];
+        for (let subdep of Object.values(department)) {
             sum += sumSalaries(subdep); // рекурсивно вызывается для подотделов, суммируя результаты
         }
         console.log('Сумма по подразделениям', department, sum);
@@ -1272,8 +1206,8 @@ function sumSalaries(department) {
     }
 }
 console.log(sumSalaries(company)); // 6700
-var student1 = { name: 'dasa', age: 35, askQuestion: function () { alert('da'); } };
-var student2 = { name: 'rasa', age: 31, askQuestion: function () { alert('net'); } };
+const student1 = { name: 'dasa', age: 35, askQuestion() { alert('da'); } };
+const student2 = { name: 'rasa', age: 31, askQuestion() { alert('net'); } };
 console.log(student1);
 console.log(student2);
 function Student(name, age) {
@@ -1281,21 +1215,33 @@ function Student(name, age) {
     this.age = age;
     this.askQuestion = function (text) { alert(text); };
 }
-var student3 = new Student('Max', 15);
-var student4 = new Student('Vasya', 25);
-console.log(student3);
-console.log(student4);
-var Student1 = /** @class */ (function () {
-    function Student1(name, age) {
-        this.name = '';
-        this.age = 0;
-        this.askQuestion = function (text) { alert(text); };
+// const student3 = new Student('Max', 15) 
+// console.log(Student)
+class Student1 {
+    constructor(name, age) {
+        Object.defineProperty(this, "name", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: ''
+        });
+        Object.defineProperty(this, "age", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "askQuestion", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: function (text) { alert(text); }
+        });
         this.name = name;
         this.age = age;
     }
-    return Student1;
-}());
-var student5 = new Student1('Petr', 54);
+}
+const student5 = new Student1('Petr', 54);
 console.log(student5);
 //4-2 Реализовать PrintMachine
 // ■ размера шрифта;
@@ -1305,77 +1251,94 @@ console.log(student5);
 // соответствующим шрифтом с помощью document.write().
 // Создать объект такого класса и продемонстрировать работу
 // метода.
-var PrintMachine = /** @class */ (function () {
-    function PrintMachine(size, color, font, tag) {
-        if (tag === void 0) { tag = 'p'; }
-        this.size = 14;
-        this.color = 'red';
-        this.font = 'Arial';
-        this.tag = 'p';
+class PrintMachine {
+    constructor(size, color, font, tag = 'p') {
+        Object.defineProperty(this, "size", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 14
+        });
+        Object.defineProperty(this, "color", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'red'
+        });
+        Object.defineProperty(this, "font", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'Arial'
+        });
+        Object.defineProperty(this, "tag", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'p'
+        });
         this.size = size;
         this.color = color;
         this.font = font;
         this.tag = tag;
     }
-    PrintMachine.prototype.print = function (text) {
+    print(text) {
         // @ts-ignore
-        document.body.innerHTML += ("<" + this.tag + " style=\"font-size:" + this.size + "px; color: " + this.color + "; font-family:" + this.font + "\">" + text + "</" + this.tag + ">");
-    };
-    return PrintMachine;
-}());
+        document.body.innerHTML += (`<${this.tag} style="font-size:${this.size}px; color: ${this.color}; font-family:${this.font}">${text}</${this.tag}>`);
+    }
+}
 console.log(PrintMachine);
-function PM(size, color, font, tag) {
-    if (tag === void 0) { tag = 'p'; }
+function PM(size, color, font, tag = 'p') {
     return function print(text) {
-        document.write("<" + tag + " style=\"font-size:" + size + "; color: " + color + "; font-family:" + font + "\">" + text + "</" + tag + ">");
-        var rPA14 = PM(14, 'red', 'Arial');
+        document.write(`<${tag} style="font-size:${size}; color: ${color}; font-family:${font}">${text}</${tag}>`);
+        const rPA14 = PM(14, 'red', 'Arial');
         rPA14('sfdsfsdfwerwersdf sdfds fsdfs');
-        var bHT16 = PM(16, 'blue', 'Tahoma', 'h1');
+        const bHT16 = PM(16, 'blue', 'Tahoma', 'h1');
         bHT16('sdfsdfjwiooiwe nkuhyiuo hfsd');
-        var redParagraphArial14 = new PrintMachine(14, 'red', 'Arial');
-        var blueHeaderTahoma16 = new PrintMachine(16, 'blue', 'Tahoma', 'h1');
+        const redParagraphArial14 = new PrintMachine(14, 'red', 'Arial');
+        const blueHeaderTahoma16 = new PrintMachine(16, 'blue', 'Tahoma', 'h1');
         blueHeaderTahoma16.tag = 'h2';
         blueHeaderTahoma16.print('sdfhsdkjfhsdk kjh ksjfdh sdk');
         redParagraphArial14.print('fsddsfdsfsd');
     };
 }
 ;
-[0, 1, 2].forEach(function (el) {
+[0, 1, 2].forEach((el) => {
     console.log(el);
 });
 function forEach(arr, fn) {
-    for (var i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
         fn(arr[i], i, arr);
     }
 }
-forEach([0, 1, 2], (function (el, i) {
+forEach([0, 1, 2], ((el, i) => {
     console.log(el, i);
 }));
 function User(name) {
     // this = {};  (неявно)
     // добавляет свойства к this
-    this.name = name;
-    this.isAdmin = false;
+    // this.name = name;
+    // this.isAdmin = false;
     // return this;  (неявно)
 }
 //Prototype 
-var animal = {
+let animal = {
     eats: true,
-    eat: function () {
+    eat() {
         console.log('am-am-am');
     },
-    walk: function () {
+    walk() {
         console.log('top-top');
     }
 };
-var rabbit = {
+let rabbit = {
     jumps: true,
     __proto__: animal,
-    walk: function () {
+    walk() {
         console.log('jump-jump');
     }
 };
-var longEar = {
+let longEar = {
     earLength: 10,
     __proto__: rabbit
 };
@@ -1391,33 +1354,33 @@ longEar.eat();
 // Object.keys возвращает только собственные ключи
 console.log(Object.keys(longEar)); // jumps
 // for..in проходит и по своим, и по унаследованным ключам
-for (var prop in longEar)
+for (let prop in longEar)
     console.log(prop); // jumps, затем eats
-for (var prop in rabbit) {
-    var isOwn = rabbit.hasOwnProperty(prop);
+for (let prop in rabbit) {
+    let isOwn = rabbit.hasOwnProperty(prop);
     if (isOwn) {
-        console.log("\u0421\u043E\u0431\u0441\u0442\u0432\u0435\u043D\u043D\u043E\u0435 \u0441\u0432\u043E\u0439\u0441\u0442\u0432\u043E: " + prop); // Our: jumps
+        console.log(`Собственное свойство: ${prop}`); // Our: jumps
     }
     else {
-        console.log("\u0423\u043D\u0430\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u043D\u043D\u043E\u0435 \u0441\u0432\u043E\u0439\u0441\u0442\u0432\u043E: " + prop); // Inherited: eats
+        console.log(`Унаследованное свойство: ${prop}`); // Inherited: eats
     }
 }
-var user0 = {
+let user0 = {
     name: "John",
     surname: "Smith",
     set fullName(value) {
-        this.name = value.split(" ")[0][0];
+        [this.name,] = value.split(" ")[0];
         this.surname = value.split(" ")[1];
     },
     get fullName() {
-        return this.name + " " + this.surname;
+        return `${this.name} ${this.surname}`;
     }
 };
-var admin = {
+let admin = {
     __proto__: user0,
     isAdmin: true
 };
-console.log(__assign({}, admin));
+console.log({ ...admin });
 console.log(admin.fullName); // John Smith (*)
 // срабатывает сеттер!
 admin.fullName = "Alice Cooper"; // (**)
@@ -1427,26 +1390,26 @@ console.log(admin);
 animal = {
     eats: true
 };
-var Rabbit = (function (name) {
+const Rabbit = (function (name) {
     this.name = name;
 });
 // Не перезаписываем Rabbit.prototype полностью, а добавляем к нему свойство
 Rabbit.prototype.jumps = true;
 // Прототип по умолчанию сохраняется, и мы всё ещё имеем доступ к Rabbit.prototype.constructor
-var defaultRabbit = new Rabbit('Dooglas'); // наследует от {constructor: Rabbit}
+let defaultRabbit = new Rabbit('Dooglas'); // наследует от {constructor: Rabbit}
 console.log(rabbit.constructor == Rabbit); // true (свойство получено из прототипа)
-var rabbit2 = new defaultRabbit.constructor("Black Rabbit");
+let rabbit2 = new defaultRabbit.constructor("Black Rabbit");
 console.log('rabbit2', rabbit2);
 // Это удобно, когда у нас есть объект, но мы не знаем, какой конструктор использовался для его создания 
 // (например, он мог быть взят из сторонней библиотеки), а нам необходимо создать ещё один такой объект.
 Rabbit.prototype = animal;
-var newAnimal = {
+let newAnimal = {
     breath: true
 };
 rabbit = new Rabbit("White Rabbit"); //  rabbit.__proto__ == animal
 Rabbit.prototype = newAnimal;
-var newRabbit = new Rabbit("mr Black");
-var superNewRabbit = new newRabbit.constructor("New");
+let newRabbit = new Rabbit("mr Black");
+let superNewRabbit = new newRabbit.constructor("New");
 console.log('superNewRabbit', superNewRabbit);
 console.log('rabbit', rabbit); // true
 console.log('rabbit.eats', rabbit.eats); // true
@@ -1454,17 +1417,17 @@ console.log('newRabbit', newRabbit); //undefined
 console.log('newRabbit.eats', newRabbit.eats); //undefined 
 console.log('newRabbit.breath', newRabbit.breath); // true
 console.log(new String('Валенсия'));
-var obj = {};
+let obj = {};
 console.log(obj);
 // console.log(obj.__proto__ === Object.prototype) // true
 // obj.toString === obj.__proto__.toString === Object.prototype.toString
 //Заимствование у прототипов
 //Например, если мы создаём объект, похожий на массив 
 // (псевдомассив), мы можем скопировать некоторые методы из Array в этот объект.
-var arrayLikeobj = {
+const arrayLikeobj = {
     0: "Hello",
     1: "world!",
-    length: 2
+    length: 2,
 };
 arrayLikeobj.__proto__.join = Array.prototype.join;
 console.log(arrayLikeobj.join(',')); // Hello,world!
@@ -1486,32 +1449,27 @@ console.log(arrayLikeobj);
 //   constructor(name) { this.name = name; }
 //   sayHi() { alert(this.name); }
 // }
-var emptyClass = /** @class */ (function () {
-    function emptyClass() {
-    }
-    return emptyClass;
-}());
+class emptyClass {
+}
 console.log(emptyClass);
-var MyClass = /** @class */ (function () {
-    function MyClass() {
-        this.prop = 'value'; // свойство
+class MyClass {
+    constructor() {
+        Object.defineProperty(this, "prop", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'value'
+        }); // свойство
         // ...
     }
-    MyClass.prototype.method = function () { }; // метод
-    Object.defineProperty(MyClass.prototype, "something", {
-        get: function () { return; } // геттер (должен обязательно возвращать значение)
-        ,
-        set: function (val) { } // сеттер (должен быть ровно один параметр)
-        ,
-        enumerable: false,
-        configurable: true
-    });
-    MyClass.prototype[Symbol.iterator] = function () { }; // метод с вычисляемым именем (здесь - символом)
-    return MyClass;
-}());
+    method() { } // метод
+    get something() { return; } // геттер (должен обязательно возвращать значение)
+    set something(val) { } // сеттер (должен быть ровно один параметр)
+    [Symbol.iterator]() { } // метод с вычисляемым именем (здесь - символом)
+}
 //4 Написать функцию, которая считает сумму цифр числа
 function sumNumber(s) {
-    var ss = s.toString();
+    let ss = s.toString();
     if (ss.length == 1) {
         return s;
     }
@@ -1521,72 +1479,90 @@ function sumNumber(s) {
 }
 console.log(sumNumber(8751));
 //Наследование классов
-var Animal = /** @class */ (function () {
-    function Animal(name) {
+class Animal {
+    constructor(name) {
+        Object.defineProperty(this, "speed", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "name", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.speed = 0;
         this.name = name;
     }
-    Animal.prototype.run = function (speed) {
+    run(speed) {
         this.speed = speed;
-        console.log(this.name + " \u0431\u0435\u0436\u0438\u0442 \u0441\u043E \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C\u044E " + this.speed + ".");
-    };
-    Animal.prototype.stop = function () {
-        this.speed = 0;
-        console.log(this.name + " \u0441\u0442\u043E\u0438\u0442 \u043D\u0435\u043F\u043E\u0434\u0432\u0438\u0436\u043D\u043E.");
-    };
-    return Animal;
-}());
-animal = new Animal("Мой питомец");
-var RabbitClass = /** @class */ (function (_super) {
-    __extends(RabbitClass, _super);
-    function RabbitClass(name, maxSpeed) {
-        var _this = _super.call(this, name) || this;
-        _this.maxSpeed = maxSpeed;
-        return _this;
+        console.log(`${this.name} бежит со скоростью ${this.speed}.`);
     }
-    RabbitClass.prototype.hide = function () {
-        console.log(this.name + " \u043F\u0440\u044F\u0447\u0435\u0442\u0441\u044F!");
-    };
-    RabbitClass.prototype.stop = function () {
-        _super.prototype.stop.call(this); // вызываем родительский метод stop
+    stop() {
+        this.speed = 0;
+        console.log(`${this.name} стоит неподвижно.`);
+    }
+}
+animal = new Animal("Мой питомец");
+class RabbitClass extends Animal {
+    constructor(name, maxSpeed) {
+        super(name);
+        Object.defineProperty(this, "maxSpeed", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        this.maxSpeed = maxSpeed;
+    }
+    hide() {
+        console.log(`${this.name} прячется!`);
+    }
+    stop() {
+        super.stop(); // вызываем родительский метод stop
         this.hide(); // и затем hide
-    };
-    return RabbitClass;
-}(Animal));
+    }
+}
 rabbit = new RabbitClass("Белый кролик", 15);
 console.log(rabbit);
 rabbit.run(5); // Белый кролик бежит со скоростью 5.
 rabbit.hide(); // Белый кролик прячется!
-var Animal1 = /** @class */ (function (_super) {
-    __extends(Animal1, _super);
-    function Animal1() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = 'animal';
-        return _this;
+class Animal1 extends Animal {
+    constructor() {
+        super(...arguments);
+        Object.defineProperty(this, "name", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'animal'
+        });
         //1 место для аргументов
         //2 место для конструктора 
     }
-    return Animal1;
-}(Animal));
-var Rabbit1 = /** @class */ (function (_super) {
-    __extends(Rabbit1, _super);
-    function Rabbit1() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+}
+class Rabbit1 extends Animal {
+    constructor() {
+        super(...arguments);
         //генерируется для классов-потомков, у которых нет своего конструктора
         //constructor(...args) {
         //super(...args); 
         //this доступен на этой строке, поэтому в конструкторе родителя будет обращение к его собственному this.name
-        _this.name = 'rabbit';
-        return _this;
+        Object.defineProperty(this, "name", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'rabbit'
+        });
     }
-    return Rabbit1;
-}(Animal));
+}
 // console.log(new Animal1()); // animal
 // console.log(new Rabbit1()); // rabbit
-var testObj = {
+let testObj = {
     a: 10,
     b: 18,
-    showA: function () {
+    showA() {
         console.log('this', this);
         console.log('this == testObj', this == testObj);
         console.log('this.a', this.a);
@@ -1598,21 +1574,21 @@ testObj.showA();
 function showThisCoords() {
     console.log('this', this);
     if (this)
-        console.log("(" + this.x + "," + this.y + ")");
+        console.log(`(${this.x},${this.y})`);
 }
 showThisCoords();
-var coord1 = {
+const coord1 = {
     x: 0,
     y: 1,
     sc: showThisCoords
 };
-var coord2 = { x: 10, y: -1, sc: showThisCoords };
-var coord3 = {
+const coord2 = { x: 10, y: -1, sc: showThisCoords };
+const coord3 = {
     x: 1000,
     y: 152,
     sc: showThisCoords
 };
-var coord4 = {
+const coord4 = {
     x: 540,
     y: 81,
     sc: showThisCoords
@@ -1638,21 +1614,15 @@ coord4.sc();
 // ?Статические свойства и методы
 // Мы также можем присвоить метод самому классу.Такие методы называются статическими.
 // В объявление класса они добавляются с помощью ключевого слова static, например:
-var StaticUser = /** @class */ (function () {
-    function StaticUser() {
-    }
-    StaticUser.staticMethod = function () {
+class StaticUser {
+    static staticMethod() {
         console.log(this === StaticUser);
-    };
-    return StaticUser;
-}());
+    }
+}
 StaticUser.staticMethod(); // true
 // Это фактически то же самое, что присвоить метод напрямую как свойство функции:
-var StaticUser2 = /** @class */ (function () {
-    function StaticUser2() {
-    }
-    return StaticUser2;
-}());
+class StaticUser2 {
+}
 // StaticUser2.staticMethod = function () 
 // {
 //     console.log(this === StaticUser2)
@@ -1662,12 +1632,9 @@ var StaticUser2 = /** @class */ (function () {
 // Новая возможность
 // Эта возможность была добавлена в язык недавно.Примеры работают в последнем Chrome.
 // Статические свойства также возможны, они выглядят как свойства класса, но с static в начале:
-var Article = /** @class */ (function () {
-    var Article = /** @class */ (function () {
-        function Article() {
-        }
-        return Article;
-    }());
+let Article = /** @class */ (() => {
+    class Article {
+    }
     Object.defineProperty(Article, "publisher", {
         enumerable: true,
         configurable: true,
@@ -1729,40 +1696,37 @@ var Article = /** @class */ (function () {
 // ■ метод, вычисляющий площадь окружности;
 // ■ метод, вычисляющий длину окружности.
 // Продемонстрировать работу свойств и методов.
-var Circle = /** @class */ (function () {
-    function Circle(radius) {
+class Circle {
+    constructor(radius) {
+        Object.defineProperty(this, "_radius", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         // все, что в комментариях происходит неявно
         // this = {}  
         this._radius = radius;
         // console.log(this) // {_radius:r, prototype:Circle}
     }
-    Object.defineProperty(Circle.prototype, "radius", {
-        get: function () {
-            return this._radius;
-        },
-        set: function (value) {
-            this._radius = value;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(Circle.prototype, "diametr", {
-        get: function () {
-            var diametr = this._radius * 2;
-            return diametr;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Circle.prototype.getSquare = function () {
+    get radius() {
+        return this._radius;
+    }
+    set radius(value) {
+        this._radius = value;
+    }
+    get diametr() {
+        let diametr = this._radius * 2;
+        return diametr;
+    }
+    getSquare() {
         return Math.PI * Math.pow(this._radius, 2);
-    };
-    Circle.prototype.getCircleLength = function () {
+    }
+    getCircleLength() {
         return Math.PI * (this._radius * 2);
-    };
-    return Circle;
-}());
-var myCircle = new Circle(5);
+    }
+}
+const myCircle = new Circle(5);
 // console.log(myCircle._radius)
 console.log(myCircle.radius);
 myCircle.radius = 10;
@@ -1785,54 +1749,86 @@ console.log(myCircle);
 // метод для добавления вложенного элемента в начало текущего элемента;
 // метод getHtml(), который возвращает html код в виде строки, включая html код вложенных элементов.
 // С помощью написанного класса реализовать следующий блок и добавить его на страницу с помощью document.write().
-var HtmlElement = /** @class */ (function () {
-    function HtmlElement(tag, single, text) {
-        this.attrs = [];
-        this.styles = [];
-        this.elements = [];
+class HtmlElement {
+    constructor(tag, single, text) {
+        Object.defineProperty(this, "tag", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "single", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "text", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "attrs", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: []
+        });
+        Object.defineProperty(this, "styles", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: []
+        });
+        Object.defineProperty(this, "elements", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: []
+        });
         this.tag = tag;
         this.single = single;
         this.text = text;
     }
-    HtmlElement.prototype.setAttr = function (attr) {
+    setAttr(attr) {
         this.attrs.push(attr);
-    };
-    HtmlElement.prototype.setStyle = function (style) {
+    }
+    setStyle(style) {
         this.styles.push(style);
-    };
-    HtmlElement.prototype.appendElement = function (element) {
+    }
+    appendElement(element) {
         this.elements.push(element);
-    };
-    HtmlElement.prototype.prependElement = function (element) {
+    }
+    prependElement(element) {
         this.elements.unshift(element);
-    };
-    HtmlElement.prototype.getHtml = function () {
+    }
+    getHtml() {
         if (this.single) {
-            return "<" + this.tag + " " + this.attrs.join(' ') + " value=\"" + this.text + "\" >";
+            return `<${this.tag} ${this.attrs.join(' ')} value="${this.text}" >`;
         }
         else {
-            var begin = "<" + this.tag + " " + this.attrs.join(' ') + ">" + this.text;
-            var end = "</" + this.tag + ">";
-            return begin + this.elements.map(function (el) { return el.getHtml(); }).join('') + end;
+            const begin = `<${this.tag} ${this.attrs.join(' ')}>${this.text}`;
+            const end = `</${this.tag}>`;
+            return begin + this.elements.map(el => el.getHtml()).join('') + end;
         }
-    };
-    return HtmlElement;
-}());
-var imgElement = new HtmlElement('img', true, '');
-var pElement = new HtmlElement('p', false, 'Getafe');
-var h3Element = new HtmlElement('h3', false, 'Getafe');
+    }
+}
+const imgElement = new HtmlElement('img', true, '');
+const pElement = new HtmlElement('p', false, 'Getafe');
+const h3Element = new HtmlElement('h3', false, 'Getafe');
 h3Element.setAttr('class="colorRed"');
 console.log(imgElement);
 imgElement.setAttr('src=https://upload.wikimedia.org/wikipedia/ru/thumb/3/3f/Getafe_cf_200px_RU.png/200px-Getafe_cf_200px_RU.png');
 imgElement.setStyle('color:red');
 imgElement.setStyle('padding:10px');
-imgElement.setAttr("style=\"" + imgElement.styles.join(';') + "\"");
+imgElement.setAttr(`style="${imgElement.styles.join(';')}"`);
 console.log(imgElement.getHtml());
 pElement.appendElement(imgElement);
 console.log(pElement.getHtml());
-var divElement = new HtmlElement('div', false, '');
+const divElement = new HtmlElement('div', false, '');
 divElement.setAttr('style="width:300px; margin:10px"');
-var wrapperElement = new HtmlElement('div', false, '');
+const wrapperElement = new HtmlElement('div', false, '');
 wrapperElement.setAttr('id="wrapper"');
 wrapperElement.setStyle('display: flex');
 wrapperElement.appendElement(divElement);
@@ -1846,19 +1842,43 @@ divElement.appendElement(pElement);
 // один метод print, который выводит всю информацию в таком виде, как на рисунке 1
 // Обратите внимание на то, как выводится дата:
 // если с даты публикации прошло менее дня, то выводится «сегодня»;
-var header = new PrintMachine(20, 'black', 'Arial', 'h2');
-var text = new PrintMachine(16, 'black', 'Arial', 'p');
-var datePrint = new PrintMachine(18, 'black', 'Arial', 'p');
-var infoNews = /** @class */ (function () {
-    function infoNews(heading, text, arrayTags, date) {
+const header = new PrintMachine(20, 'black', 'Arial', 'h2');
+const text = new PrintMachine(16, 'black', 'Arial', 'p');
+const datePrint = new PrintMachine(18, 'black', 'Arial', 'p');
+class infoNews {
+    constructor(heading, text, arrayTags, date) {
+        Object.defineProperty(this, "heading", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "text", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "arrayTags", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "date", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.heading = heading;
         this.text = text;
         this.arrayTags = arrayTags;
         this.date = new Date(date);
     }
-    infoNews.prototype.getDate = function () {
-        var today = new Date();
-        var yesterday = new Date(today.valueOf() - 1000 * 60 * 60 * 24);
+    getDate() {
+        let today = new Date();
+        let yesterday = new Date(today.valueOf() - 1000 * 60 * 60 * 24);
         if (this.date.toLocaleDateString() == today.toLocaleDateString()) {
             return 'today';
         }
@@ -1868,16 +1888,15 @@ var infoNews = /** @class */ (function () {
         else {
             return this.date.toLocaleDateString();
         }
-    };
-    infoNews.prototype.print = function () {
+    }
+    print() {
         header.print(this.heading);
         text.print(this.text);
-        datePrint.print("<i>" + this.getDate() + "<i>");
+        datePrint.print(`<i>${this.getDate()}<i>`);
         text.print(this.arrayTags.join('  '));
-    };
-    return infoNews;
-}());
-var post = new infoNews('you', 'never', ['walk', 'alone'], '2023-07-29');
+    }
+}
+const post = new infoNews('you', 'never', ['walk', 'alone'], '2023-07-29');
 console.log(post.getDate());
 // Реализовать класс, который описывает css класс.Класс CssClass должен содержать внутри себя:
 // название css класса;
@@ -1885,28 +1904,38 @@ console.log(post.getDate());
 // метод для установки стиля;
 // метод для удаления стиля;
 // метод getCss(), который возвращает css код в виде строки.
-var CssClass = /** @class */ (function () {
-    function CssClass(name) {
-        this.styles = [];
+class CssClass {
+    constructor(name) {
+        Object.defineProperty(this, "name", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "styles", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: []
+        });
         this.name = name;
     }
-    CssClass.prototype.setStyle = function (style) {
+    setStyle(style) {
         this.styles.push(style);
-    };
-    CssClass.prototype.delStyle = function (style) {
-        var id = this.styles.findIndex(function (el) { el == style; });
+    }
+    delStyle(style) {
+        const id = this.styles.findIndex((el) => { el == style; });
         if (id != 1)
             this.styles.splice(id, 1);
-    };
-    CssClass.prototype.getCss = function () {
-        return "." + this.name + " {" + (this.styles.join(';')) + "}";
-    };
-    return CssClass;
-}());
-var colorRed = new CssClass('colorRed');
+    }
+    getCss() {
+        return `.${this.name} {${(this.styles.join(';'))}}`;
+    }
+}
+const colorRed = new CssClass('colorRed');
 colorRed.setStyle('color:red');
 colorRed.setStyle('font-size:24px');
-var colorGreen = new CssClass('colorGreen');
+const colorGreen = new CssClass('colorGreen');
 colorGreen.setStyle('color:green');
 // Реализовать класс, описывающий блок html документ.
 // Класс HtmlBlock должен содержать внутри себя:
@@ -1916,33 +1945,44 @@ colorGreen.setStyle('color:green');
 // метод getCode(), который возвращает строку с html кодом (сначала теги style с описанием всех классов, а потом
 // все html содержимое из корневого тега и его вложенных элементов).
 // С помощью написанных классов реализовать следующий блок и добавить его на страницу с помощью document.write().
-var MainBlockHtml = /** @class */ (function () {
-    function MainBlockHtml(h, a) {
+class MainBlockHtml {
+    constructor(h, a) {
+        Object.defineProperty(this, "htmlObject", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "cssArray", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.htmlObject = h;
         this.cssArray = a;
     }
-    MainBlockHtml.prototype.getCode = function () {
-        document.head.innerHTML += "<style>" + this.cssArray.map(function (el) { return el.getCss(); }).join('\n') + "</style>";
+    getCode() {
+        document.head.innerHTML += `<style>${this.cssArray.map((el) => el.getCss()).join('\n')}</style>`;
         document.body.innerHTML += this.htmlObject.getHtml();
-    };
-    return MainBlockHtml;
-}());
-var pageObj = new MainBlockHtml(divElement, [colorRed, colorGreen]);
+    }
+}
+const pageObj = new MainBlockHtml(divElement, [colorRed, colorGreen]);
 pageObj.getCode();
 //Дата и время
 //Создайте объект Date для даты: 20 февраля 2012 года, 3 часа 12 минут. Временная зона – местная.
-var date = new Date(2012, 1, 20, 3, 12);
+let date = new Date(2012, 1, 20, 3, 12);
 console.log(date);
 //Напишите функцию getWeekDay(date), 
 // показывающую день недели в коротком формате: «ПН», «ВТ», «СР», «ЧТ», «ПТ», «СБ», «ВС».
 function getWeekDay(date) {
-    var day = ['вт', 'ср', 'чт', 'пт', 'сб', 'вс', 'пн'];
+    let day = ['вт', 'ср', 'чт', 'пт', 'сб', 'вс', 'пн'];
     return day[date.getDay(day)];
 }
-var date1 = new Date(2023, 8, 2, 21, 6);
+let date1 = new Date(2023, 8, 2, 21, 6);
 console.log(getWeekDay(date));
 function getLocalDay(date) {
-    var day = date.getDay();
+    let day = date.getDay();
     return [1, 2, 3, 4, 5, 6, 0][day];
 }
 console.log(getLocalDay(new Date));
@@ -1972,51 +2012,36 @@ console.log(Object.getOwnPropertyDescriptor(rabbit.__proto__, 'hide'));
 // value:"Мой питомец", 
 // }
 // console.log(Object.getOwnPropertyDescriptors(rabbit))
-function download() {
-    return __awaiter(this, void 0, void 0, function () {
-        var request, data, _i, _a, el;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0: return [4 /*yield*/, fetch('https://fakerapi.it/api/v1/products?_quantity=10')]; // Запрос данных с серверав
-                case 1:
-                    request = _b.sent() // Запрос данных с серверав
-                    ;
-                    return [4 /*yield*/, request.json()]; // Преобразуем json из запроса d объект
-                case 2:
-                    data = _b.sent() // Преобразуем json из запроса d объект
-                    ;
-                    console.log(data);
-                    for (_i = 0, _a = data.data; _i < _a.length; _i++) {
-                        el = _a[_i];
-                        document.body.appendChild(renderCard(el)); // рендерим карточки, добавляя их в конец body
-                    }
-                    return [2 /*return*/];
-            }
-        });
-    });
+async function download() {
+    const request = await fetch('https://fakerapi.it/api/v1/products?_quantity=10'); // Запрос данных с серверав
+    const data = await request.json(); // Преобразуем json из запроса d объект
+    console.log(data);
+    for (let el of data.data) {
+        document.body.appendChild(renderCard(el)); // рендерим карточки, добавляя их в конец body
+    }
 }
-var downloadButton = document.createElement('button');
+const downloadButton = document.createElement('button');
 downloadButton.textContent = 'Загрузить товары';
 downloadButton.addEventListener('click', download);
 document.body.appendChild(downloadButton);
 function renderCard(el) {
-    var cardDiv = document.createElement('div'); // создаём родительский div, в кот. будем добавлять данные
+    const cardDiv = document.createElement('div'); // создаём родительский div, в кот. будем добавлять данные
     cardDiv.style.display = 'flex';
     cardDiv.style.margin = '0 auto';
     cardDiv.style.maxWidth = '700px';
     cardDiv.style.padding = '20px';
     cardDiv.style.gap = '20px';
-    var cardImage = document.createElement('img'); // создали картинку
+    const cardImage = document.createElement('img'); // создали картинку
     cardImage.setAttribute('href', el.image);
     cardImage.style.minWidth = '200px';
     cardDiv.appendChild(cardImage); // Поместили картинку в корневой div
-    var dataDiv = document.createElement('div'); // создали div для текстовых данных
-    var cardH4 = document.createElement('h4');
+    const dataDiv = document.createElement('div'); // создали div для текстовых данных
+    const cardH4 = document.createElement('h4');
     cardH4.textContent = el.name;
-    cardH4.addEventListener('click', function () { alert(el.name); });
-    var cardDescr = document.createElement('p');
+    cardH4.addEventListener('click', () => { alert(el.name); });
+    const cardDescr = document.createElement('p');
     cardDescr.textContent = el.description;
-    var cardPrice = document.createElement('p');
+    const cardPrice = document.createElement('p');
     cardPrice.textContent = el.price;
     dataDiv.appendChild(cardH4);
     dataDiv.appendChild(cardDescr);
@@ -2062,25 +2087,26 @@ function renderCard(el) {
 // ■ метод для сортировки новостей по дате (от последних новостей до старых);
 // ■ метод для поиска новостей по тегу (возвращает массив новостей, в которых указан переданный в метод тег).
 // Продемонстрировать работу написанных методов.
-var NewsFeed = /** @class */ (function () {
-    function NewsFeed(NewsArray) {
+class NewsFeed {
+    constructor(NewsArray) {
+        Object.defineProperty(this, "array", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.array = NewsArray;
     }
-    Object.defineProperty(NewsFeed.prototype, "count", {
-        get: function () {
-            return this.array.length;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    NewsFeed.prototype.print = function () {
-        this.array.forEach(function (el) {
+    get count() {
+        return this.array.length;
+    }
+    print() {
+        this.array.forEach(el => {
             el.print();
         });
-    };
-    return NewsFeed;
-}());
-var feed = new NewsFeed([
+    }
+}
+const feed = new NewsFeed([
     new infoNews('you', 'never', ['walk', 'alone'], '2023-08-23'),
     new infoNews('you2', 'never', ['walk', 'alone'], '2023-08-21'),
     new infoNews('you3', 'never', ['walk', 'alone'], '2023-07-24'),
@@ -2092,9 +2118,8 @@ feed.print();
 //classList – объект с методами add/remove/toggle/contains, удобно для управления отдельными классами.
 //Метод getComputedStyle(elem, [pseudo]) возвращает объект, похожий по формату на style
 //Планирование: setTimeout и setInterval
-function showNotification(_a) {
-    var _b = _a.top, top = _b === void 0 ? 0 : _b, _c = _a.right, right = _c === void 0 ? 0 : _c, className = _a.className, html = _a.html;
-    var notification = document.createElement('div');
+function showNotification({ top = 0, right = 0, className, html }) {
+    let notification = document.createElement('div');
     notification.className = "notification";
     if (className) {
         notification.classList.add(className);
@@ -2103,7 +2128,7 @@ function showNotification(_a) {
     notification.style.right = right + 'px';
     notification.innerHTML = html;
     document.body.append(notification);
-    setTimeout(function () { return notification.remove(); }, 1500);
+    setTimeout(() => notification.remove(), 1500);
 }
 showNotification({
     top: 10,
@@ -2142,12 +2167,11 @@ showNotification({
 //3 цикла и условие
 //метод массива includes
 function displayStringStatistics(strc) {
-    var letters = 'abcdefghijklmnopqrstuvwxyz';
-    var digits = '0123456789';
-    var chars = '_+=-!@#$%^&*()~`*[]{}\\|/';
-    var l = 0, d = 0, c = 0;
-    for (var _i = 0, strc_1 = strc; _i < strc_1.length; _i++) {
-        var char = strc_1[_i];
+    const letters = 'abcdefghijklmnopqrstuvwxyz';
+    const digits = '0123456789';
+    const chars = '_+=-!@#$%^&*()~`*[]{}\\|/';
+    let l = 0, d = 0, c = 0;
+    for (let char of strc) {
         if (letters.includes(char))
             l++;
         if (digits.includes(char))
@@ -2155,7 +2179,9 @@ function displayStringStatistics(strc) {
         if (chars.includes(char))
             c++;
     }
-    console.log("num of letters " + l + "\nnum of digits " + d + "\nnum of chars " + c);
+    console.log(`num of letters ${l}
+num of digits ${d}
+num of chars ${c}`);
     // return {letters:l,digits:d,chars:c}
 }
 displayStringStatistics('as35dfsj24Stsas#');
@@ -2175,11 +2201,11 @@ displayStringStatistics('as35dfsj24Stsas#');
 //3 Написать функцию, которая заменяет в полученной строке большие буквы на маленькие, 
 //маленькие – на большие, а цифры – на знак нижнего подчеркивания.
 function changeSymbol(str) {
-    var arr = str.split(''); //превращение строки в массив 
-    var big = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    var small = 'abcdefghijklmnopqrstuvwxyz';
-    var num = '0123456789';
-    for (var i = 0; i < arr.length; i++) {
+    const arr = str.split(''); //превращение строки в массив 
+    const big = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let small = 'abcdefghijklmnopqrstuvwxyz';
+    const num = '0123456789';
+    for (let i = 0; i < arr.length; i++) {
         if (big.includes(arr[i])) {
             arr[i] = arr[i].toLowerCase();
         }
@@ -2195,9 +2221,9 @@ function changeSymbol(str) {
 console.log(changeSymbol('12axcSs2'));
 //4 Написать функцию, которая преобразует названия css-стилей с дефисом в название в СamelСase стиле: font-size в fontSize, background-color в backgroundColor, text- align в textAlign.
 function changeStyleName(style) {
-    var arr = style.split('-');
+    let arr = style.split('-');
     console.log('arr', arr);
-    arr.forEach(function (el, i, arr) {
+    arr.forEach((el, i, arr) => {
         if (i > 0) {
             console.log('el', el);
             arr[i] = el[0].toUpperCase() + el.slice(1);
@@ -2210,15 +2236,12 @@ console.log(changeStyleName('font-size-normal'));
 //5 Написать функцию, которая принимает словосочетание и превращает его в аббревиатуру.
 //Например: cascading style sheets в CSS, объектно-ориентированное программирование в ООП.
 function wordToAbbr(word) {
-    return word.split(' ').map(function (i) { return i[0].toUpperCase(); }).join('');
+    return word.split(' ').map(i => i[0].toUpperCase()).join('');
 }
 console.log(wordToAbbr('cascading style sheets'));
 //6 Написать функцию, которая принимает любое количество строк, объединяет их в одну длинную строку и возвращает ее.
-function joinStr(str, str2) {
-    var arr = str.split('');
-    var arr2 = str2.split('');
-    var arr1 = arr.concat([arr, arr2]);
-    return arr.join('');
+function joinStr(...args) {
+    return args.join('');
 }
 console.log(joinStr('Google', 'Opera'));
 //2
@@ -2228,23 +2251,18 @@ console.log(joinStr('Google', 'Opera'));
 // метод для проверки – високосный год или нет;
 // метод, возвращающий следующую дату.
 // Создайте объект класса ExtendedDate и выведите на экран результаты работы новых методов.
-var ExtendedDate = /** @class */ (function (_super) {
-    __extends(ExtendedDate, _super);
-    function ExtendedDate() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    ExtendedDate.prototype.getRussianDate = function () {
-        var month = ['январь', 'ф', 'м', 'а', 'м', 'и', 'и', 'а', 'с', 'о', 'н', 'д'];
+class ExtendedDate extends Date {
+    getRussianDate() {
+        const month = ['январь', 'ф', 'м', 'а', 'м', 'и', 'и', 'а', 'с', 'о', 'н', 'д'];
         return this.getDate() + ' ' + month[this.getMonth()];
-    };
-    ExtendedDate.prototype.now = function () {
+    }
+    now() {
         this.now();
-    };
-    ExtendedDate.prototype.parse = function (val) {
+    }
+    parse(val) {
         this.parse(val);
-    };
-    return ExtendedDate;
-}(Date));
+    }
+}
 console.log((new ExtendedDate('2020-12-26')).getRussianDate());
 //Всплытие и погружение
 // При наступлении события – самый глубоко вложенный элемент, на котором оно произошло, помечается как «целевой» (event.target).
@@ -2255,3 +2273,32 @@ console.log((new ExtendedDate('2020-12-26')).getRussianDate());
 // event.target – самый глубокий элемент, на котором произошло событие.
 // event.currentTarget (=this) – элемент, на котором в данный момент сработал обработчик (тот, на котором «висит» конкретный обработчик)
 // event.eventPhase – на какой фазе он сработал (погружение=1, фаза цели=2, всплытие=3).
+//Действия браузера по умолчанию
+// mousedown – начинает выделять текст (если двигать мышкой).
+// click на <input type="checkbox"> – ставит или убирает галочку в input.
+// submit – при нажатии на <input type="submit"> или при нажатии клавиши Enter в форме данные отправляются на сервер.
+// keydown – при нажатии клавиши в поле ввода появляется символ.
+// contextmenu – при правом клике показывается контекстное меню браузера.
+// …и многие другие…
+// Сделайте так, чтобы при клике на ссылки внутри элемента id="contents" пользователю выводился вопрос о том,
+// действительно ли он хочет покинуть страницу, и если он не хочет, то прерывать переход по ссылке.
+// Детали:
+// Содержимое #contents может быть загружено динамически и присвоено при помощи innerHTML. Так что найти все ссылки и поставить на них обработчики нельзя. Используйте делегирование.
+// Содержимое может иметь вложенные теги, в том числе внутри ссылок, например, <a href=".."><i>...</i></a>.
+const contents = document.createElement('div');
+contents.id = 'contents';
+//Имитация загрузки данных
+contents.innerHTML = '<p>Как насчёт того, чтобы прочитать <a href="wiki.com"><strong>Википедию</strong></a> или посетить <a href="W3.org"</a> и узнать о современных стандартах?</p>';
+contents.addEventListener('click', (event) => {
+    let target = event.target;
+    while (target != contents) {
+        if ((target === null || target === void 0 ? void 0 : target.nodeName) == 'A') {
+            if (!confirm('Перейти по ссылке' + target.href + '?')) {
+                event.preventDefault();
+                return;
+            }
+        }
+        target = target.parentNode;
+    }
+});
+document.body.prepend(contents);
