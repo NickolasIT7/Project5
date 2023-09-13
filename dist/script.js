@@ -2302,3 +2302,54 @@ contents.addEventListener('click', (event) => {
     }
 });
 document.body.prepend(contents);
+//6 Написать функцию, которая принимает любое количество строк, объединяет их в одну длинную строку и возвращает ее.
+function joinStrings(...strings) {
+    return strings.join('');
+}
+console.log(joinStrings('Google', 'Opera', 'fsfs'));
+//7 Написать функцию – калькулятор. Функция принимает строку с примером, определяет, какое действие необходимо выполнить (+ - * /), переводит операнды в числа, решает пример и возвращает результат.
+function calculate(num1, num2, operator) {
+    switch (operator) {
+        case "+":
+            return num1 + num2;
+        case "-":
+            return num1 - num2;
+        case "*":
+            return num1 * num2;
+        case "/":
+            if (num2 != 0) {
+                return num1 / num2;
+            }
+            else {
+                return "на 0 делить нельзя";
+            }
+    }
+}
+console.log(calculate(4, 6, "-"));
+console.log(calculate(2, 5, "*"));
+//9 Написать функцию, которая принимает строку и разделитель и возвращает массив подстрок, разбитых с помощью указанного разделителя.
+// Например: строка “10/08/2020”, разделитель “/”, результат: “10”, “08”, “2020”.
+function devide(str, devide) {
+    return arr = str.split(devide);
+}
+console.log(devide('10/08/2020', '/'));
+//Дан список сообщений с кнопками для удаления [x]. Заставьте кнопки работать.
+const newsBlock = document.getElementById('news');
+newsBlock === null || newsBlock === void 0 ? void 0 : newsBlock.addEventListener('click', (e) => {
+    var _a;
+    const target = e.target;
+    const p = (_a = target.parentElement) === null || _a === void 0 ? void 0 : _a.querySelector('p');
+    if (target.className == 'close') {
+        p.hidden = !p.hidden;
+        target.textContent = p.hidden ? '[v]' : '[x]';
+    }
+}, { passive: true });
+//10 Написать функцию вывода текста по заданному шаблону.
+// Функция принимает первым параметром шаблон, в тексте которого может использоваться %, после символа % указывается индекс 
+// входного параметра. При выводе вместо %индекс необходимо вывести значение соответствующего входного параметра.
+// Например: print(“Today is %1 %2.%3.%4”, “Monday”, 10,8, 2020) должна вывести “Today is Monday 10.8.2020”.
+function textConclusion(template, ...strings) {
+    [...strings].forEach((item, index) => template = template.replace('%' + (index + 1), item));
+    return template;
+}
+console.log(textConclusion('Today is %1 %2.%3.%4', 'Monday', 10, 8, 2020));

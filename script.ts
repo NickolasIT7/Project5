@@ -658,7 +658,7 @@ function randomInt(min: number, max: number) {
   return Math.round(Math.random() * (max - min) + min)
 }
 //случайное число в выровненной верятностью появления
-function randomInteger(min:any,max:any) {
+function randomInteger(min: any, max: any) {
   let rand = min + Math.random() * (max - min);
   return Math.round(rand);
 }
@@ -818,7 +818,7 @@ console.log('"abc".repeat(3)', "abc".repeat(3))
 // Функция возвращает 1, если в первой строке больше символов, чем во второй; 
 // -1 – если во второй больше символов, чем в первой; или 0 – если строки одинаковой длины.
 
-function compare(a:any, b:any) {
+function compare(a: any, b: any) {
   if (a.lenght > b.lenght)
     return 1;
   else if (a.lenght < b.lenght)
@@ -1397,13 +1397,13 @@ console.log(mapResult)
 // Функция добавления нового элемента в массив по указанному индексу.
 
 let arr4 = [3, 6, 7, 2, 5, 5, 7, 3, 6, 4]
-function addElement(arr:any, index:any, value:any) {
+function addElement(arr: any, index: any, value: any) {
   arr.splice(index, 0, value)
 }
 addElement(arr4, 0, 6)
 console.log('arr', arr4)
 // Функция удаления элемента из массива по указанному индексу
-function delElement(arr:any, index:any) {
+function delElement(arr: any, index: any) {
   return arr.splice(index, 1)
 }
 delElement(arr4, 3)
@@ -1412,7 +1412,7 @@ console.log('arr', arr4)
 // Функция принимает 2 массива и возвращает новый массив,в котором собраны общие элементы (то есть элементы,
 // которые встречаются и в первом и во втором массивах) без повторений.
 let arr02 = [5, 1, 6, 3, 2]
-function getNewUniqueArray(arr1:any, arr2:any) {
+function getNewUniqueArray(arr1: any, arr2: any) {
   let arr = [] as any[]
   arr1.forEach(el => {
     if (!arr.includes(el) && arr2.includes(el)) {
@@ -1425,7 +1425,7 @@ console.log(getNewUniqueArray(arr4, arr02))
 
 //Функция принимает 2 массива и возвращает новый массив, в котором собраны все элементы из первого массива, 
 // которых нет во втором массиве
-function newMassive(arr1:any, arr2:any) {
+function newMassive(arr1: any, arr2: any) {
   let unique = arr1.filter((item) => arr2.indexOf(item) == -1)
   return unique
 }
@@ -1473,7 +1473,7 @@ type Student = {
 function Student(this: any, name: string, age: number) {
   this.name = name
   this.age = age
-  this.askQuestion = function (text:any) { alert(text) }
+  this.askQuestion = function (text: any) { alert(text) }
 }
 
 // const student3 = new Student('Max', 15) 
@@ -1546,11 +1546,11 @@ function forEach(arr: any[], fn: Function) {
     fn(arr[i], i, arr)
   }
 }
-forEach([0, 1, 2], ((el:any, i:any) => {
+forEach([0, 1, 2], ((el: any, i: any) => {
   console.log(el, i)
 }))
 
-function User(name:any) {
+function User(name: any) {
   // this = {};  (неявно)
 
   // добавляет свойства к this
@@ -1958,7 +1958,7 @@ let Article = /** @class */ (() => {
 
 class Circle {
   _radius
-  constructor(radius:any) {
+  constructor(radius: any) {
     // все, что в комментариях происходит неявно
     // this = {}  
     this._radius = radius
@@ -2088,7 +2088,7 @@ class infoNews {
   arrayTags: Array<string>
   date: Date;
 
-  constructor(heading:any, text:any, arrayTags:any, date: string) {
+  constructor(heading: any, text: any, arrayTags: any, date: string) {
     this.heading = heading;
     this.text = text;
     this.arrayTags = arrayTags;
@@ -2160,7 +2160,7 @@ colorGreen.setStyle('color:green')
 class MainBlockHtml {
   htmlObject: HtmlElement
   cssArray: CssClass[]
-  constructor(h:any, a:any) {
+  constructor(h: any, a: any) {
     this.htmlObject = h
     this.cssArray = a
   }
@@ -2550,9 +2550,9 @@ contents.id = 'contents'
 
 //Имитация загрузки данных
 contents.innerHTML = '<p>Как насчёт того, чтобы прочитать <a href="wiki.com"><strong>Википедию</strong></a> или посетить <a href="W3.org"</a> и узнать о современных стандартах?</p>'
-contents.addEventListener('click', (event)=>{
+contents.addEventListener('click', (event) => {
   let target = event.target as any
-  while (target!=contents) {
+  while (target != contents) {
     if (target?.nodeName == 'A') {
       if (!confirm('Перейти по ссылке' + target.href + '?')) {
         event.preventDefault()
@@ -2564,3 +2564,60 @@ contents.addEventListener('click', (event)=>{
 })
 
 document.body.prepend(contents)
+
+//6 Написать функцию, которая принимает любое количество строк, объединяет их в одну длинную строку и возвращает ее.
+function joinStrings(...strings:string[]) {
+  return strings.join('');
+}
+console.log(joinStrings('Google', 'Opera','fsfs'));
+
+//7 Написать функцию – калькулятор. Функция принимает строку с примером, определяет, какое действие необходимо выполнить (+ - * /), переводит операнды в числа, решает пример и возвращает результат.
+function calculate(num1: any, num2: any, operator: any) {
+  switch (operator) {
+    case "+":
+      return num1 + num2;
+    case "-":
+      return num1 - num2;
+    case "*":
+      return num1 * num2;
+    case "/":
+      if (num2 != 0) {
+        return num1 / num2;
+      } else {
+        return "на 0 делить нельзя"
+      }
+  }
+}
+console.log(calculate(4,6,"-"))
+console.log(calculate(2,5,"*"))
+
+//9 Написать функцию, которая принимает строку и разделитель и возвращает массив подстрок, разбитых с помощью указанного разделителя.
+// Например: строка “10/08/2020”, разделитель “/”, результат: “10”, “08”, “2020”.
+function devide(str: string, devide: string) {
+  return arr = str.split(devide)
+}
+console.log(devide('10/08/2020','/'))
+
+//Дан список сообщений с кнопками для удаления [x]. Заставьте кнопки работать.
+
+const newsBlock = document.getElementById('news')
+newsBlock?.addEventListener('click',(e)=>{
+  const target = e.target as HTMLElement
+  const p = target.parentElement?.querySelector('p') as unknown as HTMLParagraphElement
+  if (target.className == 'close') {
+   p.hidden = !p.hidden
+   target.textContent = p.hidden ? '[v]' : '[x]'
+  }
+}, {passive:true})
+
+//10 Написать функцию вывода текста по заданному шаблону.
+// Функция принимает первым параметром шаблон, в тексте которого может использоваться %, после символа % указывается индекс 
+// входного параметра. При выводе вместо %индекс необходимо вывести значение соответствующего входного параметра.
+// Например: print(“Today is %1 %2.%3.%4”, “Monday”, 10,8, 2020) должна вывести “Today is Monday 10.8.2020”.
+
+function textConclusion(template:any,...strings:string[]) {
+  [...strings].forEach((item,index) =>
+  template = template.replace('%' + (index + 1), item))
+  return template
+}
+console.log (textConclusion('Today is %1 %2.%3.%4', 'Monday',10,8,2020))
