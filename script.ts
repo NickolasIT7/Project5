@@ -2517,6 +2517,12 @@ class ExtendedDate extends Date {
 
 console.log((new ExtendedDate('2020-12-26')).getRussianDate())
 
+
+
+
+
+
+
 //Всплытие и погружение
 // При наступлении события – самый глубоко вложенный элемент, на котором оно произошло, помечается как «целевой» (event.target).
 
@@ -2566,10 +2572,10 @@ contents.addEventListener('click', (event) => {
 document.body.prepend(contents)
 
 //6 Написать функцию, которая принимает любое количество строк, объединяет их в одну длинную строку и возвращает ее.
-function joinStrings(...strings:string[]) {
+function joinStrings(...strings: string[]) {
   return strings.join('');
 }
-console.log(joinStrings('Google', 'Opera','fsfs'));
+console.log(joinStrings('Google', 'Opera', 'fsfs'));
 
 //7 Написать функцию – калькулятор. Функция принимает строку с примером, определяет, какое действие необходимо выполнить (+ - * /), переводит операнды в числа, решает пример и возвращает результат.
 function calculate(num1: any, num2: any, operator: any) {
@@ -2588,39 +2594,39 @@ function calculate(num1: any, num2: any, operator: any) {
       }
   }
 }
-console.log(calculate(4,6,"-"))
-console.log(calculate(2,5,"*"))
+console.log(calculate(4, 6, "-"))
+console.log(calculate(2, 5, "*"))
 
 //9 Написать функцию, которая принимает строку и разделитель и возвращает массив подстрок, разбитых с помощью указанного разделителя.
 // Например: строка “10/08/2020”, разделитель “/”, результат: “10”, “08”, “2020”.
 function devide(str: string, devide: string) {
   return arr = str.split(devide)
 }
-console.log(devide('10/08/2020','/'))
+console.log(devide('10/08/2020', '/'))
 
 //Дан список сообщений с кнопками для удаления [x]. Заставьте кнопки работать.
 
 const newsBlock = document.getElementById('news')
-newsBlock?.addEventListener('click',(e)=>{
+newsBlock?.addEventListener('click', (e) => {
   const target = e.target as HTMLElement
   const p = target.parentElement?.querySelector('p') as unknown as HTMLParagraphElement
   if (target.className == 'close') {
-   p.hidden = !p.hidden
-   target.textContent = p.hidden ? '[v]' : '[x]'
+    p.hidden = !p.hidden
+    target.textContent = p.hidden ? '[v]' : '[x]'
   }
-}, {passive:true})
+}, { passive: true })
 
 //10 Написать функцию вывода текста по заданному шаблону.
 // Функция принимает первым параметром шаблон, в тексте которого может использоваться %, после символа % указывается индекс 
 // входного параметра. При выводе вместо %индекс необходимо вывести значение соответствующего входного параметра.
 // Например: print(“Today is %1 %2.%3.%4”, “Monday”, 10,8, 2020) должна вывести “Today is Monday 10.8.2020”.
 
-function textConclusion(template:any,...strings:string[]) {
-  [...strings].forEach((item,index) =>
-  template = template.replace('%' + (index + 1), item))
+function textConclusion(template: any, ...strings: string[]) {
+  [...strings].forEach((item, index) =>
+    template = template.replace('%' + (index + 1), item))
   return template
 }
-console.log (textConclusion('Today is %1 %2.%3.%4', 'Monday', 10, 8, 2020))
+console.log(textConclusion('Today is %1 %2.%3.%4', 'Monday', 10, 8, 2020))
 
 //Генерация пользовательских событий 
 
@@ -2645,44 +2651,44 @@ console.log (textConclusion('Today is %1 %2.%3.%4', 'Monday', 10, 8, 2020))
 // Создать объект класса EmpTable и вывести на экран результат работы метода getHtml().
 // class Employee
 
-let arr7 = [0,5,'stay','away',false]
+let arr7 = [0, 5, 'stay', 'away', false]
 
 //функция, которая возвращает индекс элемента массива, если такой элемент в нем есть, иначе возвращает -1
 //аналогична методу массива indexOf
-function indexOf(arr:any[],el:any,startIndex=0) { 
-  for(let i=startIndex; i<arr.length;i++) {
-  if(arr[i]==el) return i  
+function indexOf(arr: any[], el: any, startIndex = 0) {
+  for (let i = startIndex; i < arr.length; i++) {
+    if (arr[i] == el) return i
   }
   return -1
 
 }
-let objArr = [{id:1,name:"Вася"},
-{id:2, name:"Петя"},
-{id:3, name:"Маша"}
+let objArr = [{ id: 1, name: "Вася" },
+{ id: 2, name: "Петя" },
+{ id: 3, name: "Маша" }
 ]
-objArr.findIndex(el=>el.id==2)
-objArr.findIndex(el=>el.id==4)
-let index = objArr.findIndex(el=>el.name=='Маша')
-objArr.splice(index,0,{id:4,name:'newName'}) //добавляем новый элемент в массив по индексу
-objArr.splice(index,1) //удаляем 1 элемент по индексу
-objArr.splice(index,1,{id:4,name:'newName'}) //удаляем 1 элемент по индексу и добавляем новый на его место
+objArr.findIndex(el => el.id == 2)
+objArr.findIndex(el => el.id == 4)
+let index = objArr.findIndex(el => el.name == 'Маша')
+objArr.splice(index, 0, { id: 4, name: 'newName' }) //добавляем новый элемент в массив по индексу
+objArr.splice(index, 1) //удаляем 1 элемент по индексу
+objArr.splice(index, 1, { id: 4, name: 'newName' }) //удаляем 1 элемент по индексу и добавляем новый на его место
 objArr.splice(index) //удаляем всё включая элемент
 console.log(objArr)
 
 //функция, которая возвращает индекс первого объекта, если функция fn вернула истину, иначе возвращает -1
 //аналогична методу массива findIndex
-function findIndex(arr:any[],fn:Function,startIndex=0) {
-  for(let i=startIndex; i<arr.length;i++) {
-  if(fn(arr[i],i,arr)) return i  
+function findIndex(arr: any[], fn: Function, startIndex = 0) {
+  for (let i = startIndex; i < arr.length; i++) {
+    if (fn(arr[i], i, arr)) return i
   }
   return undefined
 
 }
 //функция, которая возвращает первый объект, если функция fn вернула истину, иначе возвращает undefind
 //аналогична методу массива find
-function find(arr:any[],fn:Function) {
-  for(let i=0; i<arr.length;i++) {
-  if(fn(arr[i],i,arr)) return i  
+function find(arr: any[], fn: Function) {
+  for (let i = 0; i < arr.length; i++) {
+    if (fn(arr[i], i, arr)) return i
   }
   return undefined
 }
@@ -2690,11 +2696,186 @@ function find(arr:any[],fn:Function) {
 
 // функция, которая возвращает массив объектов, для которых функция fn вернула истину, иначе возвращает пустой массив
 // аналогична методу массива filter
-function filter(arr:any[], fn:Function) {
+function filter(arr: any[], fn: Function) {
   const newArr = [] as any[]
-  for (let i=0; i<arr.length;i++) {
+  for (let i = 0; i < arr.length; i++) {
     if (fn(arr[i], i, arr)) newArr.push(arr[i])
   }
   return newArr
 }
 
+let isQ = false
+let isW = false
+
+function qwFunc(e: KeyboardEvent) {
+  if (e.type == 'keydown') {
+    if (e.code == 'KeyQ') isQ = true
+    if (e.code == 'KeyW') isW = true
+  }
+  if (e.type == 'keyup') {
+    if (e.code == 'KeyQ') isQ = false
+    if (e.code == 'KeyW') isW = false
+  }
+  if (isQ && isW) {
+    alert('Boom!!!')
+    isQ = isW = false
+  }
+}
+
+window.addEventListener('keydown', qwFunc)
+window.addEventListener('keydown', qwFunc)
+
+//Страница: DOMContentLoaded, load, beforeunload, unload
+
+// текущее состояние
+console.log(document.readyState);
+
+// вывести изменения состояния
+document.addEventListener('readystatechange', () => console.log(document.readyState));
+
+// События загрузки страницы:
+
+// DOMContentLoaded генерируется на document, когда DOM готов. Мы можем применить JavaScript к элементам на данном этапе.
+// Скрипты, вроде <script>...</script> или <script src="..."></script> блокируют DOMContentLoaded, браузер ждёт, пока они выполнятся.
+// Изображения и другие ресурсы тоже всё ещё могут продолжать загружаться.
+// Событие load на window генерируется, когда страница и все ресурсы загружены. Мы редко его используем, потому что обычно нет нужды ждать так долго.
+// Событие beforeunload на window генерируется, когда пользователь покидает страницу. Если мы отменим событие, 
+// браузер спросит, на самом ли деле пользователь хочет уйти (например, у нас есть несохранённые изменения).
+// Событие unload на window генерируется, когда пользователь окончательно уходит, 
+// в обработчике мы можем делать только простые вещи, которые ни о чём не спрашивают пользователя и не заставляют его ждать.
+//  Из-за этих ограничений оно редко используется. Мы можем послать сетевой запрос с помощью navigator.sendBeacon.
+// document.readyState – текущее состояние документа, изменения можно отследить с помощью события readystatechange:
+// loading – документ грузится.
+// interactive – документ прочитан, происходит примерно в то же время, что и DOMContentLoaded, но до него.
+// complete – документ и ресурсы загружены, происходит примерно в то же время, что и window.onload, но до него.
+
+// let script = document.createElement('script');
+
+// мы можем загрузить любой скрипт с любого домена
+// script.src = "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"
+// document.head.append(script);
+
+// script.onload = function() {
+// в скрипте создаётся вспомогательная переменная с именем "_"
+//   console.log(window._.VERSION); // отображает версию библиотеки
+// }
+
+// Изображения <img>, внешние стили, скрипты и другие ресурсы предоставляют события load и error для отслеживания загрузки:
+
+// load срабатывает при успешной загрузке,
+// error срабатывает при ошибке загрузки.
+// Единственное исключение – это <iframe>: по историческим причинам срабатывает всегда load вне зависимости от того, как завершилась загрузка, даже если страница не была найдена.
+
+// Событие readystatechange также работает для ресурсов, но используется редко, потому что события load/error проще в использовании.
+
+function preloadImages(sources: string[], callback: Function) {
+  let counter = 0;
+
+  function onLoad() {
+    counter++;
+    if (counter == sources.length) callback();
+  }
+
+  for (let source of sources) {
+    let img = document.createElement('img');
+    img.onload = img.onerror = onLoad;
+    img.src = source;
+  }
+}
+
+// ---------- тест ----------
+
+let sources = [
+  "https://en.js.cx/images-load/1.jpg",
+  "https://en.js.cx/images-load/2.jpg",
+  "https://en.js.cx/images-load/3.jpg"
+];
+
+// добавляем случайные символы к ссылкам, чтобы избежать кеширования
+for (let i = 0; i < sources.length; i++) {
+  sources[i] += '?' + Math.random();
+}
+
+// для каждого изображения
+// создадим другое изображение с аналогичным src и проверим, есть ли у нас его ширина
+function testLoaded() {
+  let widthSum = 0;
+  for (let i = 0; i < sources.length; i++) {
+    let img = document.createElement('img');
+    img.src = sources[i];
+    widthSum += img.width;
+  }
+  alert(widthSum);
+}
+
+// должно выводиться 300
+preloadImages(sources, testLoaded);
+
+//3
+//Реализовать класс Employee, описывающий работника, и создать массив работников банка.
+//Реализовать класс EmpTable для генерации html кода таблицы со списком работников банка. 
+//Массив работников необходимо передавать через конструктор, а получать html код с помощью метода getHtml().
+//Создать объект класса EmpTable и вывести на экран результат работы метода getHtml().
+
+class Employee {
+  name;
+  age;
+  post;
+  constructor(name:string, age:number, post:string) {
+    this.name = name;
+    this.age = age;
+    this.post = post;
+  }
+}
+
+const empl = [
+  new Employee("Matthew McConaughey", 44, "investment specialist"),
+  new Employee("Jon Flanagan", 30, "credit specialist"),
+  new Employee("Jamie Carragher", 45, "auditor"),
+  new Employee("Robert Fowler", 48, "accountant"),
+  new Employee("Jamie Vardy", 36, "accountant")
+]
+
+class EmpTable {
+  arr
+  constructor(arr:Employee[]) {
+    this.arr = arr;
+  }
+  getHtml() {
+    const html = `<table>
+    <thead>
+    <tr>
+    <th>name</th>
+    <th>age</th>
+        <th>post</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${this.arr.map(el=>`<tr><td>${el.name}</td><td>${el.age}</td><td>${el.post}</td></tr>`).join('')}
+      </tbody>
+      </table>`
+    document.body.insertAdjacentHTML('beforeend', html)
+    return html
+  }
+}
+
+const table = new EmpTable(empl)
+// table.getHtml()
+
+//Реализовать класс StyledEmpTable, который наследуется от класса EmpTable. Добавить метод getStyles(), который возвращает
+// строку со стилями для таблицы в тегах style. Переопределить метод getHtml(), который добавляет стили к тому, что возвращает 
+// метод getHtml() из родительского класса.
+// Создать объект класса StyledEmpTable и вывести на экран результат работы метода getHtml().
+
+class StyledEmpTable extends EmpTable {
+  getStyles() {
+    return `<style> table { color:red } </style>`
+  }
+  getHtml(): string {
+    document.head.insertAdjacentHTML('beforeend', this.getStyles())
+    return super.getHtml()
+  }
+}
+
+const StyledTable = new StyledEmpTable(empl)
+StyledTable.getHtml()

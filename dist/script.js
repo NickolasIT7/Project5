@@ -2422,3 +2422,174 @@ function filter(arr, fn) {
     }
     return newArr;
 }
+let isQ = false;
+let isW = false;
+function qwFunc(e) {
+    if (e.type == 'keydown') {
+        if (e.code == 'KeyQ')
+            isQ = true;
+        if (e.code == 'KeyW')
+            isW = true;
+    }
+    if (e.type == 'keyup') {
+        if (e.code == 'KeyQ')
+            isQ = false;
+        if (e.code == 'KeyW')
+            isW = false;
+    }
+    if (isQ && isW) {
+        alert('Boom!!!');
+        isQ = isW = false;
+    }
+}
+window.addEventListener('keydown', qwFunc);
+window.addEventListener('keydown', qwFunc);
+//Страница: DOMContentLoaded, load, beforeunload, unload
+// текущее состояние
+console.log(document.readyState);
+// вывести изменения состояния
+document.addEventListener('readystatechange', () => console.log(document.readyState));
+// События загрузки страницы:
+// DOMContentLoaded генерируется на document, когда DOM готов. Мы можем применить JavaScript к элементам на данном этапе.
+// Скрипты, вроде <script>...</script> или <script src="..."></script> блокируют DOMContentLoaded, браузер ждёт, пока они выполнятся.
+// Изображения и другие ресурсы тоже всё ещё могут продолжать загружаться.
+// Событие load на window генерируется, когда страница и все ресурсы загружены. Мы редко его используем, потому что обычно нет нужды ждать так долго.
+// Событие beforeunload на window генерируется, когда пользователь покидает страницу. Если мы отменим событие, 
+// браузер спросит, на самом ли деле пользователь хочет уйти (например, у нас есть несохранённые изменения).
+// Событие unload на window генерируется, когда пользователь окончательно уходит, 
+// в обработчике мы можем делать только простые вещи, которые ни о чём не спрашивают пользователя и не заставляют его ждать.
+//  Из-за этих ограничений оно редко используется. Мы можем послать сетевой запрос с помощью navigator.sendBeacon.
+// document.readyState – текущее состояние документа, изменения можно отследить с помощью события readystatechange:
+// loading – документ грузится.
+// interactive – документ прочитан, происходит примерно в то же время, что и DOMContentLoaded, но до него.
+// complete – документ и ресурсы загружены, происходит примерно в то же время, что и window.onload, но до него.
+// let script = document.createElement('script');
+// мы можем загрузить любой скрипт с любого домена
+// script.src = "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"
+// document.head.append(script);
+// script.onload = function() {
+// в скрипте создаётся вспомогательная переменная с именем "_"
+//   console.log(window._.VERSION); // отображает версию библиотеки
+// }
+// Изображения <img>, внешние стили, скрипты и другие ресурсы предоставляют события load и error для отслеживания загрузки:
+// load срабатывает при успешной загрузке,
+// error срабатывает при ошибке загрузки.
+// Единственное исключение – это <iframe>: по историческим причинам срабатывает всегда load вне зависимости от того, как завершилась загрузка, даже если страница не была найдена.
+// Событие readystatechange также работает для ресурсов, но используется редко, потому что события load/error проще в использовании.
+function preloadImages(sources, callback) {
+    let counter = 0;
+    function onLoad() {
+        counter++;
+        if (counter == sources.length)
+            callback();
+    }
+    for (let source of sources) {
+        let img = document.createElement('img');
+        img.onload = img.onerror = onLoad;
+        img.src = source;
+    }
+}
+// ---------- тест ----------
+let sources = [
+    "https://en.js.cx/images-load/1.jpg",
+    "https://en.js.cx/images-load/2.jpg",
+    "https://en.js.cx/images-load/3.jpg"
+];
+// добавляем случайные символы к ссылкам, чтобы избежать кеширования
+for (let i = 0; i < sources.length; i++) {
+    sources[i] += '?' + Math.random();
+}
+// для каждого изображения
+// создадим другое изображение с аналогичным src и проверим, есть ли у нас его ширина
+function testLoaded() {
+    let widthSum = 0;
+    for (let i = 0; i < sources.length; i++) {
+        let img = document.createElement('img');
+        img.src = sources[i];
+        widthSum += img.width;
+    }
+    alert(widthSum);
+}
+// должно выводиться 300
+preloadImages(sources, testLoaded);
+//3
+//Реализовать класс Employee, описывающий работника, и создать массив работников банка.
+//Реализовать класс EmpTable для генерации html кода таблицы со списком работников банка. 
+//Массив работников необходимо передавать через конструктор, а получать html код с помощью метода getHtml().
+//Создать объект класса EmpTable и вывести на экран результат работы метода getHtml().
+class Employee {
+    constructor(name, age, post) {
+        Object.defineProperty(this, "name", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "age", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "post", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        this.name = name;
+        this.age = age;
+        this.post = post;
+    }
+}
+const empl = [
+    new Employee("Matthew McConaughey", 44, "investment specialist"),
+    new Employee("Jon Flanagan", 30, "credit specialist"),
+    new Employee("Jamie Carragher", 45, "auditor"),
+    new Employee("Robert Fowler", 48, "accountant"),
+    new Employee("Jamie Vardy", 36, "accountant")
+];
+class EmpTable {
+    constructor(arr) {
+        Object.defineProperty(this, "arr", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        this.arr = arr;
+    }
+    getHtml() {
+        const html = `<table>
+    <thead>
+    <tr>
+    <th>name</th>
+    <th>age</th>
+        <th>post</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${this.arr.map(el => `<tr><td>${el.name}</td><td>${el.age}</td><td>${el.post}</td></tr>`).join('')}
+      </tbody>
+      </table>`;
+        document.body.insertAdjacentHTML('beforeend', html);
+        return html;
+    }
+}
+const table = new EmpTable(empl);
+// table.getHtml()
+//Реализовать класс StyledEmpTable, который наследуется от класса EmpTable. Добавить метод getStyles(), который возвращает
+// строку со стилями для таблицы в тегах style. Переопределить метод getHtml(), который добавляет стили к тому, что возвращает 
+// метод getHtml() из родительского класса.
+// Создать объект класса StyledEmpTable и вывести на экран результат работы метода getHtml().
+class StyledEmpTable extends EmpTable {
+    getStyles() {
+        return `<style> table { color:red } </style>`;
+    }
+    getHtml() {
+        document.head.insertAdjacentHTML('beforeend', this.getStyles());
+        return super.getHtml();
+    }
+}
+const StyledTable = new StyledEmpTable(empl);
+StyledTable.getHtml();
