@@ -2593,3 +2593,160 @@ class StyledEmpTable extends EmpTable {
 }
 const StyledTable = new StyledEmpTable(empl);
 StyledTable.getHtml();
+// pz2-5
+//1
+// Реализовать класс Button, который содержит ширину, высоту, текст кнопки и метод showBtn(), который выводит кнопку на экран с помощью тега button и функции document.write().
+// Реализовать класс BootstrapButton, унаследовав его от класса Button. Добавить поле color и переопределить метод showBtn() так, чтобы кнопка выводилась со стилями и указанным цветом.
+class Button {
+    constructor(width, height, text) {
+        Object.defineProperty(this, "width", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "height", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "text", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        this.width = width;
+        this.height = height;
+        this.text = text;
+    }
+    showBtn() {
+        document.body.insertAdjacentHTML('beforeend', `<button style="width:${this.width}; height:${this.height};">${this.text}</button>`);
+    }
+}
+const newButton = new Button(100, 50, 'dsfsdfsd');
+newButton.showBtn();
+class BootstrapButton extends Button {
+    constructor(width, height, text, color) {
+        super(width, height, text); //вызов конструктора родителя
+        Object.defineProperty(this, "color", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        this.color = color; //this доступен только после вызова конструктора родителя
+    }
+    showBtn() {
+        // super.showBtn()//вызов метода родителя
+        document.body.insertAdjacentHTML('beforeend', `<button style="width:${this.width}; height:${this.height};background-color:${this.color}">${this.text}</button>`);
+    }
+}
+const newButton2 = new BootstrapButton(100, 50, 'FDDFWE', 'red');
+newButton2.showBtn();
+//2
+// Реализовать класс, описывающий геометрическую фигуру со свойствами и методами:
+// ■ get-свойство для получения названия фигуры;
+// ■ метод для вывода информации о фигуре (стороны и их длина);
+// ■ метод для вычисления площади фигуры;
+// ■ метод для вычисления периметра фигуры.
+// Реализуйте классы-наследники: квадрат, прямоугольник и треугольник. Переопределите методы вывода и вычислений в  классах-наследниках.
+// Создайте массив с различными фигурами и выведите информацию о каждой фигуре, включая площадь и периметр.
+class Figure {
+    constructor(name) {
+        Object.defineProperty(this, "name", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        this.name = name;
+    }
+    get figureName() {
+        return this.name;
+    }
+    getFigureInfo() {
+    }
+    getFigureSquare() {
+    }
+    getFigurePerimetr() {
+    }
+}
+class Rect extends Figure {
+    constructor(length1, length2, length3) {
+        super();
+        Object.defineProperty(this, "length1", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "length2", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "length3", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+    }
+    getFigureSquare() {
+        Sq = (this.length1 * this.length2) / 2;
+    }
+    getFigurePerimetr() {
+        perimetr = this.length1 + this.length2 + this.length3;
+    }
+}
+class Square extends Figure {
+    constructor(length3) {
+        Object.defineProperty(this, "length3", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        getFigureSquare();
+        {
+            Sq = this.length3 * 2;
+        }
+        getFigurePerimetr();
+        {
+            perimetr = this.length3 * 4;
+        }
+    }
+}
+class Rectangle extends Figure {
+    constructor(length4, length5) {
+        Object.defineProperty(this, "length4", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "length5", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        getFigureSquare();
+        {
+            Sq = this.length4 * this.length5;
+        }
+        getFigurePerimetr();
+        {
+            perimetr = this.length4 * 2 + this.length5 * 2;
+        }
+    }
+}
+//3
+// Реализуйте класс ExtentedArray, унаследовав его от стандартного класса Array и добавив следующие методы:
+// ■ метод getString(separator) – для получения строки со всеми элементами массива, перечисленными через указанный разделитель: запятая, тире, пробел и т. д.;
+// ■ метод getHtml(tagName) – для получения строки с html кодом, где каждый элемент массива будет обернут в указанный тег (учтите, если указывается тег li, то все элементы
+// дополнительно необходимо обернуть в ul).
+// Создайте объект класса ExtentedArray, заполните его данными и выведите на экран результаты работы методов getString() и getHtml().
